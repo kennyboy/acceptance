@@ -6,6 +6,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.TypeAnnotationsScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
+import org.reflections.util.FilterBuilder;
 
 import javax.naming.OperationNotSupportedException;
 import java.lang.reflect.Constructor;
@@ -42,7 +48,10 @@ public class TestRunner {
     }
 
     private static Test[] getTestsInPackage(String packageName){
-        Reflections reflections = new Reflections(packageName);
+        Reflections reflections = new Reflections(new ConfigurationBuilder()
+                .filterInputsBy(new FilterBuilder.Include(FilterBuilder.prefix(packageName)))
+                .setUrls(ClasspathHelper.forJavaClassPath())
+                .setScanners(new SubTypesScanner()));
         Set<Class<? extends Test>> testClasses = reflections.getSubTypesOf(Test.class);
 
         Test[] returnValue = new Test[testClasses.size()];
@@ -59,14 +68,19 @@ public class TestRunner {
         return returnValue;
     }
     private static AcceptanceInterface[] getAcceptanceInterfacesInPackage(String packageName){
-        Reflections reflections = new Reflections(packageName);
-        Set<Class<? extends AcceptanceInterface>> acceptanceInterfaceClasses = 
+        Reflections reflections = new Reflections(new ConfigurationBuilder()
+                .setUrls(ClasspathHelper.forJavaClassPath())
+                .setScanners(new SubTypesScanner()));
+        Set<Class<? extends AcceptanceInterface>> acceptanceInterfaceClasses =
                     reflections.getSubTypesOf(AcceptanceInterface.class);
+        for(Class<? extends AcceptanceInterface> c : acceptanceInterfaceClasses){
+            System.out.println(c.getCanonicalName());
+        }
         AcceptanceInterface[] returnValue = new AcceptanceInterface[acceptanceInterfaceClasses.size()];
         int noClassesWithEmptyConstructor = 0;
         for(Class<? extends AcceptanceInterface> acceptanceInterfaceClass:acceptanceInterfaceClasses){
             try{            
-                Constructor<? extends AcceptanceInterface> acceptanceInterfaceConstructor = 
+                Constructor<? extends AcceptanceInterface> acceptanceInterfaceConstructor =
                         acceptanceInterfaceClass.getConstructor();
                 returnValue[noClassesWithEmptyConstructor] = acceptanceInterfaceConstructor.newInstance();
                 noClassesWithEmptyConstructor++;
@@ -115,8 +129,13 @@ public class TestRunner {
 
     private void runTests(Test[] tests) {
         AcceptanceInterface[] acceptanceInterfaces = getAcceptanceInterfacesInPackage("");
-        assert(acceptanceInterfaces.length > 0);
+        if (acceptanceInterfaces.length == 0){
+            System.out.println("Cannot find your acceptanceInterface,");
+            System.out.println("please place your jar containg you accpetanceInterface");
+            System.out.println("implementation in the testee folder.");
+        }
         for (AcceptanceInterface acceptanceInterface: acceptanceInterfaces){
+            System.out.println("Now Testing " + acceptanceInterface.getClass() ".")
             for (Test current : tests) {
                 try {
                     System.out.println("Running Test " + current.getClass() + ":");
