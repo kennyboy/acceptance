@@ -43,8 +43,8 @@ public class BasicVictoryPointTest extends Test {
         // individually
         gameState.setPlayerVictoryPoints(0, 20);
         assert(gameState.getPlayerVictoryPoints(0) == 20);
-        assert(gameState.getPlayerVictoryPoints(1) == 10);
-        assert(gameState.getPoolVictoryPoints() == 6);
+        assert(gameState.getPlayerVictoryPoints(1) == 5);
+        assert(gameState.getPoolVictoryPoints() == 11);
         
         gameState.setPlayerVictoryPoints(1, 1);
         assert(gameState.getPlayerVictoryPoints(0) == 20);
