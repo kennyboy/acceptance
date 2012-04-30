@@ -84,7 +84,9 @@ public class TestRunner {
                         acceptanceInterfaceClass.getConstructor();
                 returnValue[noClassesWithEmptyConstructor] = acceptanceInterfaceConstructor.newInstance();
                 noClassesWithEmptyConstructor++;
-            } catch (Exception e){}
+            } catch (Exception e){
+               e.printStackTrace();
+            }
         }
         assert(noClassesWithEmptyConstructor == acceptanceInterfaceClasses.size());
         return returnValue;
@@ -135,7 +137,7 @@ public class TestRunner {
             System.out.println("implementation in the testee folder.");
         }
         for (AcceptanceInterface acceptanceInterface: acceptanceInterfaces){
-            System.out.println("Now Testing " + acceptanceInterface.getClass() ".")
+            System.out.println("Now Testing " + acceptanceInterface.getClass()  + ".");
             for (Test current : tests) {
                 try {
                     System.out.println("Running Test " + current.getClass() + ":");
