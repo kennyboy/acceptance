@@ -5,6 +5,7 @@ package framework.interfaces.activators;
  *
  * @author Matthew Moss (matthew.moss)
  * @author Lasath Fernando (lasath.fernando)
+ * @author Damon Stacey (damon.stacey)
  */
 public interface CardSelector {
 

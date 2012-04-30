@@ -8,7 +8,8 @@ package framework.interfaces.activators;
  *
  * @author Lasath Fernando (lasath.fernando)
  * @author Matthew Moss (matthew.moss)
+ * @author Damon Stacey (damon.stacey)
  */
-public interface GladiatorActivator extends Targeted {
+public interface GladiatorActivator extends Targeted, CardActivator {
 
 }

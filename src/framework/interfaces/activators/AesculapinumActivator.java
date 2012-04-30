@@ -8,7 +8,9 @@ package framework.interfaces.activators;
  *
  * @author Lasath Fernando (lasath.fernando)
  * @author Matthew Moss (matthew.moss)
+ * @author Damon Stacey (damon.stacey)
  */
-public interface AesculapinumActivator extends CardSelector {
+public interface AesculapinumActivator 
+               extends CardSelector, CardActivator {
 
 }

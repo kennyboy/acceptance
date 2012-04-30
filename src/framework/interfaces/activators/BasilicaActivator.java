@@ -10,6 +10,6 @@ package framework.interfaces.activators;
  * @author Matthew Moss (matthew.moss)
  * @author Damon Stacey (damon.stacey)
  */
-public interface SenatorActivator extends CardActivator {
+public interface BasilicaActivator extends CardActivator {
 
 }

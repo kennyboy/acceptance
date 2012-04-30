@@ -5,7 +5,6 @@
 # Copyright (C) 2012    Damon Stacey            (@damon.stacey)
 
 . compile
-
 if [ `whoami` == "damon" ]; then
    reset
 fi

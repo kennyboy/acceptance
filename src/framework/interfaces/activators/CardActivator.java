@@ -7,6 +7,7 @@ import framework.cards.Card;
  *
  * @author Matthew Moss (matthew.moss)
  * @author Lasath Fernando (lasath.fernando)
+ * @author Damon Stacey (damon.stacey)
  */
 public interface CardActivator {
 

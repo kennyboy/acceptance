@@ -9,8 +9,9 @@ package framework.interfaces.activators;
  *
  * @author Matthew Moss (matthew.moss)
  * @author Lasath Fernando (lasath.fernando)
+ * @author Damon Stacey (damon.stacey)
  */
-public interface Targeted extends CardActivator {
+public interface Targeted {
 
     /**
      * The user chooses a dice disc.

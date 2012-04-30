@@ -8,8 +8,9 @@ package framework.interfaces.activators;
  *
  * @author Lasath Fernando (lasath.fernando)
  * @author Matthew Moss (matthew.moss)
+ * @author Damon Stacey (damon.stacey)
  */
-public interface ScaenicusActivator {
+public interface ScaenicusActivator extends CardActivator {
 
     /**
      * Select a card to mimic with the Scaenicus.

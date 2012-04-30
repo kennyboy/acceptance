@@ -10,7 +10,7 @@ package framework.interfaces.activators;
  * @author Matthew Moss (matthew.moss)
  * @author Damon Stacey (damon.stacey)
  */
-public interface ConsulActivator {
+public interface ConsulActivator extends CardActivator{
 
     /**
      * Choose the amount a dice disc value changes by.

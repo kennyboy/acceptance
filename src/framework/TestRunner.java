@@ -29,10 +29,10 @@ import java.util.Set;
 public class TestRunner {
 
     AcceptanceInterface testee;
-    int numTestsPassed = 0;
-    int numTestFailed = 0;
-    int numNotImplemented = 0;
-    int numInvalidTests = 0;
+    int[] numTestsPassed;
+    int[] numTestFailed;
+    int[] numNotImplemented;
+    int[] numInvalidTests;
 
 
     private static Test[] getUnverifiedTests() {
@@ -106,69 +106,73 @@ public class TestRunner {
         } catch (AssertionError e) {
             assertionsEnabled = true;
         }
-
-        boolean failed;
+        AcceptanceInterface[] acceptanceInterfaces = getAcceptanceInterfacesInPackage("");        
+        int interfaceTestNumber = 0;
+        numTestsPassed = new int[acceptanceInterfaces.length];
+        numTestFailed = new int[acceptanceInterfaces.length];
+        numNotImplemented = new int[acceptanceInterfaces.length];
+        numInvalidTests = new int[acceptanceInterfaces.length];
+        
         if (!assertionsEnabled) {
             System.out.println("Please enable assertions, run with java -ea");
-            failed = true;
+            return;
         } else {
-            // step through all the tests one at a time
-            runTests(getVerifiedTests());
-            runTests(getBorderlineTests());
-            runTests(getUnverifiedTests());
-
-            failed = (numTestFailed > 0) || (numNotImplemented > 0);
+            for (AcceptanceInterface acceptanceInterface: acceptanceInterfaces) {
+               System.out.println("Now testing: " + acceptanceInterface.getClass()  + ".");
+               runTests(getVerifiedTests(), acceptanceInterface, interfaceTestNumber);
+               runTests(getBorderlineTests(), acceptanceInterface, interfaceTestNumber);
+               runTests(getUnverifiedTests(), acceptanceInterface, interfaceTestNumber);
+               interfaceTestNumber++;
+            }
         }
-
-        if (failed) {
-            System.out.println("FAILED");
-            System.out.println("Not accepted!");
-        } else {
-            System.out.println("ACCEPTED");
-            System.out.println("You are awesome!");
+        interfaceTestNumber = 0;
+        for (AcceptanceInterface acceptanceInterface: acceptanceInterfaces) {
+            if ((numNotImplemented[interfaceTestNumber] > 0)) {            
+                System.out.println("Not fully implemented: " +  acceptanceInterface.getClass());
+            } else if ((numTestFailed[interfaceTestNumber] > 0)) {
+                System.out.println("Needs work: " +  acceptanceInterface.getClass());
+            } else {
+                System.out.println("Accepted: " +  acceptanceInterface.getClass() + "is awesome!!!");
+            }
+            interfaceTestNumber++;
         }
     }
 
-    private void runTests(Test[] tests) {
-        AcceptanceInterface[] acceptanceInterfaces = getAcceptanceInterfacesInPackage("");
-        if (acceptanceInterfaces.length == 0){
+    private void runTests(Test[] tests, AcceptanceInterface acceptanceInterface, int interfaceTestNumber) {
+        if (acceptanceInterface == null){
             System.out.println("Cannot find your acceptanceInterface,");
             System.out.println("please place your jar containg you accpetanceInterface");
             System.out.println("implementation in the testee folder.");
         }
-        for (AcceptanceInterface acceptanceInterface: acceptanceInterfaces){
-            System.out.println("Now Testing " + acceptanceInterface.getClass()  + ".");
-            for (Test current : tests) {
-                try {
-                    System.out.println("Running Test " + current.getClass() + ":");
-                    System.out.println("\t" + current.getShortDescription());
-
-                    GameState state = acceptanceInterface.getInitialState();
-                    MoveMaker mover = acceptanceInterface.getMover(state);
-                    current.run(state,mover);
+        for (Test current : tests) {
+            try {
+                System.out.println("   " + current.getClass().toString().split("class tests.")[1] + ":");
+                System.out.println("      " + current.getShortDescription());
+                GameState state = acceptanceInterface.getInitialState();
+                MoveMaker mover = acceptanceInterface.getMover(state);
+                current.run(state,mover);
  
-                    numTestsPassed++;
-                    System.out.println("Test passed");
+                numTestsPassed[interfaceTestNumber]++;
+                System.out.println("      Test passed");
 
-                } catch (UnsupportedOperationException ex) {
-                    numNotImplemented++;
-                    System.out.println("Feature not implemented yet. Skipping test...");
- 
-                } catch (IllegalArgumentException ex) {
-                    numInvalidTests++;
-                    System.out.println(current.getOutputSteam());
-                    Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
-                    System.out.println("Error in test. Please report this to your "
-                            + "representative.");
+            } catch (UnsupportedOperationException ex) {
+                numNotImplemented[interfaceTestNumber]++;
+                System.out.println("      Feature not implemented yet. Skipping test...");
+            } catch (IllegalArgumentException ex) {
+                numInvalidTests[interfaceTestNumber]++;
+                System.out.println(current.getOutputSteam());
+                Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("      Error in test. Please report this to your "
+                        + "representative.");
     
-                } catch (Exception ex) {
-                    numTestFailed++;
-                    System.out.println(current.getOutputSteam());
-                    Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                numTestFailed[interfaceTestNumber]++;
+                System.out.println(current.getOutputSteam());
+                Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
 
-                    System.out.println("Test Failed");
-                }
+                System.out.println("      Test Failed");
             }
         }
     }
+
 }

@@ -8,7 +8,8 @@ package framework.interfaces.activators;
  *
  * @author Lasath Fernando (lasath.fernando)
  * @author Matthew Moss (matthew.moss)
+ * @author Damon Stacey (damon.stacey)
  */
-public interface HaruspexActivator extends CardSelector {
+public interface HaruspexActivator extends CardSelector, CardActivator {
 
 }

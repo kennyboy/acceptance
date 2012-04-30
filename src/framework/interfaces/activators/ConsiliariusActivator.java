@@ -8,7 +8,9 @@ package framework.interfaces.activators;
  *
  * @author Lasath Fernando (lasath.fernando)
  * @author Matthew Moss (matthew.moss)
+ * @author Damon Stacey (damon.stacey)
  */
-public interface ConsiliariusActivator extends Rearranger {
+public interface ConsiliariusActivator 
+                  extends Rearranger, CardActivator {
 
 }

@@ -8,8 +8,9 @@ package framework.interfaces.activators;
  *
  * @author Lasath Fernando (lasath.fernando)
  * @author Matthew Moss (matthew.moss)
+ * @author Damon Stacey (damon.stacey)
  */
-public interface ForumActivator extends ActionDiceUser {
+public interface ForumActivator extends ActionDiceUser, CardActivator {
 
     /**
      * Choose whether to activate a Templum with your forum activation

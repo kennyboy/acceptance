@@ -7,7 +7,8 @@ package framework.interfaces.activators;
 /**
  *
  * @author Matt
+ * @author Damon Stacey (damon.stacey)
  */
-public interface MercatusActivator {
+public interface MercatusActivator extends CardActivator {
 
 }
