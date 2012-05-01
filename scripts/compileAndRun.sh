@@ -7,9 +7,14 @@
 . compile
 
 if [ `whoami` == "damon" ]; then
-   reset
-fi
 
-java -ea framework.TestRunner > acceptanceTestResults.txt
-less acceptanceTestResults.txt
+   java -ea framework.TestRunner > acceptanceTestResults.txt
+   less acceptanceTestResults.txt
+   reset
+
+else
+
+   java -ea framework.TestRunner
+
+fi
 

@@ -5,9 +5,16 @@
 # Copyright (C) 2012    Damon Stacey            (@damon.stacey)
 
 . compile
-if [ `whoami` == "damon" ]; then
+
+if [ `whoami` == "damon1" ]; then
+
+   java -ea framework.TestRunner > acceptanceTestResults.txt
+   less acceptanceTestResults.txt
    reset
+   
+else 
+
+   java -ea framework.TestRunner   
+
 fi
- 
-java -ea framework.TestRunner
 
