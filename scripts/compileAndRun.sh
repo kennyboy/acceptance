@@ -9,6 +9,7 @@
 if [ `whoami` == "damon" ]; then
    reset
 fi
- 
-java -ea framework.TestRunner
+
+java -ea framework.TestRunner > acceptanceTestResults.txt
+less acceptanceTestResults.txt
 
