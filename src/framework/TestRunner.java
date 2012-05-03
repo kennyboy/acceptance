@@ -175,8 +175,8 @@ public class TestRunner {
             } catch (AssertionError ex) {
                 numTestFailed[interfaceTestNumber]++;
                 System.out.print(current.getOutputSteam());
-                ex.printStackTrace();
-                System.out.println("      Test Failed");
+                ex.printStackTrace(System.out);
+                System.out.println("      Test Failed:");
             } 
         }
     }

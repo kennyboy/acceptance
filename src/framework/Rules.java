@@ -42,5 +42,38 @@ public class Rules {
     /**
      * The number of Dice Discs in the game.
      */
-    public static final int NUM_DICE_DISCS = 6;
+    public static final int NUM_DICE_DISCS = 7;
+
+   /**
+    * The value used to refer to the 1st Dice Disc
+    */
+    public static final int DICE_DISC_1 = 1;
+
+   /**
+    * The value used to refer to the 2nd Dice Disc
+    */
+    public static final int DICE_DISC_2 = 2;
+
+   /**
+    * The value used to refer to the 3rd Dice Disc
+    */
+     public static final int DICE_DISC_3 = 3;
+   /**
+    * The value used to refer to the 4th Dice Disc
+    */
+    public static final int DICE_DISC_4 = 4;
+   /**
+    * The value used to refer to the 5th Dice Disc
+    */public static final int DICE_DISC_5 = 5;
+   /**
+    * The value used to refer to the 6th Dice Disc
+    */
+    public static final int DICE_DISC_6 = 6;
+   /**
+    * The value used to refer to the Bribe or Pay to Play Dice Disc
+    */
+    public static final int BRIBE_DISC  = 7;
+
+
+
 }

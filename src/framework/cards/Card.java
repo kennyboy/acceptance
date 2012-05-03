@@ -22,7 +22,7 @@ public enum Card {
    LEGAT ("Legat"),
    LEGIONARIUS ("Legionarius"),
    MACHINA ("Machina"),
-   MERCATOR ("Meractor"),
+   MERCATOR ("Mercator"),
    MERCATUS ("Mercatus"),
    NERO ("Nero"),
    ONAGER ("Onager"),
