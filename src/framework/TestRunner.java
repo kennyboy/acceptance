@@ -79,7 +79,7 @@ public class TestRunner {
         AcceptanceInterface[] returnValue = new AcceptanceInterface[acceptanceInterfaceClasses.size()];
         int noClassesWithEmptyConstructor = 0;
         for(Class<? extends AcceptanceInterface> acceptanceInterfaceClass:acceptanceInterfaceClasses){
-            try{            
+            try{
                 Constructor<? extends AcceptanceInterface> acceptanceInterfaceConstructor =
                         acceptanceInterfaceClass.getConstructor();
                 returnValue[noClassesWithEmptyConstructor] = acceptanceInterfaceConstructor.newInstance();
@@ -106,13 +106,13 @@ public class TestRunner {
         } catch (AssertionError e) {
             assertionsEnabled = true;
         }
-        AcceptanceInterface[] acceptanceInterfaces = getAcceptanceInterfacesInPackage("");        
+        AcceptanceInterface[] acceptanceInterfaces = getAcceptanceInterfacesInPackage("");
         int interfaceTestNumber = 0;
         numTestsPassed = new int[acceptanceInterfaces.length];
         numTestFailed = new int[acceptanceInterfaces.length];
         numNotImplemented = new int[acceptanceInterfaces.length];
         numInvalidTests = new int[acceptanceInterfaces.length];
-        
+
         if (!assertionsEnabled) {
             System.out.println("Please enable assertions, run with java -ea");
             return;
@@ -127,7 +127,7 @@ public class TestRunner {
         }
         interfaceTestNumber = 0;
         for (AcceptanceInterface acceptanceInterface: acceptanceInterfaces) {
-            if ((numNotImplemented[interfaceTestNumber] > 0)) {            
+            if ((numNotImplemented[interfaceTestNumber] > 0)) {
                 System.out.println("Not fully implemented: " +  acceptanceInterface.getClass());
             } else if ((numTestFailed[interfaceTestNumber] > 0)) {
                 System.out.println("Needs work: " +  acceptanceInterface.getClass());
@@ -150,8 +150,9 @@ public class TestRunner {
                 System.out.println("      " + current.getShortDescription());
                 GameState state = acceptanceInterface.getInitialState();
                 MoveMaker mover = acceptanceInterface.getMover(state);
+                SanityChecker checkedMover = new SanityChecker(mover, state, current.out);
                 current.run(state,mover);
- 
+
                 numTestsPassed[interfaceTestNumber]++;
                 System.out.println("      Test passed");
 
@@ -164,20 +165,20 @@ public class TestRunner {
                 Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("      Error in test. Please report this to your "
                         + "representative.");
-    
+
             } catch (Exception ex) {
                 numTestFailed[interfaceTestNumber]++;
                 System.out.println(current.getOutputSteam());
                 Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
 
                 System.out.println("      Test Failed");
-            
+
             } catch (AssertionError ex) {
                 numTestFailed[interfaceTestNumber]++;
                 System.out.print(current.getOutputSteam());
                 ex.printStackTrace(System.out);
                 System.out.println("      Test Failed:");
-            } 
+            }
         }
     }
 
