@@ -1,8 +1,9 @@
 package tests.unverified;
 
-import framework.cards.Card;
-import framework.interfaces.*;
-import framework.*;
+import framework.Test;
+import framework.interfaces.GameState;
+import framework.interfaces.MoveMaker;
+
 /**
  * 
  * Testing the behavior of get Sestertii using Action Dice
@@ -13,10 +14,12 @@ import framework.*;
 
 public class GetMoneyTest extends Test {
 
+    @Override
     public String getShortDescription() {
         return "Testing the behavior of get Sestertii using Action Dice";
     }
 
+    @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
         
