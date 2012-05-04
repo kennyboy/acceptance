@@ -25,8 +25,6 @@ public class GetCardsTest extends Test {
 
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
-
-        out.println("Testing get cards disc");
         
         //the deck contains five cards
         //it's player0's turn, he doesn't have any card in his hand
@@ -80,7 +78,7 @@ public class GetCardsTest extends Test {
         //use another action dice to get cards from the pile
         move.activateCardsDisc(2, Card.CONSILIARUS);
         
-        //now the deck should have only 2 cards left
+        //now the deck should have only 3 cards left
         assert(gameState.getDeck().size() == 3);
         
         //the deck should not have basilica but should still
@@ -104,7 +102,7 @@ public class GetCardsTest extends Test {
         
         move.activateCardsDisc(2, Card.CONSILIARUS);
         
-        //now the deck should have no card left
+        //now the deck should have 1 card left
         assert(gameState.getDeck().size() == 1);
         
         //the discard pile should have two cards now and
