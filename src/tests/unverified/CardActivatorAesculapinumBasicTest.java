@@ -29,7 +29,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
         
-        System.out.println("Testing Aesculapinum");
+        out.println("Testing Aesculapinum");
         
         //only has one card in hand
         Collection<Card> hand = new ArrayList<Card>();
@@ -75,6 +75,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
         //activate the card
         AesculapinumActivator activator = (AesculapinumActivator) move.chooseCardToActivate(3);
         activator.chooseCardFromPile(0);
+        activator.complete();
         
         assert(gameState.getPlayerHand(0).size() == 1);
         assert(gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
