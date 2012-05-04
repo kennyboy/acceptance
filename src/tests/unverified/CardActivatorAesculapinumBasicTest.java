@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import framework.Test;
+import framework.Rules;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
@@ -44,7 +45,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
         gameState.setDiscard(discard);
         
         //no other cards on the field
-        Card[] field = new Card[7];
+        Card[] field = new Card[Rules.NUM_DICE_DISCS];
         for(int i = 0; i < field.length; i++) {
             field[i] = Card.NOT_A_CARD;
         }
@@ -58,7 +59,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
 
         //================== test1 =====================
         
-        move.placeCard(Card.AESCULAPINUM, 3);
+        move.placeCard(Card.AESCULAPINUM, Rules.DICE_DISC_3);
         
         //the correct amount of Sestertii should be deducted from the player
         assert(gameState.getPlayerSestertii(0) == 15);
@@ -73,7 +74,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
         //=================== test2 =====================
         
         //activate the card
-        AesculapinumActivator activator = (AesculapinumActivator) move.chooseCardToActivate(3);
+        AesculapinumActivator activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
         activator.chooseCardFromPile(0);
         activator.complete();
         
@@ -88,7 +89,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
         //================== test3 ======================
         
         //activate the card
-        activator = (AesculapinumActivator) move.chooseCardToActivate(3);
+        activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
         activator.chooseCardFromPile(1);
         activator.complete();
         
@@ -132,8 +133,8 @@ public class CardActivatorAesculapinumBasicTest extends Test {
         gameState.setActionDice(new int[] {4,5,6});
         
         //lay the cards
-        move.placeCard(Card.AESCULAPINUM, 5);
-        move.placeCard(Card.AESCULAPINUM, 6);
+        move.placeCard(Card.AESCULAPINUM, Rules.DICE_DISC_5);
+        move.placeCard(Card.AESCULAPINUM, Rules.DICE_DISC_6);
         
         //test if the money get removed from the player
         assert(gameState.getPlayerSestertii(1) == 5);
@@ -145,7 +146,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
         assert(field[4] == Card.AESCULAPINUM);
         assert(field[5] == Card.AESCULAPINUM);
         
-        move.placeCard(Card.AESCULAPINUM, 4);
+        move.placeCard(Card.AESCULAPINUM, Rules.DICE_DISC_4);
         
         assert(gameState.getPlayerSestertii(1) == 0);
         assert(gameState.getPlayerHand(1).size() == 0);
@@ -155,7 +156,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
         assert(field[3] == Card.AESCULAPINUM);
         
         //activate the card
-        activator = (AesculapinumActivator) move.chooseCardToActivate(4);
+        activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
         activator.chooseCardFromPile(1);
         activator.complete();
         
@@ -168,7 +169,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
         discard.remove(Card.ESSEDUM);
         gameState.setDiscard(discard);
         
-        activator = (AesculapinumActivator) move.chooseCardToActivate(5);
+        activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_5);
         activator.chooseCardFromPile(2);
         activator.complete();
         
@@ -180,7 +181,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
         discard.remove(Card.SICARIUS);
         gameState.setDiscard(discard);
         
-        activator = (AesculapinumActivator) move.chooseCardToActivate(6);
+        activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_6);
         activator.chooseCardFromPile(1);
         activator.complete();
         
