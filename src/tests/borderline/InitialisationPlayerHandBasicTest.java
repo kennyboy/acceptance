@@ -34,7 +34,6 @@ public class InitialisationPlayerHandBasicTest extends Test {
             gameState.setPlayerHand(k, hand);
             if (!c.toString().equals("Not A Card")) {           
                for (int i = 0; i < 53; i++) {
-                  hand.add(Card.NOT_A_CARD); //should not be added to a discard or discard pile. Rather ignored.  
                   hand.add(c); 
                   gameState.setPlayerHand(k, hand);
                   hand = (List) gameState.getPlayerHand(k);
@@ -82,7 +81,6 @@ public class InitialisationPlayerHandBasicTest extends Test {
       cards.add(Card.TRIBUNUSPLEBIS);
       cards.add(Card.TURRIS);
       cards.add(Card.VELITES);
-      cards.add(Card.NOT_A_CARD);
       return cards;
    }
    

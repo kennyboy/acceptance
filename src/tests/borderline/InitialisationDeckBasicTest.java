@@ -36,7 +36,6 @@ public class InitialisationDeckBasicTest extends Test {
          gameState.setDiscard(discard);
          if (!c.toString().equals("Not A Card")) {           
             for (int i = 0; i < 53; i++) {
-               discard.add(Card.NOT_A_CARD); //should not be added to a discard or discard pile. Rather ignored.  
                discard.add(c); 
                gameState.setDiscard(discard);
                discard = gameState.getDiscard();
@@ -91,7 +90,6 @@ public class InitialisationDeckBasicTest extends Test {
       cards.add(Card.TRIBUNUSPLEBIS);
       cards.add(Card.TURRIS);
       cards.add(Card.VELITES);
-      cards.add(Card.NOT_A_CARD);
       return cards;
    }
 
