@@ -25,8 +25,6 @@ public class GetCardsTest extends Test {
 
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
-
-        out.println("Testing get cards disc");
         
         //the deck contains five cards
         //it's player0's turn, he doesn't have any card in his hand
@@ -37,9 +35,10 @@ public class GetCardsTest extends Test {
         deck.add(Card.CONSILIARUS);
         deck.add(Card.CONSILIARUS);
         deck.add(Card.CONSUL);
+        deck.add(Card.CENTURIO);
         
         gameState.setDeck(deck);
-        assert(gameState.getDeck().size() == 5);
+        assert(gameState.getDeck().size() == 6);
         
         List<Card> discard = new ArrayList<Card>();
         
@@ -60,7 +59,7 @@ public class GetCardsTest extends Test {
         //the number of cards in the deck should decrease by 1
         //the deck should not contain architectus anymore
         gameState.getDeck();
-        assert(gameState.getDeck().size() == 4);
+        assert(gameState.getDeck().size() == 5);
         assert(!gameState.getDeck().contains(Card.ARCHITECTUS));
         
         //the discard pile should still be empty at this stage
@@ -79,8 +78,8 @@ public class GetCardsTest extends Test {
         //use another action dice to get cards from the pile
         move.activateCardsDisc(2, Card.CONSILIARUS);
         
-        //now the deck should have only 2 cards left
-        assert(gameState.getDeck().size() == 2);
+        //now the deck should have only 3 cards left
+        assert(gameState.getDeck().size() == 3);
         
         //the deck should not have basilica but should still
         //have one consiliarus
@@ -103,8 +102,8 @@ public class GetCardsTest extends Test {
         
         move.activateCardsDisc(2, Card.CONSILIARUS);
         
-        //now the deck should have no card left
-        assert(gameState.getDeck().size() == 0);
+        //now the deck should have 1 card left
+        assert(gameState.getDeck().size() == 1);
         
         //the discard pile should have two cards now and
         //one card is basilica and one card is consul
