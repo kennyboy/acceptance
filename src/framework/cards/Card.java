@@ -13,7 +13,7 @@ public enum Card {
    ARCHITECTUS ("Architectus"),
    BASILICA ("Basilica"),
    CENTURIO ("Centurio"),
-   CONSILIARUS ("Consiliarus"),
+   CONSILIARIUS ("Consiliarius"),
    CONSUL ("Consul"),
    ESSEDUM ("Essedum"),
    FORUM ("Forum"),
