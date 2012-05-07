@@ -32,8 +32,8 @@ public class GetCardsTest extends Test {
         List<Card> deck = new ArrayList<Card>();
         deck.add(Card.ARCHITECTUS);
         deck.add(Card.BASILICA);
-        deck.add(Card.CONSILIARUS);
-        deck.add(Card.CONSILIARUS);
+        deck.add(Card.CONSILIARIUS);
+        deck.add(Card.CONSILIARIUS);
         deck.add(Card.CONSUL);
         deck.add(Card.CENTURIO);
         
@@ -76,7 +76,7 @@ public class GetCardsTest extends Test {
         //=====================test2========================
         
         //use another action dice to get cards from the pile
-        move.activateCardsDisc(2, Card.CONSILIARUS);
+        move.activateCardsDisc(2, Card.CONSILIARIUS);
         
         //now the deck should have only 3 cards left
         assert(gameState.getDeck().size() == 3);
@@ -84,7 +84,7 @@ public class GetCardsTest extends Test {
         //the deck should not have basilica but should still
         //have one consiliarus
         assert(!gameState.getDeck().contains(Card.BASILICA));
-        assert(gameState.getDeck().contains(Card.CONSILIARUS));
+        assert(gameState.getDeck().contains(Card.CONSILIARIUS));
         
         //the discard pile should have one cards now and
         //that card is basilica
@@ -95,12 +95,12 @@ public class GetCardsTest extends Test {
         //architectus and one is the new consiliarus
         assert(gameState.getPlayerHand(0).size() == 2);
         assert(gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
-        assert(gameState.getPlayerHand(0).contains(Card.CONSILIARUS));
+        assert(gameState.getPlayerHand(0).contains(Card.CONSILIARIUS));
         
         
         //=====================test3========================
         
-        move.activateCardsDisc(2, Card.CONSILIARUS);
+        move.activateCardsDisc(2, Card.CONSILIARIUS);
         
         //now the deck should have 1 card left
         assert(gameState.getDeck().size() == 1);
@@ -115,7 +115,7 @@ public class GetCardsTest extends Test {
         //one architectus and two consiliarus
         assert(gameState.getPlayerHand(0).size() == 3);
         assert(gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
-        assert(gameState.getPlayerHand(0).contains(Card.CONSILIARUS));
+        assert(gameState.getPlayerHand(0).contains(Card.CONSILIARIUS));
 
         
         //=====================test4========================

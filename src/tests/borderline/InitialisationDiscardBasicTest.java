@@ -35,12 +35,12 @@ public class InitialisationDiscardBasicTest extends Test {
          discard = new LinkedList();
          gameState.setDiscard(discard);
          if (!c.toString().equals("Not A Card")) {           
-            for (int i = 0; i < 53; i++) {
+            for (int i = 0; i < 52; i++) {
                discard.add(c); 
                gameState.setDiscard(discard);
                discard = gameState.getDiscard();
                assert (discard.size() == i + 1);
-               for (int j = 1; j < i+1; j++) {        
+               for (int j = 0; j < i; j++) {        
                   assert (discard.get(j).toString().equals(c.toString()));     
                }
             }
@@ -68,7 +68,7 @@ public class InitialisationDiscardBasicTest extends Test {
       cards.add(Card.ARCHITECTUS);
       cards.add(Card.BASILICA);
       cards.add(Card.CENTURIO);
-      cards.add(Card.CONSILIARUS);
+      cards.add(Card.CONSILIARIUS);
       cards.add(Card.CONSUL);
       cards.add(Card.ESSEDUM);
       cards.add(Card.FORUM);

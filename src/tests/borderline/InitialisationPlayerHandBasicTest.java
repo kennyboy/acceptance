@@ -60,7 +60,7 @@ public class InitialisationPlayerHandBasicTest extends Test {
       cards.add(Card.ARCHITECTUS);
       cards.add(Card.BASILICA);
       cards.add(Card.CENTURIO);
-      cards.add(Card.CONSILIARUS);
+      cards.add(Card.CONSILIARIUS);
       cards.add(Card.CONSUL);
       cards.add(Card.ESSEDUM);
       cards.add(Card.FORUM);
