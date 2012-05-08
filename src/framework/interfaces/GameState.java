@@ -272,4 +272,12 @@ public interface GameState {
     * @return the number of Victory Points not held by any player
     */
    public int getPoolVictoryPoints ();
+   
+   /**
+    * Returns true iff a game has been started AND the game has come to completion
+    * otherwise return false.
+    *
+    * @return whether a game has come to completion
+    */
+   public boolean isGameCompleted();
 }
