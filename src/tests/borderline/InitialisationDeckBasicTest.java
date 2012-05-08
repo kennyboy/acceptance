@@ -25,31 +25,31 @@ public class InitialisationDeckBasicTest extends Test {
                                           UnsupportedOperationException,
                                           IllegalArgumentException {
 
-      List<Card> discard = new LinkedList();
-      gameState.setDiscard(discard);
-      discard = gameState.getDiscard();
-      assert (discard.size() == 0);     
+      List<Card> deck = new LinkedList();
+      gameState.setDeck(deck);
+      deck = gameState.getDeck();
+      assert (deck.size() == 0);     
       
       List<Card> cards = getPopulatedCards();
       for (Card c : cards) {
-         discard = new LinkedList();
-         gameState.setDiscard(discard);
+         deck = new LinkedList();
+         gameState.setDeck(deck);
          if (!c.toString().equals("Not A Card")) {           
-            for (int i = 0; i < 53; i++) {
-               discard.add(c); 
-               gameState.setDiscard(discard);
-               discard = gameState.getDiscard();
-               assert (discard.size() == i + 1);
+            for (int i = 0; i < 52; i++) {
+               deck.add(c); 
+               gameState.setDeck(deck);
+               deck = gameState.getDeck();
+               assert (deck.size() == i + 1);
                for (int j = 1; j < i+1; j++) {        
-                  assert (discard.get(j).toString().equals(c.toString()));     
+                  assert (deck.get(j).toString().equals(c.toString()));     
                }
             }
          }
       }
-      discard = new LinkedList();
-      gameState.setDiscard(discard);
-      discard = gameState.getDiscard();
-      assert (discard.size() == 0);     
+      deck = new LinkedList();
+      gameState.setDeck(deck);
+      deck = gameState.getDeck();
+      assert (deck.size() == 0);     
 
    }
 

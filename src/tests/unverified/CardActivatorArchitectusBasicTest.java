@@ -112,14 +112,13 @@ public class CardActivatorArchitectusBasicTest extends Test {
         field = gameState.getPlayerCardsOnDiscs(0);
         assert(field[4] == Card.LEGAT);
 
-        //Activation is ended when something other than placing a building occurs
+        //Activation is not ended when something other than placing a building occurs
         move.placeCard(Card.ONAGER, Rules.DICE_DISC_6);
-        assert(gameState.getPlayerSestertii(0) == 12);
+        assert(gameState.getPlayerSestertii(0) == 17);
         assert(gameState.getPlayerHand(0).isEmpty());
         assert(!gameState.getPlayerHand(0).contains(Card.ONAGER));
 
         field = gameState.getPlayerCardsOnDiscs(0);
         assert(field[5] == Card.ONAGER);
     }
-
 }
