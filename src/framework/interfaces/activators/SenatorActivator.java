@@ -12,4 +12,6 @@ package framework.interfaces.activators;
  */
 public interface SenatorActivator extends CardActivator {
 
+   public void layCard (Card myCard, int whichDiceDisc);
+
 }

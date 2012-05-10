@@ -11,4 +11,6 @@ package framework.interfaces.activators;
  */
 public interface ArchitectusActivator extends CardActivator{
 
+   public void layCard (Card myCard, int whichDiceDisc);
+
 }
