@@ -1,4 +1,4 @@
-package tests.unverified;
+package tests.borderline;
 
 import framework.Test;
 import framework.cards.Card;
@@ -25,7 +25,16 @@ public class CardActivatorLegatBasicTest extends Test {
                                           throws AssertionError,
                                           UnsupportedOperationException,
                                           IllegalArgumentException {
-        
+        Card [] ourSide = {Card.NOT_A_CARD, 
+                                Card.NOT_A_CARD, 
+                                Card.NOT_A_CARD, 
+                                Card.NOT_A_CARD, 
+                                Card.NOT_A_CARD, 
+                                Card.NOT_A_CARD, 
+                                Card.NOT_A_CARD};
+                                
+        // Place 5 cards on the opponent's side
+        gameState.setPlayerCardsOnDiscs(0, ourSide);
         // Set up the player stats
         gameState.setPlayerVictoryPoints(0, 10);
         gameState.setPlayerVictoryPoints(1, 10);

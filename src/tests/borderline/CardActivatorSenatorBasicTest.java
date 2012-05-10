@@ -1,4 +1,4 @@
-package tests.unverified;
+package tests.borderline;
 
 import framework.Test;
 import framework.cards.Card;
@@ -48,7 +48,8 @@ public class CardActivatorSenatorBasicTest extends Test {
                 
         // Place the Tribunus Plebis on disc 3 and activate it
         move.placeCard(Card.SENATOR, 3);
-        move.chooseCardToActivate(3).complete();
+        //This test is a stub and needs card activation testing
+        move.chooseCardToActivate(3);
         
         // Check that player has lost the necessary sestertii from laying
         // these cards
@@ -56,13 +57,5 @@ public class CardActivatorSenatorBasicTest extends Test {
         assert(gameState.getPlayerVictoryPoints(1) == 10);
         assert(gameState.getPlayerSestertii(0) == 0);
         assert(gameState.getPlayerSestertii(1) == 0);
-        
-        // Check that the player can still lay character cards
-        move.placeCard(Card.VELITES, 1);
-        move.placeCard(Card.PRAETORIANUS, 2);
-        move.placeCard(Card.ESSEDUM, 4);
-        move.placeCard(Card.CENTURIO, 5);
-        move.placeCard(Card.SICARIUS, 6);
-        move.placeCard(Card.ARCHITECTUS, 7);
     }
 }

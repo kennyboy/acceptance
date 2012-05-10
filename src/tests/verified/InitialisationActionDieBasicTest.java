@@ -1,4 +1,4 @@
-package tests.borderline;
+package tests.verified;
 
 import framework.Test;
 import framework.cards.Card;

@@ -6,15 +6,15 @@
 
 . compile
 
-if [ `whoami` == "damon1" ]; then
+if [ `whoami` == "damon" ]; then
 
-   java -ea framework.TestRunner > acceptanceTestResults.txt
-   less acceptanceTestResults.txt
-   reset
-   
-else 
+#   java -ea framework.TestRunner > acceptanceTestResults.txt
+#   less acceptanceTestResults.txt
+#   reset
 
-   java -ea framework.TestRunner   
+else
+
+   java -ea framework.TestRunner
 
 fi
 

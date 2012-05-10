@@ -1,4 +1,4 @@
-package tests.unverified;
+package tests.borderline;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,7 +15,7 @@ import framework.interfaces.activators.ArchitectusActivator;
  *
  * Test the basic functionality of Architectus
  *
- * @author Junjie CHEN
+ * @author Damon Stacey
  *
  */
 
@@ -76,49 +76,7 @@ public class CardActivatorArchitectusBasicTest extends Test {
 
         //activate Architectus
         ArchitectusActivator activator = (ArchitectusActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-        // The activation takes no parameters and can now be completed
-        activator.complete();
-
-        //should be free to lay card now
-        move.placeCard(Card.MACHINA, Rules.DICE_DISC_2);
-
-        //the money should not change
-        assert(gameState.getPlayerSestertii(0) == 22);
-        assert(gameState.getPlayerHand(0).size() == 3);
-        assert(!gameState.getPlayerHand(0).contains(Card.MACHINA));
-
-        field = gameState.getPlayerCardsOnDiscs(0);
-        assert(field[1] == Card.MACHINA);
-
-        //covered the forum
-        move.placeCard(Card.TURRIS, Rules.DICE_DISC_3);
-        assert(gameState.getPlayerSestertii(0) == 22);
-        assert(gameState.getPlayerHand(0).size() == 2);
-        assert(!gameState.getPlayerHand(0).contains(Card.TURRIS));
-
-        field = gameState.getPlayerCardsOnDiscs(0);
-        assert(field[2] == Card.TURRIS);
-
-        //forum should be in the discard pile
-        List<Card> discard = gameState.getDiscard();
-        assert(discard.contains(Card.FORUM));
-
-        //laying character card should still cost you money
-        move.placeCard(Card.LEGAT, Rules.DICE_DISC_5);
-        assert(gameState.getPlayerSestertii(0) == 17);
-        assert(gameState.getPlayerHand(0).size() == 1);
-        assert(!gameState.getPlayerHand(0).contains(Card.LEGAT));
-
-        field = gameState.getPlayerCardsOnDiscs(0);
-        assert(field[4] == Card.LEGAT);
-
-        //Activation is not ended when something other than placing a building occurs
-        move.placeCard(Card.ONAGER, Rules.DICE_DISC_6);
-        assert(gameState.getPlayerSestertii(0) == 17);
-        assert(gameState.getPlayerHand(0).isEmpty());
-        assert(!gameState.getPlayerHand(0).contains(Card.ONAGER));
-
-        field = gameState.getPlayerCardsOnDiscs(0);
-        assert(field[5] == Card.ONAGER);
+        // The activation requires parameters to activate now due to spec change. This barely tests anything.
+        //activator.complete();
     }
 }

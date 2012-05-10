@@ -1,4 +1,4 @@
-package tests.borderline;
+package tests.verified;
 
 import framework.Test;
 import framework.cards.Card;
@@ -12,11 +12,11 @@ import framework.cards.*;
  * Testing the basic mechanics of victory point addition and removal.
  * @author Damon (Stacey damon.stacey)
  */
-public class InitialisationDeckBasicTest extends Test {
+public class InitialisationDiscardBasicTest extends Test {
 
    @Override
    public String getShortDescription() {
-      return "Checking Deck can be initialised as required..";
+      return "Checking Discard pile can be initialised as required..";
    }
 
    @Override
@@ -25,32 +25,31 @@ public class InitialisationDeckBasicTest extends Test {
                                           UnsupportedOperationException,
                                           IllegalArgumentException {
 
-      List<Card> deck = new LinkedList();
-      gameState.setDeck(deck);
-      deck = gameState.getDeck();
-      assert (deck.size() == 0);     
+      List<Card> discard = new LinkedList();
+      gameState.setDiscard(discard);
+      discard = gameState.getDiscard();
+      assert (discard.size() == 0);     
       
       List<Card> cards = getPopulatedCards();
       for (Card c : cards) {
-         deck = new LinkedList();
-         gameState.setDeck(deck);
+         discard = new LinkedList();
+         gameState.setDiscard(discard);
          if (!c.toString().equals("Not A Card")) {           
             for (int i = 0; i < 52; i++) {
-               deck.add(c); 
-               gameState.setDeck(deck);
-               deck = gameState.getDeck();
-               assert (deck.size() == i + 1);
-               for (int j = 1; j < i+1; j++) {        
-                  assert (deck.get(j).toString().equals(c.toString()));     
+               discard.add(c); 
+               gameState.setDiscard(discard);
+               discard = gameState.getDiscard();
+               assert (discard.size() == i + 1);
+               for (int j = 0; j < i; j++) {        
+                  assert (discard.get(j).toString().equals(c.toString()));     
                }
             }
          }
       }
-      deck = new LinkedList();
-      gameState.setDeck(deck);
-      deck = gameState.getDeck();
-      assert (deck.size() == 0);     
-
+      discard = new LinkedList();
+      gameState.setDiscard(discard);
+      discard = gameState.getDiscard();
+      assert (discard.size() == 0);     
    }
 
    private boolean contains (List<Card> cards, Card card) {
@@ -90,6 +89,7 @@ public class InitialisationDeckBasicTest extends Test {
       cards.add(Card.TRIBUNUSPLEBIS);
       cards.add(Card.TURRIS);
       cards.add(Card.VELITES);
+      cards.add(Card.NOT_A_CARD);
       return cards;
    }
 

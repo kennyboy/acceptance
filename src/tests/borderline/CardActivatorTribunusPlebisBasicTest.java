@@ -1,4 +1,4 @@
-package tests.unverified;
+package tests.borderline;
 
 import framework.Test;
 import framework.cards.Card;
@@ -14,6 +14,7 @@ import javax.naming.OperationNotSupportedException;
  * @author Karla Burnett (karla.burnett)
  * @author Robert Cen (robert.cen)
  */
+ 
 public class CardActivatorTribunusPlebisBasicTest extends Test {
 
     @Override

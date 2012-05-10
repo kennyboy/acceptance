@@ -4,6 +4,7 @@
  */
 package framework.interfaces.activators;
 
+import framework.cards.*;
 /**
  *
  * @author Lasath Fernando (lasath.fernando)

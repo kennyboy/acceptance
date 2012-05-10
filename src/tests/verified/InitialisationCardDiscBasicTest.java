@@ -1,4 +1,4 @@
-package tests.borderline;
+package tests.verified;
 
 import framework.Test;
 import framework.cards.Card;
@@ -12,11 +12,11 @@ import framework.cards.*;
  * Testing the basic mechanics of victory point addition and removal.
  * @author Damon (Stacey damon.stacey)
  */
-public class InitialisationDiscardBasicTest extends Test {
+public class InitialisationCardDiscBasicTest extends Test {
 
    @Override
    public String getShortDescription() {
-      return "Checking Discard pile can be initialised as required..";
+      return "Checking Card discs can have any cards layed on them.";
    }
 
    @Override
@@ -25,31 +25,34 @@ public class InitialisationDiscardBasicTest extends Test {
                                           UnsupportedOperationException,
                                           IllegalArgumentException {
 
-      List<Card> discard = new LinkedList();
-      gameState.setDiscard(discard);
-      discard = gameState.getDiscard();
-      assert (discard.size() == 0);     
-      
-      List<Card> cards = getPopulatedCards();
-      for (Card c : cards) {
-         discard = new LinkedList();
-         gameState.setDiscard(discard);
-         if (!c.toString().equals("Not A Card")) {           
-            for (int i = 0; i < 52; i++) {
-               discard.add(c); 
-               gameState.setDiscard(discard);
-               discard = gameState.getDiscard();
-               assert (discard.size() == i + 1);
-               for (int j = 0; j < i; j++) {        
-                  assert (discard.get(j).toString().equals(c.toString()));     
-               }
+      Card[] discCards = new Card[Rules.NUM_DICE_DISCS];
+      for (int i= 0; i < Rules.NUM_PLAYERS; i++) {
+         for (int j = 0; j < Rules.NUM_DICE_DISCS; j++) {
+            discCards[j] = Card.NOT_A_CARD;         
+         }
+         gameState.setPlayerCardsOnDiscs (i, discCards);
+         discCards = gameState.getPlayerCardsOnDiscs(i);
+         for (int j = 0; j < Rules.NUM_DICE_DISCS; j++) {
+            assert(discCards[j].toString().equals(Card.NOT_A_CARD.toString()));         
+         }
+
+         //checking players can lay thier cards on discs individually
+         for (int j = 0; j < Rules.NUM_DICE_DISCS; j++) {
+            for (Card c : getPopulatedCards()) {
+               discCards[j] = c;         
+               gameState.setPlayerCardsOnDiscs (i, discCards);
+               discCards = gameState.getPlayerCardsOnDiscs(i);
+               assert(discCards[j].toString().equals(c.toString()));         
             }
          }
-      }
-      discard = new LinkedList();
-      gameState.setDiscard(discard);
-      discard = gameState.getDiscard();
-      assert (discard.size() == 0);     
+         for (int j = 0; j < Rules.NUM_DICE_DISCS; j++) {
+            discCards[j] = Card.NOT_A_CARD;         
+         }
+
+         gameState.setPlayerCardsOnDiscs (i, discCards);
+         discCards = gameState.getPlayerCardsOnDiscs(i);
+      }   
+
    }
 
    private boolean contains (List<Card> cards, Card card) {

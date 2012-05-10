@@ -1,4 +1,4 @@
-package tests.unverified;
+package tests.borderline;
 
 import java.util.ArrayList;
 import java.util.Collection;

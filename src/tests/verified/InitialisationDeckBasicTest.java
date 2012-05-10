@@ -1,4 +1,4 @@
-package tests.borderline;
+package tests.verified;
 
 import framework.Test;
 import framework.cards.Card;
@@ -12,11 +12,11 @@ import framework.cards.*;
  * Testing the basic mechanics of victory point addition and removal.
  * @author Damon (Stacey damon.stacey)
  */
-public class InitialisationCardDiscBasicTest extends Test {
+public class InitialisationDeckBasicTest extends Test {
 
    @Override
    public String getShortDescription() {
-      return "Checking Card discs can have any cards layed on them.";
+      return "Checking Deck can be initialised as required..";
    }
 
    @Override
@@ -25,33 +25,31 @@ public class InitialisationCardDiscBasicTest extends Test {
                                           UnsupportedOperationException,
                                           IllegalArgumentException {
 
-      Card[] discCards = new Card[Rules.NUM_DICE_DISCS];
-      for (int i= 0; i < Rules.NUM_PLAYERS; i++) {
-         for (int j = 0; j < Rules.NUM_DICE_DISCS; j++) {
-            discCards[j] = Card.NOT_A_CARD;         
-         }
-         gameState.setPlayerCardsOnDiscs (i, discCards);
-         discCards = gameState.getPlayerCardsOnDiscs(i);
-         for (int j = 0; j < Rules.NUM_DICE_DISCS; j++) {
-            assert(discCards[j].toString().equals(Card.NOT_A_CARD.toString()));         
-         }
-
-         //checking players can lay thier cards on discs individually
-         for (int j = 0; j < Rules.NUM_DICE_DISCS; j++) {
-            for (Card c : getPopulatedCards()) {
-               discCards[j] = c;         
-               gameState.setPlayerCardsOnDiscs (i, discCards);
-               discCards = gameState.getPlayerCardsOnDiscs(i);
-               assert(discCards[j].toString().equals(c.toString()));         
+      List<Card> deck = new LinkedList();
+      gameState.setDeck(deck);
+      deck = gameState.getDeck();
+      assert (deck.size() == 0);     
+      
+      List<Card> cards = getPopulatedCards();
+      for (Card c : cards) {
+         deck = new LinkedList();
+         gameState.setDeck(deck);
+         if (!c.toString().equals("Not A Card")) {           
+            for (int i = 0; i < 52; i++) {
+               deck.add(c); 
+               gameState.setDeck(deck);
+               deck = gameState.getDeck();
+               assert (deck.size() == i + 1);
+               for (int j = 1; j < i+1; j++) {        
+                  assert (deck.get(j).toString().equals(c.toString()));     
+               }
             }
          }
-         for (int j = 0; j < Rules.NUM_DICE_DISCS; j++) {
-            discCards[j] = Card.NOT_A_CARD;         
-         }
-
-         gameState.setPlayerCardsOnDiscs (i, discCards);
-         discCards = gameState.getPlayerCardsOnDiscs(i);
-      }   
+      }
+      deck = new LinkedList();
+      gameState.setDeck(deck);
+      deck = gameState.getDeck();
+      assert (deck.size() == 0);     
 
    }
 
@@ -92,7 +90,6 @@ public class InitialisationCardDiscBasicTest extends Test {
       cards.add(Card.TRIBUNUSPLEBIS);
       cards.add(Card.TURRIS);
       cards.add(Card.VELITES);
-      cards.add(Card.NOT_A_CARD);
       return cards;
    }
 

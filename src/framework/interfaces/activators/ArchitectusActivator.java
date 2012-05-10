@@ -4,6 +4,8 @@
  */
 package framework.interfaces.activators;
 
+import framework.cards.*;
+
 /**
  *
  * @author Matt
