@@ -74,9 +74,9 @@ public class CardActivatorGladiatorBasicTest extends Test {
       move.placeCard(Card.FORUM, Rules.DICE_DISC_2);
       move.placeCard(Card.GLADIATOR, Rules.DICE_DISC_3);
 
-      assert(gameState.getPlayerSestertii(0) == 100 - 5);
+      assert(gameState.getPlayerSestertii(0) == 100 - 11);
       assert(gameState.getPlayerSestertii(1) == 100);
-      assert(gameState.getPlayerHand(0).size() == 1);
+      assert(gameState.getPlayerHand(0).size() == 2);
       assert(gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
       Card[] field;
       field = gameState.getPlayerCardsOnDiscs(0);
@@ -115,7 +115,7 @@ public class CardActivatorGladiatorBasicTest extends Test {
       assert(field[0] == Card.NOT_A_CARD);
       assert(field[1] == Card.NOT_A_CARD);
       assert(gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
-      assert(gameState.getPlayerHand(0).contains(Card.GLADIATOR));
+      assert(gameState.getPlayerHand(1).contains(Card.GLADIATOR));
       assert(gameState.getActionDice().length == 1);
       assert(gameState.getActionDice()[0] == 3);
       assert(!gameState.isGameCompleted());
