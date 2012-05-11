@@ -4,27 +4,26 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.LinkedList;
-
 import framework.Test;
 import framework.Rules;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-import framework.interfaces.activators.*;
+import framework.interfaces.activators.MachinaActivator;
 
 /**
  *
- * Test the basic functionality of Mercatus
+ * Test the basic functionality of Machina
  *
  * @author Damon Stacey
  *
  */
 
-public class CardActivatorMercatusBasicTestA extends Test {
+public class CardActivatorMachinaABasicTest extends Test {
 
     @Override
     public String getShortDescription() {
-        return "Test the basic functionality of Mercatus";
+        return "Test the basic functionality of Machina";
     }
 
     @Override
@@ -40,7 +39,6 @@ public class CardActivatorMercatusBasicTestA extends Test {
       for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
          gameState.setPlayerCardsOnDiscs(i, discs);
       }
-      
       List<Card> discard = new LinkedList();
       discard.add(Card.AESCULAPINUM);
       discard.add(Card.BASILICA);
@@ -62,62 +60,66 @@ public class CardActivatorMercatusBasicTestA extends Test {
          gameState.setPlayerSestertii(i, 100);
          gameState.setPlayerVictoryPoints(i, 15);
          hand = new LinkedList();
+         hand.add(Card.MACHINA);
          hand.add(Card.FORUM);
          hand.add(Card.FORUM);
-         hand.add(Card.FORUM);
-         hand.add(Card.FORUM);
-         hand.add(Card.FORUM);
-         hand.add(Card.FORUM);
-         hand.add(Card.FORUM);
-         hand.add(Card.FORUM);
-         hand.add(Card.MERCATUS);
          gameState.setPlayerHand(i, hand);
       }
       
-      gameState.setActionDice(new int[] {3,2,3});
+      gameState.setActionDice(new int[] {1,1,1});
 
-      move.placeCard(Card.FORUM, Rules.DICE_DISC_1);
+      move.placeCard(Card.MACHINA, Rules.DICE_DISC_1);
       move.placeCard(Card.FORUM, Rules.DICE_DISC_2);
       move.placeCard(Card.FORUM, Rules.DICE_DISC_3);
-      move.endTurn();
-      assert(gameState.getPlayerSestertii(1) == 100);
-      assert(gameState.getPlayerHand(0).size() == 1);
-      assert(gameState.getPlayerHand(0).contains(Card.MERCATUS));
 
+      assert(gameState.getPlayerSestertii(1) == 100);
+      assert(gameState.getPlayerHand(0).size() == 0);
+      assert(!gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
       Card[] field;
       field = gameState.getPlayerCardsOnDiscs(0);
-      assert(field[0] == Card.FORUM);
+      assert(field[0] == Card.MACHINA);
       assert(field[1] == Card.FORUM);
       assert(field[2] == Card.FORUM);
       
-      assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS + 7);
+      assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
-      move.placeCard(Card.MERCATUS, Rules.DICE_DISC_1);
-      move.placeCard(Card.FORUM, Rules.DICE_DISC_2);
-      move.placeCard(Card.FORUM, Rules.DICE_DISC_3);
-      move.placeCard(Card.FORUM, Rules.DICE_DISC_4);
-      move.placeCard(Card.FORUM, Rules.DICE_DISC_5);
-      move.placeCard(Card.FORUM, Rules.DICE_DISC_6);
-      move.placeCard(Card.FORUM, Rules.BRIBE_DISC);
+      
+      MachinaActivator activator = (MachinaActivator) move.chooseCardToActivate(1);
+      activator.placeCard (Card.FORUM, Rules.BRIBE_DISC);
+      activator.placeCard (Card.FORUM, Rules.DICE_DISC_4);
+      activator.complete();
 
-      gameState.setActionDice(new int[] {1,1,1});
-      assert(gameState.getActionDice().length == 3);
-       
-      MercatusActivator activator = (MercatusActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
+      field = gameState.getPlayerCardsOnDiscs(0);
+      assert(field[0] == Card.MACHINA);
+      assert(field[3] == Card.FORUM);
+      assert(field[6] == Card.FORUM);
+
+      activator = (MachinaActivator) move.chooseCardToActivate(1);
+      activator.placeCard (Card.FORUM, Rules.DICE_DISC_3);
+      activator.placeCard (Card.FORUM, Rules.DICE_DISC_5);
       activator.complete();
-      assert(gameState.getActionDice().length == 2);
-      assert(gameState.getPlayerVictoryPoints(1) == 15 -7 + 3);
-      assert(gameState.getPlayerVictoryPoints(0) == 15-3);
-      assert(gameState.getActionDice().length == 2);
-      move.endTurn();
-      move.placeCard(Card.MERCATUS, Rules.DICE_DISC_1);
-        
-      activator = (MercatusActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
+
+      field = gameState.getPlayerCardsOnDiscs(0);
+      assert(field[0] == Card.MACHINA);
+      assert(field[2] == Card.FORUM);
+      assert(field[4] == Card.FORUM);
+
+      activator = (MachinaActivator) move.chooseCardToActivate(1);
+      activator.placeCard (Card.FORUM, Rules.DICE_DISC_1);
+      activator.placeCard (Card.FORUM, Rules.DICE_DISC_2);
       activator.complete();
-      assert(gameState.getPlayerVictoryPoints(1) == 15 -7 + 3-6);
-      assert(gameState.getPlayerVictoryPoints(0) == 15-3 + 6);
-      assert(gameState.getActionDice().length == 2);      
+
+      field = gameState.getPlayerCardsOnDiscs(0);
+      assert(field[0] == Card.FORUM);
+      assert(field[1] == Card.FORUM);
+      assert(field[2] == Card.NOT_A_CARD);
+      assert(field[3] == Card.NOT_A_CARD);
+      assert(field[4] == Card.NOT_A_CARD);
+      assert(field[5] == Card.NOT_A_CARD);
+      assert(field[6] == Card.NOT_A_CARD);
+      assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
+
 
     }
 }

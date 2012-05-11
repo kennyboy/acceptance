@@ -10,26 +10,27 @@ import framework.Rules;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-import framework.interfaces.activators.ConsiliariusActivator;
+import framework.interfaces.activators.CenturioActivator;
 
 /**
  *
- * Test the basic functionality of Consiliarius
+ * Test the basic functionality of Centurio
  *
  * @author Damon Stacey
  *
  */
 
-public class CardActivatorConsiliariusBasicTestA extends Test {
+public class CardActivatorCenturioABasicTest extends Test {
 
     @Override
     public String getShortDescription() {
-        return "Test the basic functionality of Consiliarius";
+        return "Test the basic functionality of Centurio";
     }
 
     @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
+      
       List<Card> deck = new LinkedList();
       gameState.setDiscard(deck);
 
@@ -47,7 +48,7 @@ public class CardActivatorConsiliariusBasicTestA extends Test {
       discard.add(Card.CONSILIARIUS);
       discard.add(Card.CONSUL);
       discard.add(Card.ESSEDUM);
-      discard.add(Card.HARUSPEX);
+      discard.add(Card.FORUM);
       discard.add(Card.GLADIATOR);
       discard.add(Card.HARUSPEX);
       discard.add(Card.LEGAT);
@@ -61,64 +62,69 @@ public class CardActivatorConsiliariusBasicTestA extends Test {
          gameState.setPlayerSestertii(i, 100);
          gameState.setPlayerVictoryPoints(i, 15);
          hand = new LinkedList();
-         hand.add(Card.CONSILIARIUS);
-         hand.add(Card.HARUSPEX);
-         hand.add(Card.HARUSPEX);
+         hand.add(Card.CENTURIO);
+         hand.add(Card.CENTURIO);
+         hand.add(Card.ARCHITECTUS);
          gameState.setPlayerHand(i, hand);
       }
       
-      gameState.setActionDice(new int[] {1,1,1});
+      gameState.setActionDice(new int[] {3,2,3});
 
-      move.placeCard(Card.CONSILIARIUS, Rules.DICE_DISC_1);
-      move.placeCard(Card.HARUSPEX, Rules.DICE_DISC_2);
-      move.placeCard(Card.HARUSPEX, Rules.DICE_DISC_3);
+      move.placeCard(Card.CENTURIO, Rules.DICE_DISC_1);
+      move.placeCard(Card.CENTURIO, Rules.DICE_DISC_2);
 
+      assert(gameState.getPlayerSestertii(0) == 100 - 9*2);
       assert(gameState.getPlayerSestertii(1) == 100);
-      assert(gameState.getPlayerHand(0).size() == 0);
-      assert(!gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
+      assert(gameState.getPlayerHand(0).size() == 1);
+      assert(gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
       Card[] field;
       field = gameState.getPlayerCardsOnDiscs(0);
-      assert(field[0] == Card.CONSILIARIUS);
-      assert(field[1] == Card.HARUSPEX);
-      assert(field[2] == Card.HARUSPEX);
+      assert(field[0] == Card.CENTURIO);
+      assert(field[1] == Card.CENTURIO);
       
       assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
       
-      ConsiliariusActivator activator = (ConsiliariusActivator) move.chooseCardToActivate(1);
-      activator.placeCard (Card.HARUSPEX, Rules.BRIBE_DISC);
-      activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_4);
+      move.endTurn();
+      
+      move.placeCard(Card.ARCHITECTUS, Rules.DICE_DISC_1);
+      move.placeCard(Card.CENTURIO, Rules.DICE_DISC_2);
+ 
+      field = gameState.getPlayerCardsOnDiscs(1);
+      assert(field[0] == Card.ARCHITECTUS);
+      assert(field[1] == Card.CENTURIO);
+ 
+      move.endTurn();
+      gameState.setActionDice(new int[] {1,2,1});
+
+      CenturioActivator activator = (CenturioActivator) move.chooseCardToActivate(1);
+      activator.giveAttackDieRoll(1);
+      activator.chooseCenturioAddActionDie(false);
       activator.complete();
+      field = gameState.getPlayerCardsOnDiscs(1);
+      assert(field[0] == Card.ARCHITECTUS);
+      assert(field[1] == Card.CENTURIO);
 
-      field = gameState.getPlayerCardsOnDiscs(0);
-      assert(field[0] == Card.CONSILIARIUS);
-      assert(field[3] == Card.HARUSPEX);
-      assert(field[6] == Card.HARUSPEX);
-
-      activator = (ConsiliariusActivator) move.chooseCardToActivate(1);
-      activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_3);
-      activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_5);
+      activator = (CenturioActivator) move.chooseCardToActivate(1);
+      activator.giveAttackDieRoll(6);
+      activator.chooseCenturioAddActionDie(false);
       activator.complete();
+      field = gameState.getPlayerCardsOnDiscs(1);
+      assert(field[0] == Card.NOT_A_CARD);
+      assert(field[1] == Card.CENTURIO);
 
-      field = gameState.getPlayerCardsOnDiscs(0);
-      assert(field[0] == Card.CONSILIARIUS);
-      assert(field[2] == Card.HARUSPEX);
-      assert(field[4] == Card.HARUSPEX);
-
-      activator = (ConsiliariusActivator) move.chooseCardToActivate(1);
-      activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_1);
-      activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_2);
+      activator = (CenturioActivator) move.chooseCardToActivate(2);
+      activator.giveAttackDieRoll(6);
+      activator.chooseCenturioAddActionDie(false);
       activator.complete();
-
-      field = gameState.getPlayerCardsOnDiscs(0);
-      assert(field[0] == Card.HARUSPEX);
-      assert(field[1] == Card.HARUSPEX);
+      field = gameState.getPlayerCardsOnDiscs(1);
+      assert(field[0] == Card.NOT_A_CARD);
+      assert(field[1] == Card.NOT_A_CARD);
       assert(field[2] == Card.NOT_A_CARD);
       assert(field[3] == Card.NOT_A_CARD);
       assert(field[4] == Card.NOT_A_CARD);
       assert(field[5] == Card.NOT_A_CARD);
       assert(field[6] == Card.NOT_A_CARD);
-      assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
 
     }

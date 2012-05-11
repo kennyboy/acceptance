@@ -10,21 +10,21 @@ import framework.Rules;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-import framework.interfaces.activators.CenturioActivator;
+import framework.interfaces.activators.GladiatorActivator;
 
 /**
  *
- * Test the basic functionality of Centurio
+ * Test the basic functionality of Gladiator
  *
  * @author Damon Stacey
  *
  */
 
-public class CardActivatorCenturioBasicTestA extends Test {
+public class CardActivatorGladiatorABasicTest extends Test {
 
     @Override
     public String getShortDescription() {
-        return "Test the basic functionality of Centurio";
+        return "Test the basic functionality of Gladiator";
     }
 
     @Override
@@ -62,70 +62,62 @@ public class CardActivatorCenturioBasicTestA extends Test {
          gameState.setPlayerSestertii(i, 100);
          gameState.setPlayerVictoryPoints(i, 15);
          hand = new LinkedList();
-         hand.add(Card.CENTURIO);
-         hand.add(Card.CENTURIO);
+         hand.add(Card.FORUM);
+         hand.add(Card.GLADIATOR);
+         hand.add(Card.TEMPLUM);
          hand.add(Card.ARCHITECTUS);
          gameState.setPlayerHand(i, hand);
       }
       
       gameState.setActionDice(new int[] {3,2,3});
 
-      move.placeCard(Card.CENTURIO, Rules.DICE_DISC_1);
-      move.placeCard(Card.CENTURIO, Rules.DICE_DISC_2);
+      move.placeCard(Card.FORUM, Rules.DICE_DISC_2);
+      move.placeCard(Card.GLADIATOR, Rules.DICE_DISC_3);
 
-      assert(gameState.getPlayerSestertii(0) == 100 - 9*2);
+      assert(gameState.getPlayerSestertii(0) == 100 - 11);
       assert(gameState.getPlayerSestertii(1) == 100);
-      assert(gameState.getPlayerHand(0).size() == 1);
+      assert(gameState.getPlayerHand(0).size() == 2);
       assert(gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
       Card[] field;
       field = gameState.getPlayerCardsOnDiscs(0);
-      assert(field[0] == Card.CENTURIO);
-      assert(field[1] == Card.CENTURIO);
+      assert(field[1] == Card.FORUM);
       
       assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
-      
+
       move.endTurn();
-      
       move.placeCard(Card.ARCHITECTUS, Rules.DICE_DISC_1);
-      move.placeCard(Card.CENTURIO, Rules.DICE_DISC_2);
- 
-      field = gameState.getPlayerCardsOnDiscs(1);
-      assert(field[0] == Card.ARCHITECTUS);
-      assert(field[1] == Card.CENTURIO);
- 
+      move.placeCard(Card.GLADIATOR, Rules.DICE_DISC_2);
+
       move.endTurn();
-      gameState.setActionDice(new int[] {1,2,1});
 
-      CenturioActivator activator = (CenturioActivator) move.chooseCardToActivate(1);
-      activator.giveAttackDieRoll(1);
-      activator.chooseCenturioAddActionDie(false);
-      activator.complete();
-      field = gameState.getPlayerCardsOnDiscs(1);
-      assert(field[0] == Card.ARCHITECTUS);
-      assert(field[1] == Card.CENTURIO);
+      gameState.setActionDice(new int[] {3,3,3});
+      assert(!gameState.getPlayerHand(1).contains(Card.ARCHITECTUS));
+      assert(!gameState.getPlayerHand(1).contains(Card.GLADIATOR));
 
-      activator = (CenturioActivator) move.chooseCardToActivate(1);
-      activator.giveAttackDieRoll(6);
-      activator.chooseCenturioAddActionDie(false);
+      GladiatorActivator activator = (GladiatorActivator) move.chooseCardToActivate(3);
+      activator.chooseDiceDisc(1);
       activator.complete();
       field = gameState.getPlayerCardsOnDiscs(1);
       assert(field[0] == Card.NOT_A_CARD);
-      assert(field[1] == Card.CENTURIO);
+      assert(field[1] == Card.GLADIATOR);
+      assert(gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
+      assert(gameState.getActionDice().length == 2);
+      assert(gameState.getActionDice()[0] == 3);
+      assert(gameState.getActionDice()[1] == 3);
+      
+      assert(!gameState.getPlayerHand(1).contains(Card.GLADIATOR));
 
-      activator = (CenturioActivator) move.chooseCardToActivate(2);
-      activator.giveAttackDieRoll(6);
-      activator.chooseCenturioAddActionDie(false);
+      activator = (GladiatorActivator) move.chooseCardToActivate(3);
+      activator.chooseDiceDisc(2);
       activator.complete();
       field = gameState.getPlayerCardsOnDiscs(1);
       assert(field[0] == Card.NOT_A_CARD);
       assert(field[1] == Card.NOT_A_CARD);
-      assert(field[2] == Card.NOT_A_CARD);
-      assert(field[3] == Card.NOT_A_CARD);
-      assert(field[4] == Card.NOT_A_CARD);
-      assert(field[5] == Card.NOT_A_CARD);
-      assert(field[6] == Card.NOT_A_CARD);
+      assert(gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
+      assert(gameState.getPlayerHand(1).contains(Card.GLADIATOR));
+      assert(gameState.getActionDice().length == 1);
+      assert(gameState.getActionDice()[0] == 3);
       assert(!gameState.isGameCompleted());
-
     }
 }

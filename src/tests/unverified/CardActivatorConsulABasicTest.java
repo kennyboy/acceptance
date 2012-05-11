@@ -20,7 +20,7 @@ import framework.interfaces.activators.ConsulActivator;
  *
  */
 
-public class CardActivatorConsulBasicTestA extends Test {
+public class CardActivatorAConsulBasicTest extends Test {
 
     @Override
     public String getShortDescription() {

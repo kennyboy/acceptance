@@ -4,26 +4,27 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.LinkedList;
+
 import framework.Test;
 import framework.Rules;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-import framework.interfaces.activators.MachinaActivator;
+import framework.interfaces.activators.ConsiliariusActivator;
 
 /**
  *
- * Test the basic functionality of Machina
+ * Test the basic functionality of Consiliarius
  *
  * @author Damon Stacey
  *
  */
 
-public class CardActivatorMachinaBasicTestA extends Test {
+public class CardActivatorConsiliariusABasicTest extends Test {
 
     @Override
     public String getShortDescription() {
-        return "Test the basic functionality of Machina";
+        return "Test the basic functionality of Consiliarius";
     }
 
     @Override
@@ -46,7 +47,7 @@ public class CardActivatorMachinaBasicTestA extends Test {
       discard.add(Card.CONSILIARIUS);
       discard.add(Card.CONSUL);
       discard.add(Card.ESSEDUM);
-      discard.add(Card.FORUM);
+      discard.add(Card.HARUSPEX);
       discard.add(Card.GLADIATOR);
       discard.add(Card.HARUSPEX);
       discard.add(Card.LEGAT);
@@ -60,58 +61,58 @@ public class CardActivatorMachinaBasicTestA extends Test {
          gameState.setPlayerSestertii(i, 100);
          gameState.setPlayerVictoryPoints(i, 15);
          hand = new LinkedList();
-         hand.add(Card.MACHINA);
-         hand.add(Card.FORUM);
-         hand.add(Card.FORUM);
+         hand.add(Card.CONSILIARIUS);
+         hand.add(Card.HARUSPEX);
+         hand.add(Card.HARUSPEX);
          gameState.setPlayerHand(i, hand);
       }
       
       gameState.setActionDice(new int[] {1,1,1});
 
-      move.placeCard(Card.MACHINA, Rules.DICE_DISC_1);
-      move.placeCard(Card.FORUM, Rules.DICE_DISC_2);
-      move.placeCard(Card.FORUM, Rules.DICE_DISC_3);
+      move.placeCard(Card.CONSILIARIUS, Rules.DICE_DISC_1);
+      move.placeCard(Card.HARUSPEX, Rules.DICE_DISC_2);
+      move.placeCard(Card.HARUSPEX, Rules.DICE_DISC_3);
 
       assert(gameState.getPlayerSestertii(1) == 100);
       assert(gameState.getPlayerHand(0).size() == 0);
       assert(!gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
       Card[] field;
       field = gameState.getPlayerCardsOnDiscs(0);
-      assert(field[0] == Card.MACHINA);
-      assert(field[1] == Card.FORUM);
-      assert(field[2] == Card.FORUM);
+      assert(field[0] == Card.CONSILIARIUS);
+      assert(field[1] == Card.HARUSPEX);
+      assert(field[2] == Card.HARUSPEX);
       
       assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
       
-      MachinaActivator activator = (MachinaActivator) move.chooseCardToActivate(1);
-      activator.placeCard (Card.FORUM, Rules.BRIBE_DISC);
-      activator.placeCard (Card.FORUM, Rules.DICE_DISC_4);
+      ConsiliariusActivator activator = (ConsiliariusActivator) move.chooseCardToActivate(1);
+      activator.placeCard (Card.HARUSPEX, Rules.BRIBE_DISC);
+      activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_4);
       activator.complete();
 
       field = gameState.getPlayerCardsOnDiscs(0);
-      assert(field[0] == Card.MACHINA);
-      assert(field[3] == Card.FORUM);
-      assert(field[6] == Card.FORUM);
+      assert(field[0] == Card.CONSILIARIUS);
+      assert(field[3] == Card.HARUSPEX);
+      assert(field[6] == Card.HARUSPEX);
 
-      activator = (MachinaActivator) move.chooseCardToActivate(1);
-      activator.placeCard (Card.FORUM, Rules.DICE_DISC_3);
-      activator.placeCard (Card.FORUM, Rules.DICE_DISC_5);
+      activator = (ConsiliariusActivator) move.chooseCardToActivate(1);
+      activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_3);
+      activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_5);
       activator.complete();
 
       field = gameState.getPlayerCardsOnDiscs(0);
-      assert(field[0] == Card.MACHINA);
-      assert(field[2] == Card.FORUM);
-      assert(field[4] == Card.FORUM);
+      assert(field[0] == Card.CONSILIARIUS);
+      assert(field[2] == Card.HARUSPEX);
+      assert(field[4] == Card.HARUSPEX);
 
-      activator = (MachinaActivator) move.chooseCardToActivate(1);
-      activator.placeCard (Card.FORUM, Rules.DICE_DISC_1);
-      activator.placeCard (Card.FORUM, Rules.DICE_DISC_2);
+      activator = (ConsiliariusActivator) move.chooseCardToActivate(1);
+      activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_1);
+      activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_2);
       activator.complete();
 
       field = gameState.getPlayerCardsOnDiscs(0);
-      assert(field[0] == Card.FORUM);
-      assert(field[1] == Card.FORUM);
+      assert(field[0] == Card.HARUSPEX);
+      assert(field[1] == Card.HARUSPEX);
       assert(field[2] == Card.NOT_A_CARD);
       assert(field[3] == Card.NOT_A_CARD);
       assert(field[4] == Card.NOT_A_CARD);
@@ -119,7 +120,6 @@ public class CardActivatorMachinaBasicTestA extends Test {
       assert(field[6] == Card.NOT_A_CARD);
       assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
-
 
     }
 }

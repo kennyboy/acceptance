@@ -11,24 +11,26 @@ import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
 import framework.interfaces.activators.*;
+
 /**
  *
- * Test the basic functionality of Grimreaper
+ * Test the basic functionality of Essedum
  *
  * @author Damon Stacey
  *
  */
 
-public class CardActivatorGrimreaperBasicTestA extends Test {
+public class CardActivatorAEssedumBasicTest extends Test {
 
     @Override
     public String getShortDescription() {
-        return "Test the basic functionality of Grimreaper";
+        return "Test the basic functionality of Essedum";
     }
 
     @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
+      
       List<Card> deck = new LinkedList();
       gameState.setDiscard(deck);
 
@@ -42,6 +44,7 @@ public class CardActivatorGrimreaperBasicTestA extends Test {
       List<Card> discard = new LinkedList();
       discard.add(Card.AESCULAPINUM);
       discard.add(Card.BASILICA);
+      discard.add(Card.CENTURIO);
       discard.add(Card.CONSILIARIUS);
       discard.add(Card.CONSUL);
       discard.add(Card.ESSEDUM);
@@ -59,63 +62,73 @@ public class CardActivatorGrimreaperBasicTestA extends Test {
          gameState.setPlayerSestertii(i, 100);
          gameState.setPlayerVictoryPoints(i, 15);
          hand = new LinkedList();
-         hand.add(Card.GRIMREAPER);
          hand.add(Card.CENTURIO);
          hand.add(Card.CENTURIO);
+         hand.add(Card.ESSEDUM);
          hand.add(Card.ARCHITECTUS);
          gameState.setPlayerHand(i, hand);
       }
       
       gameState.setActionDice(new int[] {3,2,3});
 
+      move.placeCard(Card.CENTURIO, Rules.DICE_DISC_1);
       move.placeCard(Card.CENTURIO, Rules.DICE_DISC_2);
-      move.placeCard(Card.CENTURIO, Rules.DICE_DISC_3);
+      move.placeCard(Card.ESSEDUM, Rules.DICE_DISC_3);
 
+      assert(gameState.getPlayerSestertii(0) == 100 - 9*2 - 6);
       assert(gameState.getPlayerSestertii(1) == 100);
+      assert(gameState.getPlayerHand(0).size() == 1);
       assert(gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
       Card[] field;
       field = gameState.getPlayerCardsOnDiscs(0);
+      assert(field[0] == Card.CENTURIO);
       assert(field[1] == Card.CENTURIO);
-      assert(field[2] == Card.CENTURIO);
+      assert(field[2] == Card.ESSEDUM);
       
       assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
-
-      gameState.setActionDice(new int[] {6,2,5});
-      move.endTurn();
-      move.placeCard(Card.GRIMREAPER, Rules.DICE_DISC_2);
-      move.placeCard(Card.CENTURIO, Rules.DICE_DISC_3);
-
-      gameState.setActionDice(new int[] {3,2,3});
       
       move.endTurn();
-
+      move.placeCard(Card.ARCHITECTUS, Rules.DICE_DISC_1);
+      move.placeCard(Card.CENTURIO, Rules.DICE_DISC_2);
+ 
       field = gameState.getPlayerCardsOnDiscs(1);
-      assert(field[1] == Card.GRIMREAPER);
-      assert(field[2] == Card.CENTURIO);
-
-      CenturioActivator activator = (CenturioActivator) move.chooseCardToActivate(3);
-      activator.giveAttackDieRoll(6);
+      assert(field[0] == Card.ARCHITECTUS);
+      assert(field[1] == Card.CENTURIO);
+ 
+      //Now essedum should not be in effect so a kill with roll 3 (against defense 4 should not work).
+      move.endTurn();
+      gameState.setActionDice(new int[] {2,3,2});
+      
+      CenturioActivator activator = (CenturioActivator) move.chooseCardToActivate(2);
+      activator.giveAttackDieRoll(3);
       activator.chooseCenturioAddActionDie(false);
-      activator.complete();      
-
+      activator.complete();
       field = gameState.getPlayerCardsOnDiscs(1);
-      assert(field[1] == Card.GRIMREAPER);
+      assert(field[0] == Card.ARCHITECTUS);
+      assert(field[1] == Card.CENTURIO);
       assert(field[2] == Card.NOT_A_CARD);
-      assert(!gameState.getDiscard().contains(Card.CENTURIO));
-      assert(gameState.getPlayerHand(1).contains(Card.CENTURIO));
+      assert(field[3] == Card.NOT_A_CARD);
+      assert(field[4] == Card.NOT_A_CARD);
+      assert(field[5] == Card.NOT_A_CARD);
+      assert(field[6] == Card.NOT_A_CARD);
+      assert(!gameState.isGameCompleted());
 
+      EssedumActivator activator1 = (EssedumActivator) move.chooseCardToActivate(3);
+      activator1.complete();
+      
       activator = (CenturioActivator) move.chooseCardToActivate(2);
-      activator.giveAttackDieRoll(6);
+      activator.giveAttackDieRoll(3);
       activator.chooseCenturioAddActionDie(false);
-      activator.complete();      
-
+      activator.complete();
       field = gameState.getPlayerCardsOnDiscs(1);
+      assert(field[0] == Card.ARCHITECTUS);
       assert(field[1] == Card.NOT_A_CARD);
       assert(field[2] == Card.NOT_A_CARD);
-      assert(gameState.getDiscard().contains(Card.GRIMREAPER));
-      assert(!gameState.getPlayerHand(1).contains(Card.GRIMREAPER));
+      assert(field[3] == Card.NOT_A_CARD);
+      assert(field[4] == Card.NOT_A_CARD);
+      assert(field[5] == Card.NOT_A_CARD);
+      assert(field[6] == Card.NOT_A_CARD);
       assert(!gameState.isGameCompleted());
-      
-    }
+   }
 }
