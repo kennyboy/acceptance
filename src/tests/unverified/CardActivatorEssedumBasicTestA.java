@@ -73,7 +73,7 @@ public class CardActivatorEssedumBasicTest extends Test {
 
       move.placeCard(Card.CENTURIO, Rules.DICE_DISC_1);
       move.placeCard(Card.CENTURIO, Rules.DICE_DISC_2);
-      move.placeCard(Card.ESSEDUM, Rules.DICE_DISC_2);
+      move.placeCard(Card.ESSEDUM, Rules.DICE_DISC_3);
 
       assert(gameState.getPlayerSestertii(0) == 100 - 9*2 - 6);
       assert(gameState.getPlayerSestertii(1) == 100);
@@ -115,7 +115,7 @@ public class CardActivatorEssedumBasicTest extends Test {
       assert(!gameState.isGameCompleted());
 
       EssedumActivator activator1 = (EssedumActivator) move.chooseCardToActivate(3);
-      activator.complete();
+      activator1.complete();
       
       activator = (CenturioActivator) move.chooseCardToActivate(2);
       activator.giveAttackDieRoll(3);
