@@ -81,7 +81,7 @@ public class CardActivatorMercatusABasicTest extends Test {
       move.placeCard(Card.FORUM, Rules.DICE_DISC_3);
       move.endTurn();
       assert(gameState.getPlayerSestertii(1) == 100);
-      assert(gameState.getPlayerHand(0).size() == 1);
+      assert(gameState.getPlayerHand(0).size() == 6);
       assert(gameState.getPlayerHand(0).contains(Card.MERCATUS));
 
       Card[] field;
@@ -90,7 +90,7 @@ public class CardActivatorMercatusABasicTest extends Test {
       assert(field[1] == Card.FORUM);
       assert(field[2] == Card.FORUM);
       
-      assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS + 7);
+      assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
       move.placeCard(Card.MERCATUS, Rules.DICE_DISC_1);
       move.placeCard(Card.FORUM, Rules.DICE_DISC_2);

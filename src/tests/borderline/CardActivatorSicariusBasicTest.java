@@ -50,7 +50,7 @@ public class CardActivatorSicariusBasicTest extends Test {
         gameState.setPlayerCardsOnDiscs(1, field);
         
         gameState.setPlayerSestertii(0, 27);
-        gameState.setActionDice(new int[] {1,6,2});
+        gameState.setActionDice(new int[] {1,6,3});
         
         //place the Sicarius here
         move.placeCard(Card.SICARIUS, Rules.DICE_DISC_1);

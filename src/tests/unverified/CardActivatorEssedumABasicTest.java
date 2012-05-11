@@ -20,7 +20,7 @@ import framework.interfaces.activators.*;
  *
  */
 
-public class CardActivatorAEssedumBasicTest extends Test {
+public class CardActivatorEssedumABasicTest extends Test {
 
     @Override
     public String getShortDescription() {

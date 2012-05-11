@@ -20,7 +20,7 @@ import framework.interfaces.activators.ConsulActivator;
  *
  */
 
-public class CardActivatorAConsulBasicTest extends Test {
+public class CardActivatorConsulABasicTest extends Test {
 
     @Override
     public String getShortDescription() {
@@ -73,7 +73,7 @@ public class CardActivatorAConsulBasicTest extends Test {
       move.placeCard(Card.CONSUL, Rules.DICE_DISC_1);
 
       assert(gameState.getPlayerSestertii(1) == 100);
-      assert(gameState.getPlayerHand(0).size() == 0);
+      assert(gameState.getPlayerHand(0).size() == 2);
       assert(!gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
       Card[] field;
       field = gameState.getPlayerCardsOnDiscs(0);

@@ -20,7 +20,7 @@ import framework.interfaces.activators.ForumActivator;
  *
  */
 
-public class CardActivatorAForumBasicTest extends Test {
+public class CardActivatorForumABasicTest extends Test {
 
     @Override
     public String getShortDescription() {
@@ -76,8 +76,8 @@ public class CardActivatorAForumBasicTest extends Test {
 
       assert(gameState.getPlayerSestertii(0) == 100 - 5 - 3);
       assert(gameState.getPlayerSestertii(1) == 100);
-      assert(gameState.getPlayerHand(0).size() == 1);
-      assert(gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
+      assert(gameState.getPlayerHand(0).size() == 2);
+      assert(!gameState.getPlayerHand(0).contains(Card.ARCHITECTUS));
       Card[] field;
       field = gameState.getPlayerCardsOnDiscs(0);
       assert(field[1] == Card.FORUM);

@@ -79,7 +79,7 @@ public class CardActivatorMercatorABasicTest extends Test {
       field = gameState.getPlayerCardsOnDiscs(0);
       assert(field[0] == Card.MERCATOR);
       
-      assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
+      assert(gameState.getPoolVictoryPoints() == 36 - 2*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
       
       MercatorActivator activator = (MercatorActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
@@ -87,7 +87,7 @@ public class CardActivatorMercatorABasicTest extends Test {
       activator.chooseMercatorBuyNum(1);
       activator.complete();
       assert(gameState.getPlayerVictoryPoints(0) == 2 + 1);
-      assert(gameState.getPlayerSestertii(0) == 100 - 2*1);
+      assert(gameState.getPlayerSestertii(0) == 100 - 2*1 - 7);
       assert(gameState.getPlayerVictoryPoints(1) == 2 - 1);
       assert(gameState.getPlayerSestertii(1) == 100 + 2*1);
       assert(gameState.getPoolVictoryPoints() == 36 - 2*Rules.NUM_PLAYERS);
@@ -97,7 +97,7 @@ public class CardActivatorMercatorABasicTest extends Test {
       activator.chooseMercatorBuyNum(5);
       activator.complete();
       assert(gameState.getPlayerVictoryPoints(0) == 2 + (1+5));
-      assert(gameState.getPlayerSestertii(0) == 100 - 2*(1+5));
+      assert(gameState.getPlayerSestertii(0) == 100 - 2*(1+5) - 7);
       assert(gameState.getPlayerVictoryPoints(1) == 0);
       assert(gameState.getPlayerSestertii(1) == 100 + 2*(1+5));
       assert(gameState.getPoolVictoryPoints() == 36 - 2*Rules.NUM_PLAYERS);
