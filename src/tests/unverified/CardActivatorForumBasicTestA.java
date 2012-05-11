@@ -20,7 +20,7 @@ import framework.interfaces.activators.ForumActivator;
  *
  */
 
-public class CardActivatorForumBasicTest extends Test {
+public class CardActivatorForumBasicTestA extends Test {
 
     @Override
     public String getShortDescription() {

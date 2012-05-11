@@ -19,7 +19,7 @@ import framework.interfaces.activators.LegionariusActivator;
  *
  */
 
-public class CardActivatorLegionariusBasicTest extends Test {
+public class CardActivatorLegionariusBasicTestA extends Test {
 
     @Override
     public String getShortDescription() {

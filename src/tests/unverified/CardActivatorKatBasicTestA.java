@@ -19,7 +19,7 @@ import framework.interfaces.activators.*;
  *
  */
 
-public class CardActivatorKatBasicTest extends Test {
+public class CardActivatorKatBasicTestA extends Test {
 
     @Override
     public String getShortDescription() {

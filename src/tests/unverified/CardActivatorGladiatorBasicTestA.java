@@ -20,7 +20,7 @@ import framework.interfaces.activators.GladiatorActivator;
  *
  */
 
-public class CardActivatorGladiatorBasicTest extends Test {
+public class CardActivatorGladiatorBasicTestA extends Test {
 
     @Override
     public String getShortDescription() {

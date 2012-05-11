@@ -20,7 +20,7 @@ import framework.interfaces.activators.*;
  *
  */
 
-public class CardActivatorMercatusBasicTest extends Test {
+public class CardActivatorMercatusBasicTestA extends Test {
 
     @Override
     public String getShortDescription() {

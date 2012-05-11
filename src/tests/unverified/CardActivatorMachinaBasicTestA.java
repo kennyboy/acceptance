@@ -19,7 +19,7 @@ import framework.interfaces.activators.MachinaActivator;
  *
  */
 
-public class CardActivatorMachinaBasicTest extends Test {
+public class CardActivatorMachinaBasicTestA extends Test {
 
     @Override
     public String getShortDescription() {

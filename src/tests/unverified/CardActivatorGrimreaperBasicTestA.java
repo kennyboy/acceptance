@@ -19,7 +19,7 @@ import framework.interfaces.activators.*;
  *
  */
 
-public class CardActivatorGrimreaperBasicTest extends Test {
+public class CardActivatorGrimreaperBasicTestA extends Test {
 
     @Override
     public String getShortDescription() {

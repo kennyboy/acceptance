@@ -20,7 +20,7 @@ import framework.interfaces.activators.AesculapinumActivator;
  *
  */
 
-public class CardActivatorAesculapinumBasicTest extends Test {
+public class CardActivatorAesculapinumBasicTestA extends Test {
 
     @Override
     public String getShortDescription() {

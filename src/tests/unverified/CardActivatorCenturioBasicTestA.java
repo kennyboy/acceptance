@@ -20,7 +20,7 @@ import framework.interfaces.activators.CenturioActivator;
  *
  */
 
-public class CardActivatorCenturioBasicTest extends Test {
+public class CardActivatorCenturioBasicTestA extends Test {
 
     @Override
     public String getShortDescription() {
