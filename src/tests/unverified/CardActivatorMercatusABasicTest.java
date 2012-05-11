@@ -90,7 +90,7 @@ public class CardActivatorMercatusABasicTest extends Test {
       assert(field[1] == Card.FORUM);
       assert(field[2] == Card.FORUM);
       
-      assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
+      assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS + 7);
       assert(!gameState.isGameCompleted());
       move.placeCard(Card.MERCATUS, Rules.DICE_DISC_1);
       move.placeCard(Card.FORUM, Rules.DICE_DISC_2);
@@ -106,16 +106,16 @@ public class CardActivatorMercatusABasicTest extends Test {
       MercatusActivator activator = (MercatusActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
       activator.complete();
       assert(gameState.getActionDice().length == 2);
-      assert(gameState.getPlayerVictoryPoints(1) == 15 -7 + 3);
-      assert(gameState.getPlayerVictoryPoints(0) == 15-3);
+      assert(gameState.getPlayerVictoryPoints(1) == 15 - 7 + 3);
+      assert(gameState.getPlayerVictoryPoints(0) == 15 - 3);
       assert(gameState.getActionDice().length == 2);
       move.endTurn();
       move.placeCard(Card.MERCATUS, Rules.DICE_DISC_1);
         
       activator = (MercatusActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
       activator.complete();
-      assert(gameState.getPlayerVictoryPoints(1) == 15 -7 + 3-6);
-      assert(gameState.getPlayerVictoryPoints(0) == 15-3 + 6);
+      assert(gameState.getPlayerVictoryPoints(1) == 15-7+3-6);
+      assert(gameState.getPlayerVictoryPoints(0) == 15-3-4+6);
       assert(gameState.getActionDice().length == 2);      
       assert(!gameState.isGameCompleted());
 

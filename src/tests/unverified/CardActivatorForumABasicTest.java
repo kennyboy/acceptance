@@ -91,27 +91,24 @@ public class CardActivatorForumABasicTest extends Test {
       activator.chooseActionDice(5);
       activator.complete();
       assert(gameState.getPlayerVictoryPoints(0) == 15+5);
-      assert(gameState.getPlayerVictoryPoints(0) == 15);
+      assert(gameState.getPlayerVictoryPoints(1) == 15);
       assert(gameState.getActionDice().length == 1);
       move.endTurn();
       move.endTurn();
       
       assert(gameState.getPlayerVictoryPoints(0) == 15+5-5);
-      assert(gameState.getPlayerVictoryPoints(0) == 15-7);
+      assert(gameState.getPlayerVictoryPoints(1) == 15-7);
       move.placeCard(Card.BASILICA, Rules.DICE_DISC_3);
       move.placeCard(Card.TEMPLUM, Rules.DICE_DISC_1);
 
-      gameState.setActionDice(new int[] {6,3,5});
+      gameState.setActionDice(new int[] {6,2,5});
       activator = (ForumActivator) move.chooseCardToActivate(2);
       activator.chooseActionDice(5);
       activator.chooseActivateTemplum(true);
       activator.chooseActivateTemplum(6);
       activator.complete();
       assert(gameState.getPlayerVictoryPoints(0) == 15+5+6+2);
-      assert(gameState.getPlayerVictoryPoints(0) == 15-7);
-      assert(!gameState.isGameCompleted());
-      move.endTurn();
-      move.endTurn();
+      assert(gameState.getPlayerVictoryPoints(1) == 15-7);
       assert(gameState.isGameCompleted());
                   
     }

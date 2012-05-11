@@ -94,7 +94,7 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       activator.chooseCardFromPile(1);
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.BASILICA));
-      assert(gameState.getActionDice().length == 2);
+      assert(gameState.getActionDice().length == 1);
       assert(gameState.getActionDice()[0] == 1);
       
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
@@ -107,19 +107,13 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       assert(!gameState.isGameCompleted());
       
       move.endTurn();
-      assert(gameState.getPlayerVictoryPoints(1) == 9);
+      assert(gameState.getPlayerVictoryPoints(1) == 8);
       assert(gameState.getPlayerSestertii(1) == 100);
-      assert(gameState.getPlayerHand(0).contains(Card.AESCULAPINUM));
-      assert(!gameState.getPlayerHand(0).contains(Card.BASILICA));
-      assert(!gameState.getPlayerHand(0).contains(Card.CENTURIO));
-      
-      move.endTurn();
-      assert(gameState.getPlayerVictoryPoints(1) == 10);
-      assert(gameState.getPlayerSestertii(0) == 100 - 5);
       assert(gameState.getPlayerHand(0).contains(Card.AESCULAPINUM));
       assert(gameState.getPlayerHand(0).contains(Card.BASILICA));
       assert(gameState.getPlayerHand(0).contains(Card.CENTURIO));
-
+      move.endTurn();
+      
       gameState.setActionDice(new int[] {1,1,1});
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
       activator.chooseCardFromPile(1);
@@ -133,7 +127,7 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       activator.chooseCardFromPile(1);
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.CONSUL));
-      assert(gameState.getActionDice().length == 2);
+      assert(gameState.getActionDice().length == 1);
       assert(gameState.getActionDice()[0] == 1);
 
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
