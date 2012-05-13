@@ -33,8 +33,8 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       List<Card> deck = new LinkedList<Card>();
       gameState.setDiscard(deck);
 
-      Card[] discs = new Card[8];
-      for (int i = 0; i < 8; i++) {
+      Card[] discs = new Card[NUM_DICE_DISCS];
+      for (int i = 0; i < NUM_DICE_DISCS; i++) {
          discs[i] = Card.NOT_A_CARD;
       }
       for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
