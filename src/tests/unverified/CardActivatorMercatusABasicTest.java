@@ -111,6 +111,8 @@ public class CardActivatorMercatusABasicTest extends Test {
       assert(gameState.getActionDice().length == 2);
       move.endTurn();
       move.placeCard(Card.MERCATUS, Rules.DICE_DISC_1);
+      
+      gameState.setActionDice(new int[] {1,1,1});
         
       activator = (MercatusActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
       activator.complete();

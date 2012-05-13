@@ -170,7 +170,7 @@ public class TestRunner {
                 numTestFailed[interfaceTestNumber]++;
                 System.out.println(current.getOutputSteam());
                 Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
-
+                ex.printStackTrace(System.out);
                 System.out.println("      Test Failed");
 
             } catch (AssertionError ex) {
