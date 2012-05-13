@@ -30,7 +30,7 @@ public class CardActivatorTelephoneboxABasicTest extends Test {
     @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
-      List<Card> deck = new LinkedList();
+      List<Card> deck = new LinkedList<Card>();
       gameState.setDiscard(deck);
 
       Card[] discs = new Card[8];
@@ -41,7 +41,7 @@ public class CardActivatorTelephoneboxABasicTest extends Test {
          gameState.setPlayerCardsOnDiscs(i, discs);
       }
       
-      List<Card> discard = new LinkedList();
+      List<Card> discard = new LinkedList<Card>();
       discard.add(Card.AESCULAPINUM);
       discard.add(Card.BASILICA);
       discard.add(Card.CENTURIO);
@@ -61,7 +61,7 @@ public class CardActivatorTelephoneboxABasicTest extends Test {
       for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
          gameState.setPlayerSestertii(i, 100);
          gameState.setPlayerVictoryPoints(i, 15);
-         hand = new LinkedList();
+         hand = new LinkedList<Card>();
          hand.add(Card.TELEPHONEBOX);
          hand.add(Card.TELEPHONEBOX);
          hand.add(Card.TELEPHONEBOX);
@@ -99,28 +99,28 @@ public class CardActivatorTelephoneboxABasicTest extends Test {
       activator.shouldMoveForwardInTime(true);
       activator.setSecondDiceUsed(2);
       activator.complete();
-      
+
+      field = gameState.getPlayerCardsOnDiscs(0);      
       assert(field[0] == Card.TELEPHONEBOX);
       assert(field[1] == Card.TELEPHONEBOX);
       assert(field[2] == Card.NOT_A_CARD);
       
-      assert(gameState.getActionDice().length == 1);
-      assert(gameState.getActionDice()[0] == 1);
+      assert(gameState.getActionDice().length == 2);
       assert(!gameState.isGameCompleted());
 
       move.endTurn();
-      
+      field = gameState.getPlayerCardsOnDiscs(0);
+
       assert(field[0] == Card.TELEPHONEBOX);
       assert(field[1] == Card.TELEPHONEBOX);
       assert(field[2] == Card.NOT_A_CARD);
       
       move.endTurn();
-      
+
+      field = gameState.getPlayerCardsOnDiscs(0);
       assert(field[0] == Card.TELEPHONEBOX);
       assert(field[1] == Card.TELEPHONEBOX);
       assert(field[2] == Card.MERCATUS);
       assert(!gameState.isGameCompleted());
-      
-
-    }
+   }
 }

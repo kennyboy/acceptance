@@ -31,7 +31,7 @@ public class CardActivatorCenturioABasicTest extends Test {
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
       
-      List<Card> deck = new LinkedList();
+      List<Card> deck = new LinkedList<Card>();
       gameState.setDiscard(deck);
 
       Card[] discs = new Card[8];
@@ -41,7 +41,7 @@ public class CardActivatorCenturioABasicTest extends Test {
       for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
          gameState.setPlayerCardsOnDiscs(i, discs);
       }
-      List<Card> discard = new LinkedList();
+      List<Card> discard = new LinkedList<Card>();
       discard.add(Card.AESCULAPINUM);
       discard.add(Card.BASILICA);
       discard.add(Card.CENTURIO);
@@ -61,7 +61,7 @@ public class CardActivatorCenturioABasicTest extends Test {
       for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
          gameState.setPlayerSestertii(i, 100);
          gameState.setPlayerVictoryPoints(i, 15);
-         hand = new LinkedList();
+         hand = new LinkedList<Card>();
          hand.add(Card.CENTURIO);
          hand.add(Card.CENTURIO);
          hand.add(Card.ARCHITECTUS);
