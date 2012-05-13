@@ -84,21 +84,21 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       assert(!gameState.isGameCompleted());
       
       AesculapinumActivator activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-      activator.chooseCardFromPile(1);
+      activator.chooseCardFromPile(0);
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.CENTURIO));
       assert(gameState.getActionDice().length == 2);
       assert(gameState.getActionDice()[0] == 1);
       assert(gameState.getActionDice()[1] == 1);
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-      activator.chooseCardFromPile(1);
+      activator.chooseCardFromPile(0);
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.SICARIUS));
       assert(gameState.getActionDice().length == 1);
       assert(gameState.getActionDice()[0] == 1);
       
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-      activator.chooseCardFromPile(1);
+      activator.chooseCardFromPile(0);
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.CENTURIO));
       assert(gameState.getActionDice() == null || gameState.getActionDice().length == 0);
@@ -116,7 +116,7 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       
       gameState.setActionDice(new int[] {1,1,1});
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-      activator.chooseCardFromPile(1);
+      activator.chooseCardFromPile(0);
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.CONSILIARIUS));
       assert(gameState.getActionDice().length == 2);
@@ -124,14 +124,14 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       assert(gameState.getActionDice()[1] == 1);
       
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-      activator.chooseCardFromPile(1);
+      activator.chooseCardFromPile(0);
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.CONSUL));
       assert(gameState.getActionDice().length == 1);
       assert(gameState.getActionDice()[0] == 1);
 
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-      activator.chooseCardFromPile(1);
+      activator.chooseCardFromPile(0);
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.SCAENICUS));
       assert(gameState.getActionDice() == null || gameState.getActionDice().length == 0);
