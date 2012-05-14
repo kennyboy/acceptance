@@ -110,7 +110,7 @@ public class CardActivatorGrimreaperABasicTest extends Test {
       activator.chooseCenturioAddActionDie(false);
       activator.complete();      
 
-      field = gameState.getPlayerCardsOnDiscs(1);
+      field = gameState.getPlayerCardsOnDiscs(1);      
       assert(field[1] == Card.NOT_A_CARD);
       assert(field[2] == Card.NOT_A_CARD);
       assert(gameState.getDiscard().contains(Card.GRIMREAPER));

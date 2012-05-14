@@ -94,6 +94,7 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
       activator.chooseCardFromPile(0);
       activator.complete();
+
       assert(gameState.getPlayerHand(0).contains(Card.SICARIUS));
       assert(gameState.getActionDice().length == 1);
       assert(gameState.getActionDice()[0] == 1);
@@ -135,6 +136,7 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       activator.chooseCardFromPile(0);
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.SCAENICUS));
+      assert(!gameState.getPlayerHand(0).contains(Card.KAT));
       assert(gameState.getActionDice() == null || gameState.getActionDice().length == 0);
       assert(!gameState.isGameCompleted());
 
