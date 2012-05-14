@@ -35,8 +35,8 @@ public class CardActivatorMachinaBasicTest extends Test {
 	@Override
 	public void run(GameState gameState, MoveMaker move) throws AssertionError,
 			UnsupportedOperationException, IllegalArgumentException {
-      throw new IllegalArgumentException();
-/*		emptyFields(gameState);
+
+		emptyFields(gameState);
 		
 		gameState.setPlayerCardsOnDiscs(PLAYER_1, 
 						new Card[] {
@@ -92,14 +92,6 @@ public class CardActivatorMachinaBasicTest extends Test {
 		
 		MachinaActivator theHero = (MachinaActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
 		
-		assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[0] == Card.NOT_A_CARD);
-		assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[1] == Card.NOT_A_CARD);
-		assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[2] == Card.NOT_A_CARD);
-		assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[3] == Card.NOT_A_CARD);
-		assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[4] == Card.ARCHITECTUS);
-		assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[5] == Card.TRIBUNUSPLEBIS);
-		assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[6] == Card.NOT_A_CARD);
-		
 		theHero.placeCard(Card.FORUM, Rules.DICE_DISC_1);
 		theHero.placeCard(Card.MACHINA, Rules.DICE_DISC_2);
 		theHero.placeCard(Card.BASILICA, Rules.DICE_DISC_3);
@@ -128,7 +120,7 @@ public class CardActivatorMachinaBasicTest extends Test {
         for (int i = 0 ; i < Rules.NUM_PLAYERS; i++) {
             gameState.setPlayerCardsOnDiscs(i,emptyField);
         }
-   */
+
     }
 
 }
