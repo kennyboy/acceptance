@@ -26,6 +26,8 @@ import java.util.Arrays;
  * @author Benjamin James Wright (ben.wright)
  * @author Damon Stacey (damon.stacey)
  * @author Alexis Shaw (alexis.shaw)
+ * @author Lauren Spooner
+ * @author Shannon Green
  */
 public class TestRunner {
 
@@ -44,7 +46,7 @@ public class TestRunner {
     public static final String COLOR_PURPLE      = "\033[1;35m";
     public static final String COLOR_CYAN        = "\033[1;36m";
     public static final String CLEAR_SCREEN      = "\033[2J\033[0;0H";
-
+    private static final int scalingFactor = 20;
     int[] numTestsPassed;
     int[] numTestFailed;
     int[] numNotImplemented;
@@ -125,8 +127,15 @@ public class TestRunner {
     }
 
     public void testGame() {
-        System.out.println("Roma acceptance tests starting...");
-
+        if (colorful) {
+           System.out.print(COLOR_BOLD);
+           System.out.println(".-.                             .                .       .        .         . .         "); 
+           System.out.println("|-'.-..-.-..-.   .-. .-.-.-,.-.-|-.-. .-..-.-,  -|-.-,.--|-.-  .--|-.-. .-.-|-..-..-.   ");
+           System.out.println("'`-`-'' ' '`-`-  `-`-`-`-`'-|-' '-`-`-' '`-`'-   '-`'--' '--'  -' '-`-`-'   '-'' '`-|ooo");
+           System.out.println(COLOR_RESET);
+        } else {
+           System.out.println("Roma acceptance tests starting...");
+        }
         boolean assertionsEnabled = false;
         try {
             assert (false);
@@ -151,7 +160,13 @@ public class TestRunner {
             return;
         } else {
             for (AcceptanceInterface acceptanceInterface: acceptanceInterfaces) {
+               if (colorful) {
+                   System.out.print(COLOR_CYAN);
+               }
                System.out.println("Now testing: " + acceptanceInterface.getClass()  + ".");
+               if (colorful) {
+                   System.out.print(COLOR_RESET);
+               }
                runTests(getVerifiedTests(), acceptanceInterface, interfaceTestNumber);
                runTests(getBorderlineTests(), acceptanceInterface, interfaceTestNumber);
                runTests(getUnverifiedTests(), acceptanceInterface, interfaceTestNumber);
@@ -161,12 +176,44 @@ public class TestRunner {
         interfaceTestNumber = 0;
         for (AcceptanceInterface acceptanceInterface: acceptanceInterfaces) {
             if ((numNotImplemented[interfaceTestNumber] > 0)) {
+                if (colorful) {
+                    System.out.print(COLOR_RED);
+                }
                 System.out.println("Not fully implemented: " +  acceptanceInterface.getClass());
             } else if ((numTestFailed[interfaceTestNumber] > 0)) {
+                if (colorful) {
+                    System.out.print(COLOR_RED);
+                }
                 System.out.println("Needs work: " +  acceptanceInterface.getClass());
             } else {
+                if (colorful) {
+                    System.out.print(COLOR_GREEN);
+                }
                 System.out.println("Accepted: " +  acceptanceInterface.getClass() + "is awesome!!!");
             }
+            if (colorful) {
+                System.out.print(COLOR_CYAN);
+                System.out.print("\t[");
+                double proportionPassed = (numTestsPassed[interfaceTestNumber]*1.00/(numNotImplemented[interfaceTestNumber]*1.00 + numTestFailed[interfaceTestNumber]*1.00 + numTestsPassed[interfaceTestNumber]*1.00) * scalingFactor); 
+                for (int i = 0; i < proportionPassed; i++) {
+                    System.out.print(COLOR_GREEN);
+                    System.out.print("-");
+                }
+                double proportionNotImplemented = (numNotImplemented[interfaceTestNumber]*1.00/(numNotImplemented[interfaceTestNumber]*1.00 + numTestFailed[interfaceTestNumber]*1.00 + numTestsPassed[interfaceTestNumber]*1.00) * scalingFactor); 
+                for (int i = 0; i < proportionNotImplemented; i++) {
+                    System.out.print(COLOR_YELLOW);
+                    System.out.print("-");
+                }
+                double proportionFailed = (numTestFailed[interfaceTestNumber]*1.00/(numNotImplemented[interfaceTestNumber]*1.00 + numTestFailed[interfaceTestNumber]*1.00 + numTestsPassed[interfaceTestNumber]*1.00) * scalingFactor); 
+                for (int i = 0; i < proportionFailed; i++) {
+                    System.out.print(COLOR_RED);
+                    System.out.print("-");
+                }
+                System.out.print(COLOR_CYAN);
+                System.out.println("]\t" + (int)(proportionPassed*100/scalingFactor) + "% correct. Note 100% is necessary for pass.");
+                System.out.print(COLOR_RESET);
+            }
+
             interfaceTestNumber++;
         }
     }
@@ -183,11 +230,10 @@ public class TestRunner {
                     System.out.print(COLOR_CYAN);
                 }
                 System.out.println("   " + current.getClass().toString().split("class tests.")[1] + ":");
+                System.out.println("      " + current.getShortDescription());
                 if (colorful) {
                     System.out.print(COLOR_RESET);
                 }
-                
-                System.out.println("      " + current.getShortDescription());
                 GameState state = acceptanceInterface.getInitialState();
                 MoveMaker mover = acceptanceInterface.getMover(state);
                 SanityChecker checkedMover = new SanityChecker(mover, state, current.out);
@@ -225,11 +271,11 @@ public class TestRunner {
             } catch (Exception ex) {
                 numTestFailed[interfaceTestNumber]++;
                 System.out.print(current.getOutputSteam());
-                Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
                 if (colorful) {
                     System.out.print(COLOR_RED + COLOR_UNDERLINE);
                 }
                 System.out.print("      Test Failed\n");
+                Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
                 ex.printStackTrace(System.out);
                 if (colorful) {
                     System.out.print(COLOR_RESET);
@@ -239,12 +285,12 @@ public class TestRunner {
                 numTestFailed[interfaceTestNumber]++;
                 System.out.print(current.getOutputSteam());
                 if (colorful) {
-                    System.out.println(COLOR_RED);
+                    System.out.print(COLOR_RED);
                 }
                 System.out.print("      Test Failed:\n");
                 ex.printStackTrace(System.out);
                 if (colorful) {
-                    System.out.println(COLOR_RESET);
+                    System.out.print(COLOR_RESET);
                 }
             }
         }
