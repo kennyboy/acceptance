@@ -110,7 +110,7 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       move.endTurn();
       assert(gameState.getPlayerVictoryPoints(1) == 8);
       assert(gameState.getPlayerSestertii(1) == 100);
-      assert(gameState.getPlayerHand(0).contains(Card.AESCULAPINUM));
+      assert(gameState.getPlayerHand(1).contains(Card.AESCULAPINUM));
       assert(gameState.getPlayerHand(0).contains(Card.SICARIUS));
       assert(gameState.getPlayerHand(0).contains(Card.CENTURIO));
       move.endTurn();
