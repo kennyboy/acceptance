@@ -33,8 +33,8 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       List<Card> deck = new LinkedList<Card>();
       gameState.setDiscard(deck);
 
-      Card[] discs = new Card[8];
-      for (int i = 0; i < 8; i++) {
+      Card[] discs = new Card[Rules.NUM_DICE_DISCS];
+      for (int i = 0; i < Rules.NUM_DICE_DISCS; i++) {
          discs[i] = Card.NOT_A_CARD;
       }
       for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
@@ -110,7 +110,7 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       move.endTurn();
       assert(gameState.getPlayerVictoryPoints(1) == 8);
       assert(gameState.getPlayerSestertii(1) == 100);
-      assert(gameState.getPlayerHand(0).contains(Card.AESCULAPINUM));
+      assert(gameState.getPlayerHand(1).contains(Card.AESCULAPINUM));
       assert(gameState.getPlayerHand(0).contains(Card.SICARIUS));
       assert(gameState.getPlayerHand(0).contains(Card.CENTURIO));
       move.endTurn();

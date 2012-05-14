@@ -1,4 +1,4 @@
-package tests.verified;
+package tests.borderline;
 
 import framework.Test;
 import framework.interfaces.GameState;
@@ -63,6 +63,8 @@ public class GetMoneyTest extends Test {
         assert(gameState.getPlayerSestertii(1) == 3);
         
         //player 0's turn again try to get money from the stockpile
+        gameState.setPlayerVictoryPoints(0, 10);
+        gameState.setPlayerVictoryPoints(1, 10);
         move.endTurn();
         gameState.setActionDice(new int[] {3,6,3});
         
