@@ -28,7 +28,7 @@ public class CardActivatorConsiliariusBasicTest extends Test {
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
         if (1==1) {
-           throw new IllegalArgumentException();
+        //   throw new IllegalArgumentException();
         }
         emptyFields(gameState);
 
@@ -76,24 +76,11 @@ public class CardActivatorConsiliariusBasicTest extends Test {
 
          */
 
-        Card[] result = new Card[] {
-                Card.NOT_A_CARD,
-                Card.NOT_A_CARD,
-                Card.NOT_A_CARD,
-                Card.TURRIS,
-                Card.NOT_A_CARD,
-                Card.MACHINA,
-                Card.NOT_A_CARD
-        };
-        for (int i = 0; i < Rules.NUM_DICE_DISCS ; i++) {
-        	assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[i] == result[i]);
-        }
-
         theHero.placeCard(Card.CONSILIARIUS, Rules.DICE_DISC_2);
         theHero.placeCard(Card.CENTURIO, Rules.DICE_DISC_3);
         theHero.placeCard(Card.HARUSPEX, Rules.DICE_DISC_4);
         theHero.placeCard(Card.LEGIONARIUS, Rules.DICE_DISC_5);
-        result = new Card[] {
+        Card[] result = new Card[] {
                 Card.NOT_A_CARD,
                 Card.CONSILIARIUS,
                 Card.CENTURIO,
@@ -102,11 +89,12 @@ public class CardActivatorConsiliariusBasicTest extends Test {
                 Card.MACHINA,
                 Card.NOT_A_CARD
         };
+        theHero.complete();
 
         for (int i = 0; i < Rules.NUM_DICE_DISCS ; i++) {
+            System.out.println(gameState.getPlayerCardsOnDiscs(PLAYER_1)[i]);
             assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[i] == result[i]);
         }
-        theHero.complete();
         
         /*
            Check Player 1's field is
