@@ -113,5 +113,4 @@ public class CardActivatorNeroBasicTest extends Test {
         assert(field[3] == Card.NERO);
         
     }
-
 }
