@@ -12,23 +12,22 @@ import framework.interfaces.activators.ForumActivator;
 
 /**
  * 
- * Test the basic functionality of Basilica
+ * Test the basic functionality of Forum
  * 
  * @author Jacky CHEN
  *
  */
 
-public class CardActivatorBasilicaBasicTest extends Test {
+public class CardActivatorForumBasicTest extends Test {
 
     @Override
     public String getShortDescription() {
-        return "Test the basic functionality of Basilica";
+        return "Test the basic functionality of Forum";
     }
 
     @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
-
         
 
         gameState.setWhoseTurn(0);
@@ -39,7 +38,6 @@ public class CardActivatorBasilicaBasicTest extends Test {
         
         Collection<Card> hand = new ArrayList<Card>();
         hand.add(Card.FORUM);
-        hand.add(Card.BASILICA);
         
         gameState.setPlayerHand(0, hand);
         
@@ -56,18 +54,19 @@ public class CardActivatorBasilicaBasicTest extends Test {
         
         //================ test starts ===================
         move.placeCard(Card.FORUM, Rules.DICE_DISC_2);
-        assert(gameState.getPlayerSestertii(0) == 25);
         
-        move.placeCard(Card.BASILICA, Rules.DICE_DISC_1);
-        assert(gameState.getPlayerSestertii(0) == 19);
+        assert(gameState.getPlayerSestertii(0) == 25);
         
         ForumActivator activator = (ForumActivator) move.chooseCardToActivate(Rules.DICE_DISC_2);
         activator.chooseActionDice(2);
         activator.chooseActivateTemplum(false);
         activator.complete();
         
-        assert(gameState.getPlayerVictoryPoints(0) == 14);
-        assert(gameState.getPoolVictoryPoints() == 12);
+        assert(gameState.getPlayerVictoryPoints(0) == 12);
+        assert(gameState.getPoolVictoryPoints() == 14);
         
     }
+
+    
+    
 }

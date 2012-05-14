@@ -1,4 +1,4 @@
-package tests.verified;
+package tests.borderline;
 
 import framework.Test;
 import framework.interfaces.GameState;
@@ -32,6 +32,7 @@ public class TurnAdvanceTest extends Test {
         gameState.setWhoseTurn(0);
 
         for(int i = 0; i < NUM_TESTS; i++) {
+            gameState.setPlayerVictoryPoints(i % 2, 10);
             assert(gameState.getWhoseTurn() == (i % 2));
             move.endTurn();
         }

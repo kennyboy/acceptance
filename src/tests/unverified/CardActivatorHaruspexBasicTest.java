@@ -1,165 +1,161 @@
 package tests.unverified;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import framework.Test;
 import framework.Rules;
+import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
 import framework.interfaces.activators.HaruspexActivator;
+import framework.interfaces.activators.LegionariusActivator;
 
 /**
  * 
- * Test the functionality of Haruspex
+ * Test the card Haruspex
  * 
- * @author Karla Burnett
+ * @author Chris FONG
  *
  */
 
 public class CardActivatorHaruspexBasicTest extends Test {
 
+	private final int PLAYER_1 = 0;
+	private final int PLAYER_2 = 1;
+	
+	private final int HARUSPEX_COST = 4;
+	private final int HARUSPEX_DEFENCE = 3;
+
+	private final int BASILICA = 0;
+	private final int CENTURIO = 1;
+	
     @Override
     public String getShortDescription() {
-        return "Test the basic functionality of Haruspex";
+        return "Test the card Haruspex";
+
     }
 
     @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
         
-        gameState.setWhoseTurn(0);
-        
-        // Initialise both players' hands to being empty
-        gameState.setPlayerHand(0, new ArrayList<Card>());
-        gameState.setPlayerHand(1, new ArrayList<Card>());
-        
-        // Initialise the board with just one Haruspex laid for the first player
-        // and nothing laid for the second
-        Card [] board = new Card[Rules.NUM_DICE_DISCS];
-        for (int i = 0; i < Rules.NUM_DICE_DISCS; i++) {
-           board[i] = Card.NOT_A_CARD;
-        }
-        
-        gameState.setPlayerCardsOnDiscs(1, board);
-        board[3] = Card.HARUSPEX;
-        gameState.setPlayerCardsOnDiscs(0, board);
-        
-        // Initialise the deck
-        List<Card> deck = new ArrayList<Card>();
-        deck.add(Card.NERO);
-        deck.add(Card.SENATOR);
-        deck.add(Card.VELITES);
-        deck.add(Card.ESSEDUM);
-        deck.add(Card.HARUSPEX);
-        deck.add(Card.PRAETORIANUS);
-        deck.add(Card.ONAGER);
-        deck.add(Card.SENATOR);
-        deck.add(Card.VELITES);
-        deck.add(Card.ESSEDUM);
-        deck.add(Card.HARUSPEX);
-        deck.add(Card.PRAETORIANUS);
-        deck.add(Card.ONAGER);
-        deck.add(Card.SENATOR);
-        deck.add(Card.VELITES);
-        deck.add(Card.ESSEDUM);
-        deck.add(Card.HARUSPEX);
-        deck.add(Card.PRAETORIANUS);
-        deck.add(Card.ONAGER);
-        gameState.setDeck(deck);
-        
-        // Initialise the discard
-        List<Card> discard = new ArrayList<Card>();
-        discard.add(Card.TURRIS);
-        discard.add(Card.SCAENICUS);
-        discard.add(Card.SICARIUS);
-        discard.add(Card.LEGAT);
-        discard.add(Card.CONSUL);
-        discard.add(Card.LEGIONARIUS);
-        discard.add(Card.CONSILIARIUS);
-        gameState.setDiscard(discard);
-        
-        // Initialise the dice
-        gameState.setActionDice(new int[] {4, 4, 4});
-        
-        // ---- CHOOSING THE FIRST CARD IN THE DECK ----
-        
-        // Activate the Haruspex, choosing the first card in the deck
-        HaruspexActivator activator = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
-        activator.chooseCardFromPile(0);
-        activator.complete();
-        
-        // Check that hand, deck, discard, etc. are as expected
-        assert(gameState.getPlayerHand(0).size() == 1);
-        assert( gameState.getPlayerHand(0).contains(Card.NERO));
-        assert(!gameState.getPlayerHand(1).contains(Card.NERO));
-        assert(!gameState.getDeck().contains(Card.NERO));
-        assert(!gameState.getDiscard().contains(Card.NERO));
-        
-        // Check that the deck was shuffled
-        deck.remove(0);
-        assert(!gameState.getDeck().equals(deck));
-        
-        // ---- CHOOSING THE LAST CARD IN THE DECK ----
-        
-        deck = new ArrayList<Card>();
-        deck.add(Card.SENATOR);
-        deck.add(Card.VELITES);
-        deck.add(Card.ESSEDUM);
-        deck.add(Card.HARUSPEX);
-        deck.add(Card.PRAETORIANUS);
-        deck.add(Card.ONAGER);
-        gameState.setDeck(deck);
-        
-        // Activate the Haruspex, choosing the last card in the deck
-        activator = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
-        activator.chooseCardFromPile(5);
-        activator.complete();
-        
-        // Check that hand, deck, discard, etc. are as expected
-        assert(gameState.getPlayerHand(0).size() == 2);
-        assert( gameState.getPlayerHand(0).contains(Card.ONAGER));
-        assert(!gameState.getPlayerHand(1).contains(Card.ONAGER));
-        assert(!gameState.getDeck().contains(Card.ONAGER));
-        assert(!gameState.getDiscard().contains(Card.ONAGER));
-        
-        // ---- CHOOSING ANOTHER HARUSPEX ----
-        
-        deck = new ArrayList<Card>();
-        deck.add(Card.SENATOR);
-        deck.add(Card.VELITES);
-        deck.add(Card.ESSEDUM);
-        deck.add(Card.HARUSPEX);
-        deck.add(Card.PRAETORIANUS);
-        gameState.setDeck(deck);
-        
-        // Activate the Haruspex, choosing the first card in the deck
-        activator = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
-        activator.chooseCardFromPile(3);
-        activator.complete();
-        
-        // Check that hand, deck, discard, etc. are as expected
-        assert(gameState.getPlayerHand(0).size() == 3);
-        assert( gameState.getPlayerHand(0).contains(Card.HARUSPEX));
-        assert(!gameState.getPlayerHand(1).contains(Card.HARUSPEX));
-        assert(!gameState.getDeck().contains(Card.HARUSPEX));
-        assert(!gameState.getDiscard().contains(Card.HARUSPEX));
-        
-        // Check that board state is right
-        board = gameState.getPlayerCardsOnDiscs(0);
-        for (int i = 0; i < board.length; i++) {
-           if (i == 3) {
-              assert(board[i] == Card.HARUSPEX);
-           } else {
-              assert(board[i] == Card.NOT_A_CARD);
-           }
-        }
-        
-        board = gameState.getPlayerCardsOnDiscs(1);
-        for (int i = 0; i < board.length; i++) {
-           assert(board[i] == Card.NOT_A_CARD);
-        }
+    	/*
+
+			Initialises the field to:
+			         			 1           2         		3            4            5             6           7
+            	Player 1:	<NOT_A_CARD>, <HARUSPEX>  ,<NOT_A_CARD>,<NOT_A_CARD>,<NOT_A_CARD>,<NOT_A_CARD>,<NOT_A_CARD>
+				Player 2:	<NOT_A_CARD>,<LEGIONARIUS>,<NOT_A_CARD>,<NOT_A_CARD>,<NOT_A_CARD>,<NOT_A_CARD>,<NOT_A_CARD>
+
+    	 */
+    	
+    	
+    	gameState.setPlayerCardsOnDiscs(PLAYER_1,
+    				new Card[] {
+	    					Card.NOT_A_CARD,
+	    					Card.HARUSPEX,
+	    					Card.NOT_A_CARD,
+	    					Card.NOT_A_CARD,
+	    					Card.NOT_A_CARD,
+	    					Card.NOT_A_CARD,
+	    					Card.NOT_A_CARD,
+	    			});
+    	
+    	gameState.setPlayerCardsOnDiscs(PLAYER_2,
+    				new Card[] {
+							Card.NOT_A_CARD,
+							Card.LEGIONARIUS,
+							Card.NOT_A_CARD,
+							Card.NOT_A_CARD,
+							Card.NOT_A_CARD,
+							Card.NOT_A_CARD,
+							Card.NOT_A_CARD,
+					});
+    	
+    	/*
+    	 
+    	 	Attacks the Haruspex with a Legionarius using:
+    	 			3 - 1 = 2 [ Shouldn't kill ]
+    	 			3 - 0 = 3 [ Should kill ]
+    	 			
+    	 	Tests:
+    	 		*Haruspex defence = 3
+    	 
+    	*/
+    	
+    	gameState.setWhoseTurn(PLAYER_2);
+    	gameState.setActionDice(new int[]{2,2,2});
+    	
+    	assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[1] == Card.HARUSPEX);
+    	
+    	LegionariusActivator theEnemy = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_2);
+    	theEnemy.giveAttackDieRoll(HARUSPEX_DEFENCE - 1);
+    	theEnemy.complete();
+    	
+    	assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[1] == Card.HARUSPEX);
+    	
+    	theEnemy = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_2);
+    	theEnemy.giveAttackDieRoll(HARUSPEX_DEFENCE);
+    	theEnemy.complete();
+    	
+    	assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[1] == Card.NOT_A_CARD);
+    	
+    	move.endTurn();
+    	
+    	/*
+   	 
+	 		Lays the Haruspex
+	 	
+	 		Tests:
+	 			*Haruspex cost = 4
+	 
+    	 */
+    	
+    	List<Card> hand = new ArrayList<Card>();
+    	hand.add(Card.HARUSPEX);
+    	
+    	gameState.setActionDice(new int[] {2,2,2});
+    	gameState.setPlayerHand(PLAYER_1, hand);
+    	gameState.setPlayerSestertii(PLAYER_1, HARUSPEX_COST);
+    
+    	assert(gameState.getPlayerSestertii(PLAYER_1) == HARUSPEX_COST);
+    	move.placeCard(Card.HARUSPEX, Rules.DICE_DISC_2);
+    	assert(gameState.getPlayerSestertii(PLAYER_1) == 0);
+
+    	assert(gameState.getPlayerHand(PLAYER_1).isEmpty());
+    	
+    	/*
+      	 
+	 		Activates the Haruspex and takes Centurio then Basilica
+	 	
+	 		Tests:
+	 			*The chosen cards are now longer in the deck
+	 			*The chosen cards are now in the hand
+	 
+    	 */
+    	
+    	List<Card> deck = new ArrayList<Card>();
+    	deck.add(Card.BASILICA);
+    	deck.add(Card.CENTURIO);
+    	
+    	gameState.setDeck(deck);
+    
+    	HaruspexActivator theHero = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_2);
+    	theHero.chooseCardFromPile(CENTURIO);
+    	theHero.complete();
+    
+    	assert(!gameState.getPlayerHand(PLAYER_1).isEmpty());
+    	
+    	assert(gameState.getPlayerHand(PLAYER_1).contains(Card.CENTURIO));
+    	assert(!gameState.getDeck().contains(Card.CENTURIO));
+    	
+    	theHero = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_2);
+    	theHero.chooseCardFromPile(BASILICA);
+    	theHero.complete();
+    
+    	assert(gameState.getPlayerHand(PLAYER_1).contains(Card.BASILICA));
+    	assert(!gameState.getDeck().contains(Card.BASILICA));
+    	
     }
+
 }

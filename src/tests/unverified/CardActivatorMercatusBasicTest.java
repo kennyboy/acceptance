@@ -8,27 +8,26 @@ import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-import framework.interfaces.activators.ForumActivator;
+import framework.interfaces.activators.MercatusActivator;
 
 /**
  * 
- * Test the basic functionality of Basilica
+ * Test the basic functionality of Mercatus
  * 
  * @author Jacky CHEN
  *
  */
 
-public class CardActivatorBasilicaBasicTest extends Test {
+public class CardActivatorMercatusBasicTest extends Test {
 
     @Override
     public String getShortDescription() {
-        return "Test the basic functionality of Basilica";
+        return "Test the basic functionality of Mercatus";
     }
 
     @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
-
         
 
         gameState.setWhoseTurn(0);
@@ -38,8 +37,7 @@ public class CardActivatorBasilicaBasicTest extends Test {
         assert(gameState.getPoolVictoryPoints() == 16);
         
         Collection<Card> hand = new ArrayList<Card>();
-        hand.add(Card.FORUM);
-        hand.add(Card.BASILICA);
+        hand.add(Card.MERCATUS);
         
         gameState.setPlayerHand(0, hand);
         
@@ -50,24 +48,33 @@ public class CardActivatorBasilicaBasicTest extends Test {
         }
         
         gameState.setPlayerCardsOnDiscs(0, field);
+        
+        //set three forums in the opponent's field
+        field = new Card[Rules.NUM_DICE_DISCS];
+        for(int i = 0; i < field.length; i++) {
+            field[i] = Card.NOT_A_CARD;
+        }
+        field[2] = Card.FORUM;
+        field[4] = Card.FORUM;
+        field[5] = Card.FORUM;
+        
         gameState.setPlayerCardsOnDiscs(1, field);
         
-        gameState.setActionDice(new int[] {2,2,2});
+        gameState.setActionDice(new int[] {4,4,4});
         
         //================ test starts ===================
-        move.placeCard(Card.FORUM, Rules.DICE_DISC_2);
-        assert(gameState.getPlayerSestertii(0) == 25);
+        move.placeCard(Card.MERCATUS, Rules.DICE_DISC_4);
         
-        move.placeCard(Card.BASILICA, Rules.DICE_DISC_1);
-        assert(gameState.getPlayerSestertii(0) == 19);
+        assert(gameState.getPlayerSestertii(0) == 24);
         
-        ForumActivator activator = (ForumActivator) move.chooseCardToActivate(Rules.DICE_DISC_2);
-        activator.chooseActionDice(2);
-        activator.chooseActivateTemplum(false);
+        MercatusActivator activator = (MercatusActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
         activator.complete();
-        
-        assert(gameState.getPlayerVictoryPoints(0) == 14);
-        assert(gameState.getPoolVictoryPoints() == 12);
+
+        assert(gameState.getPlayerVictoryPoints(0) == 13);
+        assert(gameState.getPlayerVictoryPoints(1) == 7);
         
     }
+
+    
+    
 }
