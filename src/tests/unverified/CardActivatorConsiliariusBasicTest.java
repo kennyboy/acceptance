@@ -92,7 +92,6 @@ public class CardActivatorConsiliariusBasicTest extends Test {
         theHero.complete();
 
         for (int i = 0; i < Rules.NUM_DICE_DISCS ; i++) {
-            System.out.println(gameState.getPlayerCardsOnDiscs(PLAYER_1)[i]);
             assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[i] == result[i]);
         }
         
