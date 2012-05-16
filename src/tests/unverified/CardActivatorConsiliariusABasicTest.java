@@ -86,6 +86,7 @@ public class CardActivatorConsiliariusABasicTest extends Test {
       assert(!gameState.isGameCompleted());
       
       ConsiliariusActivator activator = (ConsiliariusActivator) move.chooseCardToActivate(1);
+      activator.placeCard (Card.CONSILIARIUS, Rules.DICE_DISC_1);
       activator.placeCard (Card.HARUSPEX, Rules.BRIBE_DISC);
       activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_4);
       activator.complete();
@@ -96,6 +97,7 @@ public class CardActivatorConsiliariusABasicTest extends Test {
       assert(field[6] == Card.HARUSPEX);
 
       activator = (ConsiliariusActivator) move.chooseCardToActivate(1);
+      activator.placeCard (Card.CONSILIARIUS, Rules.DICE_DISC_1);
       activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_3);
       activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_5);
       activator.complete();
@@ -106,6 +108,7 @@ public class CardActivatorConsiliariusABasicTest extends Test {
       assert(field[4] == Card.HARUSPEX);
 
       activator = (ConsiliariusActivator) move.chooseCardToActivate(1);
+      activator.placeCard (Card.CONSILIARIUS, Rules.DICE_DISC_1);
       activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_1);
       activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_2);
       activator.complete();
@@ -120,6 +123,5 @@ public class CardActivatorConsiliariusABasicTest extends Test {
       assert(field[6] == Card.NOT_A_CARD);
       assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
-
     }
 }

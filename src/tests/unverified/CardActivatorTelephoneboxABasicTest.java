@@ -105,7 +105,7 @@ public class CardActivatorTelephoneboxABasicTest extends Test {
       assert(field[1] == Card.TELEPHONEBOX);
       assert(field[2] == Card.NOT_A_CARD);
       
-      assert(gameState.getActionDice().length == 2);
+      assert(gameState.getActionDice().length == 1);
       assert(!gameState.isGameCompleted());
 
       move.endTurn();
