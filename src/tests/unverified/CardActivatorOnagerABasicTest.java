@@ -35,7 +35,7 @@ public class CardActivatorOnagerABasicTest extends Test {
 
         // Set up the game state for the test
         gameState.setWhoseTurn(0);
-        gameState.setActionDice(new int [] {4, 5, 4});
+        gameState.setActionDice(new int [] {4, 4, 4});
 
         Card [] opponentSide = {Card.FORUM,
                 Card.SICARIUS,
@@ -73,6 +73,7 @@ public class CardActivatorOnagerABasicTest extends Test {
 
         //***********************test3************************//
         //Testing an attack against a building fails if it hasn't got a sufficient attack roll
+        ma = (OnagerActivator) move.chooseCardToActivate(4);
         ma.chooseDiceDisc(Rules.DICE_DISC_6);
         ma.giveAttackDieRoll(2);
         ma.complete();
@@ -83,6 +84,7 @@ public class CardActivatorOnagerABasicTest extends Test {
         //***********************test4************************//
         //Testing that it can attack a building if it has an attack roll
         //even to that of the defence of the attacked card
+        ma = (OnagerActivator) move.chooseCardToActivate(4);
         ma.chooseDiceDisc(Rules.DICE_DISC_6);
         ma.giveAttackDieRoll(3);
         ma.complete();
