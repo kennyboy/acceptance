@@ -73,7 +73,7 @@ public class TelephoneBoxTest_B extends Test {
         playerField_0 = gameState.getPlayerCardsOnDiscs(0) ;
         TelephoneBoxActivator t = (TelephoneBoxActivator) move.chooseCardToActivate(Rules.BRIBE_DISC);
         t.shouldMoveForwardInTime(false);
-        t.setSecondDiceUsed(2);
+        t.setSecondDiceUsed(6); //testing that the time travelling reverts to turn 0 if there have not been sufficient turns to go back
         t.chooseDiceDisc(1);
         t.complete();
  
