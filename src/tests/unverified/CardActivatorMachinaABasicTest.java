@@ -53,7 +53,7 @@ public class CardActivatorMachinaABasicTest extends Test {
       discard.add(Card.LEGIONARIUS);
       gameState.setDiscard(discard);
       discard = gameState.getDiscard();
-      
+
       gameState.setWhoseTurn(0);
       List<Card> hand;
       for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
@@ -65,7 +65,7 @@ public class CardActivatorMachinaABasicTest extends Test {
          hand.add(Card.FORUM);
          gameState.setPlayerHand(i, hand);
       }
-      
+
       gameState.setActionDice(new int[] {1,1,1});
 
       move.placeCard(Card.MACHINA, Rules.DICE_DISC_1);
@@ -80,11 +80,12 @@ public class CardActivatorMachinaABasicTest extends Test {
       assert(field[0] == Card.MACHINA);
       assert(field[1] == Card.FORUM);
       assert(field[2] == Card.FORUM);
-      
+
       assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
-      
+
       MachinaActivator activator = (MachinaActivator) move.chooseCardToActivate(1);
+      activator.placeCard(Card.MACHINA, Rules.DICE_DISC_1);
       activator.placeCard (Card.FORUM, Rules.BRIBE_DISC);
       activator.placeCard (Card.FORUM, Rules.DICE_DISC_4);
       activator.complete();
@@ -95,6 +96,7 @@ public class CardActivatorMachinaABasicTest extends Test {
       assert(field[6] == Card.FORUM);
 
       activator = (MachinaActivator) move.chooseCardToActivate(1);
+      activator.placeCard(Card.MACHINA, Rules.DICE_DISC_1);
       activator.placeCard (Card.FORUM, Rules.DICE_DISC_3);
       activator.placeCard (Card.FORUM, Rules.DICE_DISC_5);
       activator.complete();
@@ -105,6 +107,7 @@ public class CardActivatorMachinaABasicTest extends Test {
       assert(field[4] == Card.FORUM);
 
       activator = (MachinaActivator) move.chooseCardToActivate(1);
+      activator.placeCard(Card.MACHINA, Rules.DICE_DISC_1);
       activator.placeCard (Card.FORUM, Rules.DICE_DISC_1);
       activator.placeCard (Card.FORUM, Rules.DICE_DISC_2);
       activator.complete();

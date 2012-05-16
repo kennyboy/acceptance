@@ -30,6 +30,7 @@ public class CardActivatorLegionariusBasicTest extends Test {
             UnsupportedOperationException, IllegalArgumentException {
         
         gameState.setWhoseTurn(0);
+        gameState.setDiscard(new ArrayList<Card>());
         
         Collection<Card> hand = new ArrayList<Card>();
         hand.add(Card.LEGIONARIUS);

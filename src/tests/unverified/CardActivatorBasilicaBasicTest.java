@@ -28,6 +28,7 @@ public class CardActivatorBasilicaBasicTest extends Test {
     @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
+
         
 
         gameState.setWhoseTurn(0);
@@ -69,7 +70,4 @@ public class CardActivatorBasilicaBasicTest extends Test {
         assert(gameState.getPoolVictoryPoints() == 12);
         
     }
-
-    
-    
 }

@@ -33,6 +33,7 @@ public class CardActivatorHaruspexBasicTest extends Test {
     @Override
     public String getShortDescription() {
         return "Test the card Haruspex";
+
     }
 
     @Override
