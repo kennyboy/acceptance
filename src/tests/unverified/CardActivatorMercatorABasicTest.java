@@ -39,8 +39,8 @@ public class CardActivatorMercatorABasicTest extends Test {
       }
       for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
          gameState.setPlayerCardsOnDiscs(i, discs);
-      }   
-      
+      }
+
       List<Card> discard = new LinkedList<Card>();
       discard.add(Card.AESCULAPINUM);
       discard.add(Card.BASILICA);
@@ -55,7 +55,7 @@ public class CardActivatorMercatorABasicTest extends Test {
       discard.add(Card.LEGIONARIUS);
       gameState.setDiscard(discard);
       discard = gameState.getDiscard();
-      
+
       gameState.setWhoseTurn(0);
       List<Card> hand;
       for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
@@ -66,7 +66,7 @@ public class CardActivatorMercatorABasicTest extends Test {
          hand.add(Card.ARCHITECTUS);
          gameState.setPlayerHand(i, hand);
       }
-      
+
       gameState.setActionDice(new int[] {1,1,1});
 
       move.placeCard(Card.MERCATOR, Rules.DICE_DISC_1);
@@ -78,12 +78,12 @@ public class CardActivatorMercatorABasicTest extends Test {
       Card[] field;
       field = gameState.getPlayerCardsOnDiscs(0);
       assert(field[0] == Card.MERCATOR);
-      
+
       assert(gameState.getPoolVictoryPoints() == 36 - 2*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
-      
+
       MercatorActivator activator = (MercatorActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
- 
+
       activator.chooseMercatorBuyNum(1);
       activator.complete();
       assert(gameState.getPlayerVictoryPoints(0) == 2 + 1);
@@ -91,16 +91,16 @@ public class CardActivatorMercatorABasicTest extends Test {
       assert(gameState.getPlayerVictoryPoints(1) == 2 - 1);
       assert(gameState.getPlayerSestertii(1) == 100 + 2*1);
       assert(gameState.getPoolVictoryPoints() == 36 - 2*Rules.NUM_PLAYERS);
-      
+
       activator = (MercatorActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
- 
+
       activator.chooseMercatorBuyNum(5);
       activator.complete();
-      assert(gameState.getPlayerVictoryPoints(0) == 2 + (1+5));
-      assert(gameState.getPlayerSestertii(0) == 100 - 2*(1+5) - 7); 
+      assert(gameState.getPlayerVictoryPoints(0) == 2 + 1 + 1);
+      assert(gameState.getPlayerSestertii(0) == 100 - 2*(1+1) - 7);
       assert(gameState.getPlayerVictoryPoints(1) == 0);
-      assert(gameState.getPlayerSestertii(1) == 100 + 2*(1+5));
-      assert(gameState.getPoolVictoryPoints() == 36 - 2*Rules.NUM_PLAYERS - 4);
+      assert(gameState.getPlayerSestertii(1) == 100 + 2*(1+1));
+      assert(gameState.getPoolVictoryPoints() == 36 - 4);
 
       assert(gameState.getActionDice().length == 1);
       assert(gameState.isGameCompleted());
