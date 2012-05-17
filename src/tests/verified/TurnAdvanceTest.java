@@ -1,13 +1,13 @@
-package tests.borderline;
+package tests.verified;
 
 import framework.Test;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
 
 /**
- * 
+ *
  * Test if the player advance each turn, using a loop
- * 
+ *
  * @author Junjie CHEN
  *
  */
@@ -15,7 +15,7 @@ import framework.interfaces.MoveMaker;
 public class TurnAdvanceTest extends Test {
 
     private static final int NUM_TESTS = 1000;
-    
+
     @Override
     public String getShortDescription() {
         return "Checking if player advances at end of turn.";

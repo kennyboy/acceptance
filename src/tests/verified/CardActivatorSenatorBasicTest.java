@@ -1,4 +1,4 @@
-package tests.borderline;
+package tests.verified;
 
 import framework.Test;
 import framework.cards.Card;
@@ -26,7 +26,7 @@ public class CardActivatorSenatorBasicTest extends Test {
                                           throws AssertionError,
                                           UnsupportedOperationException,
                                           IllegalArgumentException {
-        
+
         // Set up the player stats
         gameState.setPlayerVictoryPoints(0, 10);
         gameState.setPlayerVictoryPoints(1, 10);
@@ -45,12 +45,12 @@ public class CardActivatorSenatorBasicTest extends Test {
                                  Card.SICARIUS,
                                  Card.ARCHITECTUS);
         gameState.setPlayerHand(0, hand);
-                
+
         // Place the Tribunus Plebis on disc 3 and activate it
         move.placeCard(Card.SENATOR, 3);
         //This test is a stub and needs card activation testing
         move.chooseCardToActivate(3);
-        
+
         // Check that player has lost the necessary sestertii from laying
         // these cards
         assert(gameState.getPlayerVictoryPoints(0) == 10);

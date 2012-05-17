@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package tests.unverified;
+package tests.verified;
 
 import framework.Test;
 import framework.interfaces.GameState;

@@ -1,4 +1,4 @@
-package tests.unverified;
+package tests.verified;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,7 +40,7 @@ public class CardActivatorForumABasicTest extends Test {
       for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
          gameState.setPlayerCardsOnDiscs(i, discs);
       }
-      
+
       List<Card> discard = new LinkedList<Card>();
       discard.add(Card.AESCULAPINUM);
       discard.add(Card.BASILICA);
@@ -55,7 +55,7 @@ public class CardActivatorForumABasicTest extends Test {
       discard.add(Card.LEGIONARIUS);
       gameState.setDiscard(discard);
       discard = gameState.getDiscard();
-      
+
       gameState.setWhoseTurn(0);
       List<Card> hand;
       for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
@@ -68,7 +68,7 @@ public class CardActivatorForumABasicTest extends Test {
          hand.add(Card.ARCHITECTUS);
          gameState.setPlayerHand(i, hand);
       }
-      
+
       gameState.setActionDice(new int[] {3,2,3});
 
       move.placeCard(Card.FORUM, Rules.DICE_DISC_2);
@@ -81,12 +81,12 @@ public class CardActivatorForumABasicTest extends Test {
       Card[] field;
       field = gameState.getPlayerCardsOnDiscs(0);
       assert(field[1] == Card.FORUM);
-      
+
       assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
 
       gameState.setActionDice(new int[] {6,2,5});
-       
+
       ForumActivator activator = (ForumActivator) move.chooseCardToActivate(2);
       activator.chooseActionDice(5);
       activator.complete();
@@ -95,7 +95,7 @@ public class CardActivatorForumABasicTest extends Test {
       assert(gameState.getActionDice().length == 1);
       move.endTurn();
       move.endTurn();
-      
+
       assert(gameState.getPlayerVictoryPoints(0) == 15+5-5);
       assert(gameState.getPlayerVictoryPoints(1) == 15-7);
       move.placeCard(Card.BASILICA, Rules.DICE_DISC_3);
@@ -110,6 +110,6 @@ public class CardActivatorForumABasicTest extends Test {
       assert(gameState.getPlayerVictoryPoints(0) == 15+5+6+2);
       assert(gameState.getPlayerVictoryPoints(1) == 15-7);
       assert(gameState.isGameCompleted());
-                  
+
     }
 }

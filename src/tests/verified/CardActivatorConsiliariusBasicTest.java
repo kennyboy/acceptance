@@ -1,4 +1,4 @@
-package tests.unverified;
+package tests.verified;
 
 import framework.Rules;
 import framework.Test;

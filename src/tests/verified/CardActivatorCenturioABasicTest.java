@@ -1,4 +1,4 @@
-package tests.unverified;
+package tests.verified;
 
 import java.util.ArrayList;
 import java.util.Collection;
