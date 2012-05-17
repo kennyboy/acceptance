@@ -77,13 +77,14 @@ public class CardActivatorTurrisBasicTest extends Test {
                             Card.NOT_A_CARD});
         
         move.endTurn();
-        move.placeCard(Card.TURRIS, 3);
         gameState.setActionDice(new int[] {2,3,2});
+        move.placeCard(Card.TURRIS, 3);
         
         assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[2] == Card.TURRIS);
         assert(gameState.getPlayerSestertii(PLAYER_1) == 10);
         
         move.endTurn();
+        gameState.setActionDice(new int[] {2,3,2});
 
         Nero = (LegionariusActivator) move.chooseCardToActivate(2);
         Nero.giveAttackDieRoll(4);

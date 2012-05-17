@@ -8,7 +8,8 @@ import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
 import framework.interfaces.activators.ForumActivator;
 import framework.interfaces.activators.TelephoneBoxActivator;
- 
+import java.util.LinkedList;
+
 /**
  * Testing for a simple scenario with the Telephone Box
  * @author Nicholas Higgins (nicholas.higgins)
@@ -25,7 +26,9 @@ public class TelephoneBoxTest_A extends Test {
 	@Override
 	public void run(GameState gameState, MoveMaker move) throws AssertionError,
 			UnsupportedOperationException, IllegalArgumentException {
- 
+        LinkedList<Card> hand = new LinkedList<Card>();
+        hand.add(Card.CENTURIO);
+        gameState.setPlayerHand(0, hand);
 		// Set up the player stats
         gameState.setPlayerVictoryPoints(0, 10);
         gameState.setPlayerVictoryPoints(1, 10);
@@ -80,7 +83,7 @@ public class TelephoneBoxTest_A extends Test {
  
         // Player 0's turn
         // Replace Forum on Disc_1 with a Centurio
-        Card[] playerField_0_updated = {
+        /*Card[] playerField_0_updated = {
         		Card.CENTURIO,
         		Card.BASILICA,
 				Card.FORUM,
@@ -88,8 +91,8 @@ public class TelephoneBoxTest_A extends Test {
 				Card.GLADIATOR,
 				Card.ONAGER,
 				Card.TELEPHONEBOX,
-        };
-        gameState.setPlayerCardsOnDiscs(0, playerField_0_updated);
+        };*/
+        move.placeCard (Card.CENTURIO, 1);
         move.endTurn();
  
         // Player 1's turn
@@ -101,17 +104,24 @@ public class TelephoneBoxTest_A extends Test {
         gameState.setActionDice(new int[] {1,1,4});
         playerField_0 = gameState.getPlayerCardsOnDiscs(0) ;
         assert(playerField_0[0] == Card.CENTURIO);
-        TelephoneBoxActivator t = (TelephoneBoxActivator) move.chooseCardToActivate(Rules.BRIBE_DISC);
+        TelephoneBoxActivator t = (TelephoneBoxActivator) move.activateBribeDisc(1);
         t.shouldMoveForwardInTime(false);
         t.setSecondDiceUsed(4);
         t.chooseDiceDisc(1);
         t.complete();
  
- 
         // Timetravel has occurred
         // Forum on Disc 1 should have been replaced by Centurio
-        // but activating the Centurio does not cause a time paradox
-        assert(!gameState.isGameCompleted());
+        // This forum was being activated in the replay and now has a different named card 
+        //on it than when the actions were initially made.
+        //  Therefore we have a time paradox
+        assert(gameState.getPlayerVictoryPoints(0) == 0);
+        for (int j = 0; j < Rules.NUM_PLAYERS; j++) {
+            for (int i = 0; i < 7; i++) {  
+                assert(gameState.getPlayerCardsOnDiscs(0)[i].toString().equals("Not A Card"));
+            }
+        }
+        assert(gameState.isGameCompleted());
         move.endTurn();
 	}
 }
