@@ -20,10 +20,10 @@ import java.util.List;
 
 public class CardActivatorTelephoneBoxBackToTheFutureTest extends Test {
 
-	private final int PLAYER_1 = 0;
-	private final int PLAYER_2 = 1;
-	
-	public String getShortDescription() {
+	 private final int PLAYER_1 = 0;
+  	 private final int PLAYER_2 = 1;
+
+    public String getShortDescription() {
         return "Tests the basic functionability of Time Machine";
     }
 

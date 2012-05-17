@@ -1,6 +1,5 @@
 package tests.unverified;
  
- 
 import framework.Rules;
 import framework.Test;
 import framework.cards.Card;

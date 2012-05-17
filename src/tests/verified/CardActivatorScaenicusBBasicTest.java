@@ -1,7 +1,6 @@
 package tests.verified;
  
 import java.util.Arrays;
- 
 import framework.Rules;
 import framework.Test;
 import framework.cards.Card;
