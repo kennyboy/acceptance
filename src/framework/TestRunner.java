@@ -107,6 +107,9 @@ public class TestRunner {
             }
         }
         assert(noClassesWithEmptyConstructor == acceptanceInterfaceClasses.size());
+        if (acceptanceInterfaceClasses.size() == 0) {
+            System.out.println("We have found NO acceptance implementation");
+        }
         return returnValue;
     }
     
