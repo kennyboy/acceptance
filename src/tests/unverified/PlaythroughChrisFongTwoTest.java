@@ -41,6 +41,7 @@ public class PlaythroughChrisFongTwoTest extends Test {
             UnsupportedOperationException, IllegalArgumentException {
 
         this.gameState = gameState;
+        gameState.setWhoseTurn(PLAYER_1);
         gameState.setActionDice(new int[] {1,2,5});
 
         /*
