@@ -1,6 +1,5 @@
 package tests.unverified;
  
- 
 import framework.Rules;
 import framework.Test;
 import framework.cards.Card;
@@ -9,12 +8,14 @@ import framework.interfaces.MoveMaker;
 import framework.interfaces.activators.ForumActivator;
 import framework.interfaces.activators.TelephoneBoxActivator;
 import java.util.LinkedList;
+
 /**
  * Testing for a simple scenario with the Telephone Box
  * @author Nicholas Higgins (nicholas.higgins)
  * @author Calvin Tam (calvin.tam)
  *
  */
+
 public class TelephoneBoxTest_B extends Test {
  
 	@Override
@@ -60,6 +61,7 @@ public class TelephoneBoxTest_B extends Test {
  
         //Player 1
         move.endTurn();
+        gameState.setActionDice(new int[] {1,1,6});
  
         //Player 0
         LinkedList<Card> hand = new LinkedList<Card>();
@@ -69,9 +71,8 @@ public class TelephoneBoxTest_B extends Test {
         move.placeCard(Card.LEGIONARIUS, 1);
  
         // Activate the Telephone Box and move the Legionarius on Disc 1 back 2 turns
-        gameState.setActionDice(new int[] {1,1,2});
         playerField_0 = gameState.getPlayerCardsOnDiscs(0) ;
-        TelephoneBoxActivator t = (TelephoneBoxActivator) move.chooseCardToActivate(Rules.BRIBE_DISC);
+        TelephoneBoxActivator t = (TelephoneBoxActivator) move.activateBribeDisc(1);
         t.shouldMoveForwardInTime(false);
         t.setSecondDiceUsed(6); //testing that the time travelling reverts to turn 0 if there have not been sufficient turns to go back
         t.chooseDiceDisc(1);
