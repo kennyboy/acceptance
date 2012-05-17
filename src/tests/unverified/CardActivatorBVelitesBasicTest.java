@@ -28,24 +28,36 @@ public class CardActivatorBVelitesBasicTest extends Test {
     @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
+    	// This test is assuming there are only 2 players
+      Card[] playerField_0 = {
+    		  Card.NOT_A_CARD,
+    		  Card.CENTURIO,
+    		  Card.CENTURIO,
+    		  Card.MERCATOR,
+    		  Card.ARCHITECTUS,
+    		  Card.NERO,
+    		  Card.HARUSPEX
+      };
+      gameState.setPlayerCardsOnDiscs(0, playerField_0);
 
-      Card[] discs = new Card[Rules.NUM_DICE_DISCS];
-      for (int i = 0; i < Rules.NUM_DICE_DISCS; i++) {
-         discs[i] = Card.NOT_A_CARD;
-      }
-      for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
-         gameState.setPlayerCardsOnDiscs(i, discs);
-      }
+      Card[] playerField_1 = {
+    		  Card.LEGAT,
+    		  Card.SICARIUS,
+    		  Card.LEGIONARIUS,
+    		  Card.CONSUL,
+    		  Card.ARCHITECTUS,
+    		  Card.GLADIATOR,
+    		  Card.HARUSPEX
+      };
+      gameState.setPlayerCardsOnDiscs(1, playerField_1);
+
+      gameState.setPlayerSestertii(0, 50);
+      gameState.setPlayerSestertii(1, 50);
+      gameState.setPlayerVictoryPoints(0, 10);
+      gameState.setPlayerVictoryPoints(1, 10);
 
       gameState.setWhoseTurn(0);
 
-      for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
-         gameState.setPlayerSestertii(i, 50);
-         gameState.setPlayerVictoryPoints(i, 10);
-
-      }
-
-      // Assuming there are only 2 players
       LinkedList<Card>hand = new LinkedList<Card>();
       hand.add(Card.VELITES);
       gameState.setPlayerHand(0, hand);
@@ -58,8 +70,6 @@ public class CardActivatorBVelitesBasicTest extends Test {
       gameState.setActionDice(new int[] {1,2,3});
       move.placeCard(Card.VELITES, Rules.DICE_DISC_1);
 
-      assert(gameState.getPlayerSestertii(0) == 50 - 5);
-      assert(gameState.getPlayerSestertii(1) == 50);
       assert(gameState.getPlayerHand(0).size() == 0);
 
       Card[] temp;
@@ -74,13 +84,7 @@ public class CardActivatorBVelitesBasicTest extends Test {
       move.placeCard(Card.SICARIUS, Rules.DICE_DISC_2);
 
       temp = gameState.getPlayerCardsOnDiscs(Rules.DICE_DISC_1);
-      assert(temp[0] == Card.NOT_A_CARD);
       assert(temp[1] == Card.SICARIUS);
-      assert(temp[2] == Card.NOT_A_CARD);
-      assert(temp[3] == Card.NOT_A_CARD);
-      assert(temp[4] == Card.NOT_A_CARD);
-      assert(temp[5] == Card.NOT_A_CARD);
-      assert(temp[6] == Card.NOT_A_CARD);
 
       move.endTurn();
 
@@ -93,13 +97,7 @@ public class CardActivatorBVelitesBasicTest extends Test {
       activator.chooseDiceDisc(Rules.DICE_DISC_2);
       activator.complete();
       temp = gameState.getPlayerCardsOnDiscs(1);
-      assert(temp[0] == Card.NOT_A_CARD);
       assert(temp[1] == Card.SICARIUS);
-      assert(temp[2] == Card.NOT_A_CARD);
-      assert(temp[3] == Card.NOT_A_CARD);
-      assert(temp[4] == Card.NOT_A_CARD);
-      assert(temp[5] == Card.NOT_A_CARD);
-      assert(temp[6] == Card.NOT_A_CARD);
 
       //Testing the corner case when the attack value is the same as defence value
       activator = (VelitesActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
@@ -107,13 +105,7 @@ public class CardActivatorBVelitesBasicTest extends Test {
       activator.chooseDiceDisc(Rules.DICE_DISC_2);
       activator.complete();
       temp = gameState.getPlayerCardsOnDiscs(1);
-      assert(temp[0] == Card.NOT_A_CARD);
       assert(temp[1] == Card.NOT_A_CARD);
-      assert(temp[2] == Card.NOT_A_CARD);
-      assert(temp[3] == Card.NOT_A_CARD);
-      assert(temp[4] == Card.NOT_A_CARD);
-      assert(temp[5] == Card.NOT_A_CARD);
-      assert(temp[6] == Card.NOT_A_CARD);
       assert(!gameState.isGameCompleted());
 
       move.endTurn();
@@ -128,12 +120,7 @@ public class CardActivatorBVelitesBasicTest extends Test {
       move.placeCard(Card.ARCHITECTUS, Rules.BRIBE_DISC);
       move.placeCard(Card.BASILICA, Rules.DICE_DISC_3);
       temp = gameState.getPlayerCardsOnDiscs(1);
-      assert(temp[0] == Card.NOT_A_CARD);
-      assert(temp[1] == Card.NOT_A_CARD);
       assert(temp[2] == Card.BASILICA);
-      assert(temp[3] == Card.NOT_A_CARD);
-      assert(temp[4] == Card.NOT_A_CARD);
-      assert(temp[5] == Card.NOT_A_CARD);
       assert(temp[6] == Card.ARCHITECTUS);
       move.endTurn();
 
@@ -145,31 +132,16 @@ public class CardActivatorBVelitesBasicTest extends Test {
       activator.chooseDiceDisc(Rules.BRIBE_DISC);
       activator.complete();
       temp = gameState.getPlayerCardsOnDiscs(1);
-      assert(temp[0] == Card.NOT_A_CARD);
-      assert(temp[1] == Card.NOT_A_CARD);
       assert(temp[2] == Card.BASILICA);
-      assert(temp[3] == Card.NOT_A_CARD);
-      assert(temp[4] == Card.NOT_A_CARD);
-      assert(temp[5] == Card.NOT_A_CARD);
       assert(temp[6] == Card.NOT_A_CARD);
 
       // Making sure that Velites cannot attack a building
-
-      // Invalid test - only testing legal
-
+      // Invalid - testing this like this isn't correct
       //activator = (VelitesActivator)move.chooseCardToActivate(Rules.DICE_DISC_1);
       //activator.giveAttackDieRoll(6);
       //activator.chooseDiceDisc(Rules.DICE_DISC_3);
       //activator.complete();
       temp = gameState.getPlayerCardsOnDiscs(1);
-      assert(temp[0] == Card.NOT_A_CARD);
-      assert(temp[1] == Card.NOT_A_CARD);
       assert(temp[2] == Card.BASILICA);
-      assert(temp[3] == Card.NOT_A_CARD);
-      assert(temp[4] == Card.NOT_A_CARD);
-      assert(temp[5] == Card.NOT_A_CARD);
-      assert(temp[6] == Card.NOT_A_CARD);
-
-
     }
 }
