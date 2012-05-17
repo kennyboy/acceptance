@@ -329,10 +329,10 @@ public class PlaythroughChrisFongTwoTest extends Test {
          */
 
         playerSestertiis[PLAYER_2] -= 1;
-        discard.remove(Card.LEGAT);
+        discard.remove(1);
         playerHands[PLAYER_2].add(Card.LEGAT);
         AesculapinumActivator monsterReborn = (AesculapinumActivator) move.activateBribeDisc(Rules.DICE_DISC_1);
-        monsterReborn.chooseCardFromPile(3);
+        monsterReborn.chooseCardFromPile(1);
         monsterReborn.complete();
         assertSestertiis();
         assertDiscard();
