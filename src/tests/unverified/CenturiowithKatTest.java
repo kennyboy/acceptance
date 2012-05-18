@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
- * User: REW
+ * User: Reynard
  * Date: 18/05/12
  * Time: 11:05 PM
  * To change this template use File | Settings | File Templates.
@@ -35,7 +35,7 @@ public class CenturiowithKatTest extends Test{
     private GameState gameState;
 
     public String getShortDescription() {
-        return "Centurio killing Kat with Grim Reaper at disc";
+        return "Legionarius killing Kat with Grim Reaper at disc";
     }
 
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
