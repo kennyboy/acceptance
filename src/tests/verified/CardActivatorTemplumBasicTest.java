@@ -113,7 +113,7 @@ public class CardActivatorTemplumBasicTest extends Test {
       activator.complete();
       
       // Check that the correct number of VPs were gained (5 for the Forum,
-      // 1 for the Templum)
+      // 1 for the Templum) 
       assert(gameState.getPlayerVictoryPoints(0) == 14 + 5 + 1);
       assert(gameState.getPlayerVictoryPoints(1) == 15);
       
