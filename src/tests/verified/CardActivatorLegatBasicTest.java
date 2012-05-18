@@ -32,9 +32,19 @@ public class CardActivatorLegatBasicTest extends Test {
                                 Card.NOT_A_CARD,
                                 Card.NOT_A_CARD,
                                 Card.NOT_A_CARD};
+        
+        Card [] opponentSideInitial = {Card.NOT_A_CARD,
+                Card.NOT_A_CARD,
+                Card.NOT_A_CARD,
+                Card.NOT_A_CARD,
+                Card.NOT_A_CARD,
+                Card.NOT_A_CARD,
+                Card.NOT_A_CARD};
 
         // Place 5 cards on the opponent's side
         gameState.setPlayerCardsOnDiscs(0, ourSide);
+        gameState.setPlayerCardsOnDiscs(1, opponentSideInitial);
+        
         // Set up the player stats
         gameState.setPlayerVictoryPoints(0, 10);
         gameState.setPlayerVictoryPoints(1, 10);
@@ -50,6 +60,11 @@ public class CardActivatorLegatBasicTest extends Test {
         gameState.setPlayerHand(0, hand);
 
         // Place the Legat on disc 3 and activate it
+        
+//        for (Card currentCard : gameState.getPlayerHand(0)) {
+//        	System.out.println(currentCard);
+//        }
+        
         move.placeCard(Card.LEGAT, 3);
         move.chooseCardToActivate(3).complete();
 
