@@ -186,6 +186,7 @@ public class TwoTurrisTest extends Test{
         // Player's 2 Turris on disc 6 should hav def value of 7
         // because there are 2 turris on the field
         OnagerActivator oa = (OnagerActivator) move.chooseCardToActivate(6);
+        oa.chooseDiceDisc(6);
         oa.giveAttackDieRoll(6);
         oa.complete();
         assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[5] == Card.TURRIS);
