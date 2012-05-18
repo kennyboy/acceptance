@@ -20,7 +20,7 @@ import java.util.List;
  * Time: 4:46 PM
  *
  */
-// th
+
 public class TwoTurrisTest extends Test{
     private final int PLAYER_1 = 0;
     private final int PLAYER_2 = 1;
@@ -38,7 +38,7 @@ public class TwoTurrisTest extends Test{
 
 
     public String getShortDescription() {
-        return "Testing two Turris on the dice disc";
+        return "Playthrough of the Game";
     }
 
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
