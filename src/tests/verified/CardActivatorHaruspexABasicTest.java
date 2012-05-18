@@ -1,11 +1,10 @@
 package tests.verified;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import framework.Test;
 import framework.Rules;
+import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
@@ -88,7 +87,7 @@ public class CardActivatorHaruspexABasicTest extends Test {
 
         // Activate the Haruspex, choosing the first card in the deck
         HaruspexActivator activator = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
-        activator.chooseCardFromPile(0);
+        activator.chooseCardFromPile(Card.NERO);
         activator.complete();
 
         // Check that hand, deck, discard, etc. are as expected
@@ -115,7 +114,7 @@ public class CardActivatorHaruspexABasicTest extends Test {
 
         // Activate the Haruspex, choosing the last card in the deck
         activator = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
-        activator.chooseCardFromPile(5);
+        activator.chooseCardFromPile(Card.ONAGER);
         activator.complete();
 
         // Check that hand, deck, discard, etc. are as expected
@@ -137,7 +136,7 @@ public class CardActivatorHaruspexABasicTest extends Test {
 
         // Activate the Haruspex, choosing the first card in the deck
         activator = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
-        activator.chooseCardFromPile(3);
+        activator.chooseCardFromPile(Card.HARUSPEX);
         activator.complete();
 
         // Check that hand, deck, discard, etc. are as expected

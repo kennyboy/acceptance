@@ -75,7 +75,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
 
         //activate the card
         AesculapinumActivator activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
-        activator.chooseCardFromPile(0);
+        activator.chooseCardFromPile(Card.ARCHITECTUS);
         activator.complete();
 
         assert(gameState.getPlayerHand(0).size() == 1);
@@ -90,7 +90,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
 
         //activate the card
         activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
-        activator.chooseCardFromPile(1);
+        activator.chooseCardFromPile(Card.CONSUL);
         activator.complete();
 
         assert(gameState.getPlayerHand(0).size() == 2);
@@ -157,7 +157,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
 
         //activate the card
         activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
-        activator.chooseCardFromPile(1);
+        activator.chooseCardFromPile(Card.ESSEDUM);
         activator.complete();
 
         //the card get removed from the discard
@@ -170,7 +170,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
         gameState.setDiscard(discard);
 
         activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_5);
-        activator.chooseCardFromPile(2);
+        activator.chooseCardFromPile(Card.SICARIUS);
         activator.complete();
 
         assert(gameState.getDiscard().size() == 2);
@@ -182,7 +182,7 @@ public class CardActivatorAesculapinumBasicTest extends Test {
         gameState.setDiscard(discard);
 
         activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_6);
-        activator.chooseCardFromPile(1);
+        activator.chooseCardFromPile(Card.LEGAT);
         activator.complete();
 
         assert(gameState.getDiscard().size() == 1);

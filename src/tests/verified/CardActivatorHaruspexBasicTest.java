@@ -27,8 +27,6 @@ public class CardActivatorHaruspexBasicTest extends Test {
 	private final int HARUSPEX_COST = 4;
 	private final int HARUSPEX_DEFENCE = 3;
 
-	private final int BASILICA = 0;
-	private final int CENTURIO = 1;
 	
     @Override
     public String getShortDescription() {
@@ -141,7 +139,7 @@ public class CardActivatorHaruspexBasicTest extends Test {
     	gameState.setDeck(deck);
     
     	HaruspexActivator theHero = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_2);
-    	theHero.chooseCardFromPile(CENTURIO);
+    	theHero.chooseCardFromPile(Card.CENTURIO);
     	theHero.complete();
     
     	assert(!gameState.getPlayerHand(PLAYER_1).isEmpty());
@@ -150,7 +148,7 @@ public class CardActivatorHaruspexBasicTest extends Test {
     	assert(!gameState.getDeck().contains(Card.CENTURIO));
     	
     	theHero = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_2);
-    	theHero.chooseCardFromPile(BASILICA);
+    	theHero.chooseCardFromPile(Card.BASILICA);
     	theHero.complete();
     
     	assert(gameState.getPlayerHand(PLAYER_1).contains(Card.BASILICA));
