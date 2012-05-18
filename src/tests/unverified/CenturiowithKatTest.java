@@ -35,7 +35,7 @@ public class CenturiowithKatTest extends Test{
     private GameState gameState;
 
     public String getShortDescription() {
-        return "Legionarius killing Kat with Grim Reaper at disc";
+        return "Centurio killing Kat with Grim Reaper at disc";
     }
 
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
