@@ -656,7 +656,10 @@ public class PlaythroughChrisFongThreeTest extends Test {
 
         playerFields[PLAYER_2][0] = Card.SICARIUS;
         playerFields[PLAYER_2][5] = Card.TRIBUNUSPLEBIS;
+        playerHands[PLAYER_2].remove(Card.SICARIUS);
+        playerHands[PLAYER_2].remove(Card.TRIBUNUSPLEBIS);
         discard.addLast(Card.HARUSPEX);
+
         SenatorActivator senator = (SenatorActivator) move.chooseCardToActivate(Rules.DICE_DISC_5);
         senator.layCard(Card.TRIBUNUSPLEBIS, Rules.DICE_DISC_6);
         senator.layCard(Card.SICARIUS, Rules.DICE_DISC_1);
