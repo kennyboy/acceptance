@@ -1,23 +1,21 @@
 package framework;
 
-import framework.interfaces.*;
-import framework.interfaces.AcceptanceInterface;
+import java.lang.reflect.Constructor;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
 import org.reflections.scanners.SubTypesScanner;
-import org.reflections.scanners.TypeAnnotationsScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
 
-import javax.naming.OperationNotSupportedException;
-import java.lang.reflect.Constructor;
-import java.util.Set;
-import java.util.List;
-import java.util.Arrays;
+import framework.interfaces.AcceptanceInterface;
+import framework.interfaces.GameState;
+import framework.interfaces.MoveMaker;
 /**
  * Class to run several tests, and handle the results
  *
