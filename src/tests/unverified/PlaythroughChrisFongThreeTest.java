@@ -497,6 +497,7 @@ public class PlaythroughChrisFongThreeTest extends Test {
         playerSestertiis[PLAYER_1] -= 2;
         forum = (ForumActivator) move.activateBribeDisc(2);
         forum.chooseActionDice(4);
+        forum.chooseActivateTemplum(false);
         forum.complete();
         assertVPs();
         assertSestertiis();
