@@ -27,9 +27,6 @@ public class CardActivatorConsiliariusBasicTest extends Test {
     @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
-        if (1==1) {
-        //   throw new IllegalArgumentException();
-        }
         emptyFields(gameState);
 
         /*

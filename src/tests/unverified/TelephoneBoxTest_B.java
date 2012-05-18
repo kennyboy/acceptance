@@ -1,13 +1,12 @@
 package tests.unverified;
  
-import framework.Rules;
+import java.util.LinkedList;
+
 import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-import framework.interfaces.activators.ForumActivator;
 import framework.interfaces.activators.TelephoneBoxActivator;
-import java.util.LinkedList;
 
 /**
  * Testing for a simple scenario with the Telephone Box

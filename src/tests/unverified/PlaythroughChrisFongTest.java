@@ -9,7 +9,14 @@ import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-import framework.interfaces.activators.*;
+import framework.interfaces.activators.CenturioActivator;
+import framework.interfaces.activators.ConsiliariusActivator;
+import framework.interfaces.activators.ConsulActivator;
+import framework.interfaces.activators.ForumActivator;
+import framework.interfaces.activators.LegatActivator;
+import framework.interfaces.activators.PraetorianusActivator;
+import framework.interfaces.activators.TribunusPlebisActivator;
+import framework.interfaces.activators.VelitesActivator;
 
 /**
  * Author: Chris FONG

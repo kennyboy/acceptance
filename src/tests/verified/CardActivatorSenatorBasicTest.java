@@ -1,13 +1,13 @@
 package tests.verified;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
 import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.ArrayList;
-import javax.naming.OperationNotSupportedException;
 
 /**
  * Testing the basic mechanics of Senator.
