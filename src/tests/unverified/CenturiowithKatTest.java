@@ -205,7 +205,6 @@ public class CenturiowithKatTest extends Test{
         assert (gameState.getDiscard().size() == 0);
         gameState.setWhoseTurn(PLAYER_2);
         assert(gameState.getPlayerHand(PLAYER_2).contains(Card.KAT));
-        assert (gameState.getActionDice().length == 1);
 
 
     }
