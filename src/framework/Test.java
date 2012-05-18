@@ -96,13 +96,13 @@ public abstract class Test {
     String getOutputSteam() {
         return buffer.toString();
     }
-    
+
     protected int getIndexFromPile (Card toFind, List<Card> pile) {
        int index = -1;
        boolean found = false;
        for (int i = 0; i < pile.size() && !found; i++) {
-          System.out.println("Finding: " + toFind + "Found: " + pile.get(i));
-          if (pile.get(i).toString().equals(toFind.toString())) {
+          //System.out.println("Finding: " + toFind + " Found: " + pile.get(i));
+          if (pile.get(i).equals(toFind)) {
              found = true;
              index = i;
           }

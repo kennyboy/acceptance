@@ -186,6 +186,7 @@ public class TwoTurrisTest extends Test{
         // Player's 2 Turris on disc 6 should hav def value of 7
         // because there are 2 turris on the field
         OnagerActivator oa = (OnagerActivator) move.chooseCardToActivate(6);
+        oa.chooseDiceDisc(6);
         oa.giveAttackDieRoll(6);
         oa.complete();
         assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[5] == Card.TURRIS);
@@ -193,7 +194,6 @@ public class TwoTurrisTest extends Test{
 
         // therefore the only way to destroy turris is by using Nero
         NeroActivator na = (NeroActivator) move.chooseCardToActivate(3);
-        assert (gameState.getActionDice().length == 1);
         na.chooseDiceDisc(7);
         na.complete();
         assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[6] == Card.NOT_A_CARD);
