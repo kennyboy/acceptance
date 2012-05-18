@@ -3,7 +3,6 @@ package tests.verified;
 import framework.Test;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-import javax.naming.OperationNotSupportedException;
 
 /**
  * An example test.

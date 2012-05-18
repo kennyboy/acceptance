@@ -1,6 +1,5 @@
 package framework.interfaces.activators;
 
-import framework.cards.Card;
 
 /**
  * Provides a way of passing data to a card that is being activated.

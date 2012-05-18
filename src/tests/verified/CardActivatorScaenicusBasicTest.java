@@ -1,18 +1,14 @@
 package tests.verified;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import framework.Test;
 import framework.Rules;
+import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-import framework.interfaces.activators.ScaenicusActivator;
-import framework.interfaces.activators.TribunusPlebisActivator;
 import framework.interfaces.activators.LegionariusActivator;
+import framework.interfaces.activators.ScaenicusActivator;
 import framework.interfaces.activators.SicariusActivator;
+import framework.interfaces.activators.TribunusPlebisActivator;
 
 /**
  * 

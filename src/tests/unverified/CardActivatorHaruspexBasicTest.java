@@ -1,4 +1,4 @@
-package tests.verified;
+package tests.unverified;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -139,7 +139,7 @@ public class CardActivatorHaruspexBasicTest extends Test {
     	gameState.setDeck(deck);
     
     	HaruspexActivator theHero = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_2);
-    	theHero.chooseCardFromPile(Card.CENTURIO);
+    	theHero.chooseCardFromPile(getIndexFromPile(Card.CENTURIO, gameState.getDiscard()));
     	theHero.complete();
     
     	assert(!gameState.getPlayerHand(PLAYER_1).isEmpty());
@@ -148,7 +148,7 @@ public class CardActivatorHaruspexBasicTest extends Test {
     	assert(!gameState.getDeck().contains(Card.CENTURIO));
     	
     	theHero = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_2);
-    	theHero.chooseCardFromPile(Card.BASILICA);
+    	theHero.chooseCardFromPile(getIndexFromPile(Card.BASILICA, gameState.getDiscard()));
     	theHero.complete();
     
     	assert(gameState.getPlayerHand(PLAYER_1).contains(Card.BASILICA));

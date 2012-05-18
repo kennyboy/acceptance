@@ -1,9 +1,12 @@
 package framework;
 
-import framework.interfaces.GameState;
-import framework.interfaces.MoveMaker;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
+
+import framework.cards.Card;
+import framework.interfaces.GameState;
+import framework.interfaces.MoveMaker;
 
 /**
  * Provides a template for writing tests for Roma.
@@ -92,5 +95,17 @@ public abstract class Test {
 
     String getOutputSteam() {
         return buffer.toString();
+    }
+    
+    protected int getIndexFromPile (Card toFind, List<Card> pile) {
+       int index = -1;
+       boolean found = false;
+       for (int i = 0; i < pile.size() && !found; i++) {
+          if (pile.get(i).toString().equals(toFind.toString())) {
+             found = true;
+             index = i;
+          }
+       }
+       return index;
     }
 }

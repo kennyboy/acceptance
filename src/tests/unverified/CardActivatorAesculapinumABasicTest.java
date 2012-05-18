@@ -1,4 +1,4 @@
-package tests.verified;
+package tests.unverified;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -82,7 +82,7 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       assert(!gameState.isGameCompleted());
       
       AesculapinumActivator activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-      activator.chooseCardFromPile(Card.CENTURIO);
+      activator.chooseCardFromPile(getIndexFromPile(Card.CENTURIO, gameState.getDiscard()));
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.CENTURIO));
       assert(gameState.getActionDice().length == 2);
@@ -90,7 +90,7 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       assert(gameState.getActionDice()[1] == 1);
       
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-      activator.chooseCardFromPile(Card.SICARIUS);
+      activator.chooseCardFromPile(getIndexFromPile(Card.SICARIUS, gameState.getDiscard()));
       activator.complete();
 
       assert(gameState.getPlayerHand(0).contains(Card.SICARIUS));
@@ -98,7 +98,7 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       assert(gameState.getActionDice()[0] == 1);
       
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-      activator.chooseCardFromPile(Card.CENTURIO);
+      activator.chooseCardFromPile(getIndexFromPile(Card.CENTURIO, gameState.getDiscard()));
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.CENTURIO));
       assert(gameState.getActionDice() == null || gameState.getActionDice().length == 0);
@@ -116,7 +116,7 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       
       gameState.setActionDice(new int[] {1,1,1});
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-      activator.chooseCardFromPile(Card.CONSILIARIUS);
+      activator.chooseCardFromPile(getIndexFromPile(Card.CONSILIARIUS, gameState.getDiscard()));
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.CONSILIARIUS));
       assert(gameState.getActionDice().length == 2);
@@ -124,14 +124,14 @@ public class CardActivatorAesculapinumABasicTest extends Test {
       assert(gameState.getActionDice()[1] == 1);
       
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-      activator.chooseCardFromPile(Card.CONSUL);
+      activator.chooseCardFromPile(getIndexFromPile(Card.CONSUL, gameState.getDiscard()));
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.CONSUL));
       assert(gameState.getActionDice().length == 1);
       assert(gameState.getActionDice()[0] == 1);
 
       activator = (AesculapinumActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-      activator.chooseCardFromPile(Card.SCAENICUS);
+      activator.chooseCardFromPile(getIndexFromPile(Card.SCAENICUS, gameState.getDiscard()));
       activator.complete();
       assert(gameState.getPlayerHand(0).contains(Card.SCAENICUS));
       assert(!gameState.getPlayerHand(0).contains(Card.KAT));

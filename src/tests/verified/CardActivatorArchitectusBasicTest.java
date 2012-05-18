@@ -2,10 +2,9 @@ package tests.verified;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
-import framework.Test;
 import framework.Rules;
+import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;

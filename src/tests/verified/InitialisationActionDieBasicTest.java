@@ -1,13 +1,8 @@
 package tests.verified;
 
 import framework.Test;
-import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-import javax.naming.OperationNotSupportedException;
-import java.util.*;
-import framework.Rules;
-import framework.cards.*;
 /**
  * Testing the basic mechanics of action dice (get and set).
  * @author Damon (Stacey damon.stacey)
