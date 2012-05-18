@@ -139,7 +139,7 @@ public class CardActivatorHaruspexBasicTest extends Test {
     	gameState.setDeck(deck);
     
     	HaruspexActivator theHero = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_2);
-    	theHero.chooseCardFromPile(getIndexFromPile(Card.CENTURIO, gameState.getDiscard()));
+    	theHero.chooseCardFromPile(getIndexFromPile(Card.CENTURIO, gameState.getDeck()));
     	theHero.complete();
     
     	assert(!gameState.getPlayerHand(PLAYER_1).isEmpty());
@@ -148,7 +148,7 @@ public class CardActivatorHaruspexBasicTest extends Test {
     	assert(!gameState.getDeck().contains(Card.CENTURIO));
     	
     	theHero = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_2);
-    	theHero.chooseCardFromPile(getIndexFromPile(Card.BASILICA, gameState.getDiscard()));
+    	theHero.chooseCardFromPile(getIndexFromPile(Card.BASILICA, gameState.getDeck()));
     	theHero.complete();
     
     	assert(gameState.getPlayerHand(PLAYER_1).contains(Card.BASILICA));

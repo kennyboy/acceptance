@@ -87,7 +87,7 @@ public class CardActivatorHaruspexABasicTest extends Test {
 
         // Activate the Haruspex, choosing the first card in the deck
         HaruspexActivator activator = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
-        activator.chooseCardFromPile(getIndexFromPile(Card.NERO, gameState.getDiscard()));
+        activator.chooseCardFromPile(getIndexFromPile(Card.NERO, gameState.getDeck()));
         activator.complete();
 
         // Check that hand, deck, discard, etc. are as expected
@@ -114,7 +114,7 @@ public class CardActivatorHaruspexABasicTest extends Test {
 
         // Activate the Haruspex, choosing the last card in the deck
         activator = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
-        activator.chooseCardFromPile(getIndexFromPile(Card.ONAGER, gameState.getDiscard()));
+        activator.chooseCardFromPile(getIndexFromPile(Card.ONAGER, gameState.getDeck()));
         activator.complete();
 
         // Check that hand, deck, discard, etc. are as expected
@@ -136,7 +136,7 @@ public class CardActivatorHaruspexABasicTest extends Test {
 
         // Activate the Haruspex, choosing the first card in the deck
         activator = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
-        activator.chooseCardFromPile(getIndexFromPile(Card.HARUSPEX, gameState.getDiscard()));
+        activator.chooseCardFromPile(getIndexFromPile(Card.HARUSPEX, gameState.getDeck()));
         activator.complete();
 
         // Check that hand, deck, discard, etc. are as expected
