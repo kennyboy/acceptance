@@ -1,15 +1,19 @@
 package tests.unverified;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import framework.Rules;
 import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-import framework.interfaces.activators.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import framework.interfaces.activators.AesculapinumActivator;
+import framework.interfaces.activators.ForumActivator;
+import framework.interfaces.activators.GladiatorActivator;
+import framework.interfaces.activators.LegatActivator;
+import framework.interfaces.activators.SenatorActivator;
 
 /**
  * Author: Chris FONG
@@ -329,10 +333,10 @@ public class PlaythroughChrisFongTwoTest extends Test {
          */
 
         playerSestertiis[PLAYER_2] -= 1;
-        discard.remove(1);
+        discard.remove(Card.LEGAT);
         playerHands[PLAYER_2].add(Card.LEGAT);
         AesculapinumActivator monsterReborn = (AesculapinumActivator) move.activateBribeDisc(Rules.DICE_DISC_1);
-        monsterReborn.chooseCardFromPile(1);
+        monsterReborn.chooseCardFromPile(Card.LEGAT);
         monsterReborn.complete();
         assertSestertiis();
         assertDiscard();
