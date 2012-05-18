@@ -5,7 +5,7 @@ import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-import framework.interfaces.activators.CenturioActivator;
+import framework.interfaces.activators.LegionariusActivator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,11 +15,10 @@ import java.util.List;
  * Created by IntelliJ IDEA.
  * User: Reynard
  * Date: 18/05/12
- * Time: 11:05 PM
+ * Time: 11:30 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CenturiowithKatTest extends Test{
-
+public class LegionariusWithKatTest extends Test{
     private final int PLAYER_1 = 0;
     private final int PLAYER_2 = 1;
 
@@ -35,7 +34,7 @@ public class CenturiowithKatTest extends Test{
     private GameState gameState;
 
     public String getShortDescription() {
-        return "Legionarius killing Kat with Grim Reaper at disc";
+        return "Centurio killing Kat with Grim Reaper at disc";
     }
 
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
@@ -112,7 +111,7 @@ public class CenturiowithKatTest extends Test{
 
         playerFields[PLAYER_1] =
                 new Card[] {
-                        Card.CENTURIO,
+                        Card.LEGIONARIUS,
                         Card.NOT_A_CARD,
                         Card.FORUM,
                         Card.NOT_A_CARD,
@@ -142,66 +141,60 @@ public class CenturiowithKatTest extends Test{
         gameState.setWhoseTurn(PLAYER_1);
         gameState.setActionDice(new int [] {1, 1, 1});
         assert (gameState.getActionDice().length == 3);
-        CenturioActivator ca = (CenturioActivator) move.chooseCardToActivate(1);
-        ca.chooseCenturioAddActionDie(false);
+        LegionariusActivator ca = (LegionariusActivator) move.chooseCardToActivate(1);
+
         ca.giveAttackDieRoll(2);        //8
         ca.complete();
         assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[0].toString().equals(Card.KAT.toString()));
         assert (gameState.getActionDice().length == 2);
-        ca = (CenturioActivator) move.chooseCardToActivate(1);
-        ca.chooseCenturioAddActionDie(false);
+        ca = (LegionariusActivator) move.chooseCardToActivate(1);
         ca.giveAttackDieRoll(2);        //7
         ca.complete();
         assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[0].toString().equals(Card.KAT.toString()));
         assert (gameState.getActionDice().length == 1);
-        ca = (CenturioActivator) move.chooseCardToActivate(1);
-        ca.chooseCenturioAddActionDie(false);
+        ca = (LegionariusActivator) move.chooseCardToActivate(1);
+
         ca.giveAttackDieRoll(2);        //6
         ca.complete();
         assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[0].toString().equals(Card.KAT.toString()));
         assert (gameState.getActionDice().length == 0);
         gameState.setActionDice(new int [] {1, 1, 1});
         assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[0].toString().equals(Card.KAT.toString()));
-        ca = (CenturioActivator) move.chooseCardToActivate(1);
-        ca.chooseCenturioAddActionDie(false);
+        ca = (LegionariusActivator) move.chooseCardToActivate(1);
+
         ca.giveAttackDieRoll(2);        //5
         ca.complete();
         assert (gameState.getActionDice().length == 2);
         assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[0].toString().equals(Card.KAT.toString()));
-        ca = (CenturioActivator) move.chooseCardToActivate(1);
-        ca.chooseCenturioAddActionDie(false);
+        ca = (LegionariusActivator) move.chooseCardToActivate(1);
         ca.giveAttackDieRoll(2);        //4
         ca.complete();
         assert (gameState.getActionDice().length == 1);
         assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[0].toString().equals(Card.KAT.toString()));
         gameState.setActionDice(new int [] {1, 1, 1});
         assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[0].toString().equals(Card.KAT.toString()));
-        ca = (CenturioActivator) move.chooseCardToActivate(1);
-        ca.chooseCenturioAddActionDie(false);
+        ca = (LegionariusActivator) move.chooseCardToActivate(1);
         ca.giveAttackDieRoll(2);        //3
         ca.complete();
         assert (gameState.getActionDice().length == 2);
         assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[0].toString().equals(Card.KAT.toString()));
-        ca = (CenturioActivator) move.chooseCardToActivate(1);
-        ca.chooseCenturioAddActionDie(false);
+        ca = (LegionariusActivator) move.chooseCardToActivate(1);
         ca.giveAttackDieRoll(2);        //2
         ca.complete();
         assert (gameState.getActionDice().length == 1);
         assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[0].toString().equals(Card.KAT.toString()));
-        ca = (CenturioActivator) move.chooseCardToActivate(1);
-        ca.chooseCenturioAddActionDie(false);
+        ca = (LegionariusActivator) move.chooseCardToActivate(1);
         ca.giveAttackDieRoll(2);        //1
         ca.complete();
         assert (gameState.getActionDice().length == 0);
 
         gameState.setActionDice(new int [] {1, 1, 1});
         assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[0].toString().equals(Card.KAT.toString()));
-        ca = (CenturioActivator) move.chooseCardToActivate(1);
-        ca.chooseCenturioAddActionDie(false);
+        ca = (LegionariusActivator) move.chooseCardToActivate(1);
         ca.giveAttackDieRoll(2);        // 0
         ca.complete();
         assert (gameState.getActionDice().length == 2);
-        assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[0].toString().equals(Card.NOT_A_CARD.toString()));    
+        assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[0].toString().equals(Card.NOT_A_CARD.toString()));
         assert (gameState.getDiscard().size() == 0);
         gameState.setWhoseTurn(PLAYER_2);
         assert(gameState.getPlayerHand(PLAYER_2).contains(Card.KAT));
