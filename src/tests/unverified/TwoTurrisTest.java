@@ -35,10 +35,10 @@ public class TwoTurrisTest extends Test{
     private int[] playerSestertiis;
 
     private GameState gameState;
-    
+
 
     public String getShortDescription() {
-        return "Playthrough of the Game";
+        return "Testing two Turris on the dice disc";
     }
 
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
