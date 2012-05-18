@@ -101,6 +101,7 @@ public abstract class Test {
        int index = -1;
        boolean found = false;
        for (int i = 0; i < pile.size() && !found; i++) {
+          System.out.println("Finding: " + toFind + "Found: " + pile.get(i));
           if (pile.get(i).toString().equals(toFind.toString())) {
              found = true;
              index = i;
