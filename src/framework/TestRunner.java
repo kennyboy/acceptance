@@ -192,20 +192,21 @@ public class TestRunner {
                 }
                 System.out.println("Accepted: " +  acceptanceInterface.getClass() + "is awesome!!!");
             }
+            double proportionPassed = (numTestsPassed[interfaceTestNumber]*1.00/(numNotImplemented[interfaceTestNumber]*1.00 + numTestFailed[interfaceTestNumber]*1.00 + numTestsPassed[interfaceTestNumber]*1.00) * scalingFactor); 
+            double proportionNotImplemented = (numNotImplemented[interfaceTestNumber]*1.00/(numNotImplemented[interfaceTestNumber]*1.00 + numTestFailed[interfaceTestNumber]*1.00 + numTestsPassed[interfaceTestNumber]*1.00) * scalingFactor); 
+            double proportionFailed = (numTestFailed[interfaceTestNumber]*1.00/(numNotImplemented[interfaceTestNumber]*1.00 + numTestFailed[interfaceTestNumber]*1.00 + numTestsPassed[interfaceTestNumber]*1.00) * scalingFactor); 
+
             if (colorful) {
                 System.out.print(COLOR_CYAN);
                 System.out.print("\t[");
-                double proportionPassed = (numTestsPassed[interfaceTestNumber]*1.00/(numNotImplemented[interfaceTestNumber]*1.00 + numTestFailed[interfaceTestNumber]*1.00 + numTestsPassed[interfaceTestNumber]*1.00) * scalingFactor); 
                 for (int i = 0; i < proportionPassed; i++) {
                     System.out.print(COLOR_GREEN);
                     System.out.print("-");
                 }
-                double proportionNotImplemented = (numNotImplemented[interfaceTestNumber]*1.00/(numNotImplemented[interfaceTestNumber]*1.00 + numTestFailed[interfaceTestNumber]*1.00 + numTestsPassed[interfaceTestNumber]*1.00) * scalingFactor); 
                 for (int i = 0; i < proportionNotImplemented; i++) {
                     System.out.print(COLOR_YELLOW);
                     System.out.print("-");
                 }
-                double proportionFailed = (numTestFailed[interfaceTestNumber]*1.00/(numNotImplemented[interfaceTestNumber]*1.00 + numTestFailed[interfaceTestNumber]*1.00 + numTestsPassed[interfaceTestNumber]*1.00) * scalingFactor); 
                 for (int i = 0; i < proportionFailed; i++) {
                     System.out.print(COLOR_RED);
                     System.out.print("-");
@@ -213,6 +214,18 @@ public class TestRunner {
                 System.out.print(COLOR_CYAN);
                 System.out.println("]\t" + (int)(proportionPassed*100/scalingFactor) + "% correct. Note 100% is necessary for pass.");
                 System.out.print(COLOR_RESET);
+            } else {
+                System.out.print("\t[");
+                for (int i = 0; i < proportionPassed; i++) {
+                    System.out.print("-");
+                }
+                for (int i = 0; i < proportionNotImplemented; i++) {
+                    System.out.print("?");
+                }
+                for (int i = 0; i < proportionFailed; i++) {
+                    System.out.print(" ");
+                }
+                System.out.println("]\t" + (int)(proportionPassed*100/scalingFactor) + "% correct. Note 100% is necessary for pass.");            
             }
 
             interfaceTestNumber++;
