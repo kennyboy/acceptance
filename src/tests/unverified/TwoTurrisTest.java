@@ -194,7 +194,6 @@ public class TwoTurrisTest extends Test{
 
         // therefore the only way to destroy turris is by using Nero
         NeroActivator na = (NeroActivator) move.chooseCardToActivate(3);
-        assert (gameState.getActionDice().length == 1);
         na.chooseDiceDisc(7);
         na.complete();
         assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[6] == Card.NOT_A_CARD);
