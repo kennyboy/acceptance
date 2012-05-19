@@ -107,16 +107,6 @@ public class CardActivatorHaruspexABasicTest extends Test {
         
 
         // ---- CHOOSING THE LAST CARD IN THE DECK ----
-
-        deck = new ArrayList<Card>();
-        deck.add(Card.SENATOR);
-        deck.add(Card.VELITES);
-        deck.add(Card.ESSEDUM);
-        deck.add(Card.HARUSPEX);
-        deck.add(Card.PRAETORIANUS);
-        deck.add(Card.ONAGER);
-        gameState.setDeck(deck);
-
         // Activate the Haruspex, choosing the last card in the deck
         activator = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
         activator.chooseCardFromPile(getIndexFromPile(Card.ONAGER, gameState.getDeck()));
@@ -130,15 +120,6 @@ public class CardActivatorHaruspexABasicTest extends Test {
         assert(!gameState.getDiscard().contains(Card.ONAGER));
 
         // ---- CHOOSING ANOTHER HARUSPEX ----
-
-        deck = new ArrayList<Card>();
-        deck.add(Card.SENATOR);
-        deck.add(Card.VELITES);
-        deck.add(Card.ESSEDUM);
-        deck.add(Card.HARUSPEX);
-        deck.add(Card.PRAETORIANUS);
-        gameState.setDeck(deck);
-
         // Activate the Haruspex, choosing the first card in the deck
         activator = (HaruspexActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
         activator.chooseCardFromPile(getIndexFromPile(Card.HARUSPEX, gameState.getDeck()));
