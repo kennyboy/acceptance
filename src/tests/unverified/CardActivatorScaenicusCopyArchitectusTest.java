@@ -33,10 +33,10 @@ public class CardActivatorScaenicusCopyArchitectusTest extends Test {
         gameState.setPlayerSestertii(0,10);
         gameState.setPlayerSestertii(1,10);
         Collection<Card> handOfCards = new ArrayList<Card>();
-        handOfCards.add(Card.PRAETORIANUS);
+        handOfCards.add(Card.FORUM);
         handOfCards.add(Card.SICARIUS);
-        handOfCards.add(Card.CONSILIARIUS);
-        handOfCards.add(Card.LEGAT);
+        handOfCards.add(Card.BASILICA);
+        handOfCards.add(Card.TEMPLUM);
         gameState.setPlayerHand(0,handOfCards);
 
         //Test that the current pool of points is correct
@@ -59,28 +59,28 @@ public class CardActivatorScaenicusCopyArchitectusTest extends Test {
         //Activate the scaenicus to mimic Architectus
         ScaenicusActivator scaenicusActivator = (ScaenicusActivator)move.chooseCardToActivate(2);
         ArchitectusActivator architectusActivator = (ArchitectusActivator)(scaenicusActivator.getScaenicusMimicTarget(1));
-        architectusActivator.layCard(Card.PRAETORIANUS, 1);
+        architectusActivator.layCard(Card.FORUM, 1);
         architectusActivator.layCard(Card.SICARIUS, 2);
-        architectusActivator.layCard(Card.CONSILIARIUS, 3);
-        architectusActivator.layCard(Card.LEGAT, 4);
+        architectusActivator.layCard(Card.BASILICA, 3);
+        architectusActivator.layCard(Card.TEMPLUM, 4);
         architectusActivator.complete();
         scaenicusActivator.complete();
 
         //Test that scaenicus has laid the cards
-        assert(gameState.getPlayerCardsOnDiscs(0)[0]==Card.PRAETORIANUS);
-        assert(gameState.getPlayerCardsOnDiscs(0)[1]==Card.SICARIUS);
-        assert(gameState.getPlayerCardsOnDiscs(0)[2]==Card.CONSILIARIUS);
-        assert(gameState.getPlayerCardsOnDiscs(0)[3]==Card.LEGAT);
+        assert(gameState.getPlayerCardsOnDiscs(0)[0]==Card.FORUM);
+        assert(!(gameState.getPlayerCardsOnDiscs(0)[1]==Card.SICARIUS));
+        assert(gameState.getPlayerCardsOnDiscs(0)[2]==Card.BASILICA);
+        assert(gameState.getPlayerCardsOnDiscs(0)[3]==Card.TEMPLUM);
 
         //Test that it didn't charge any Sestertii
         assert(gameState.getPlayerSestertii(0)==10);
         
         //Test that it is no longer in hand
         Collection<Card> playerHand = gameState.getPlayerHand(0);
-        assert (!playerHand.contains(Card.PRAETORIANUS));
-        assert (!playerHand.contains(Card.SICARIUS));
-        assert (!playerHand.contains(Card.CONSILIARIUS));
-        assert (!playerHand.contains(Card.LEGAT));
+        assert (!playerHand.contains(Card.FORUM));
+        assert (playerHand.contains(Card.SICARIUS));
+        assert (!playerHand.contains(Card.BASILICA));
+        assert (!playerHand.contains(Card.TEMPLUM));
         
         assert (gameState.getActionDice().length == 2);
         assert (!gameState.isGameCompleted());
