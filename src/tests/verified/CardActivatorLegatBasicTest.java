@@ -51,7 +51,7 @@ public class CardActivatorLegatBasicTest extends Test {
         gameState.setPlayerSestertii(0, 5);
         gameState.setPlayerSestertii(1, 100);
         
-        List<Card> hand = new ArrayList<hand>;
+        List<Card> hand = new ArrayList<hand>();
         hand.add(Card.LEGIONARIUS);
         hand.add(Card.AESCULAPINUM);
         hand.add(Card.CONSUL);
