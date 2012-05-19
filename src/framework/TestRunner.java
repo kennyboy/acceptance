@@ -144,6 +144,16 @@ public class TestRunner {
             assertionsEnabled = true;
         }
         AcceptanceInterface[] acceptanceInterfaces = getAcceptanceInterfacesInPackage("");
+        if (acceptanceInterfaces.length == 0) {
+            if (colorful) {
+               System.out.println(COLOR_RED);
+            }
+            System.out.println("No acceptance implementation found.");
+            if (colorful) {
+               System.out.println(COLOR_RESET);
+            }
+            return;
+        }
         int interfaceTestNumber = 0;
         numTestsPassed = new int[acceptanceInterfaces.length];
         numTestFailed = new int[acceptanceInterfaces.length];
@@ -234,6 +244,7 @@ public class TestRunner {
 
             interfaceTestNumber++;
         }
+        System.exit(numTestFailed[0] + numNotImplemented[0]);
     }
 
     private void runTests(Test[] tests, AcceptanceInterface acceptanceInterface, int interfaceTestNumber) {
