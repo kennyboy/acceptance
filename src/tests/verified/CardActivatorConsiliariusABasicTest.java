@@ -107,18 +107,18 @@ public class CardActivatorConsiliariusABasicTest extends Test {
 
       activator = (ConsiliariusActivator) move.chooseCardToActivate(1);
       activator.placeCard(Card.CONSILIARIUS, Rules.DICE_DISC_1);
-      activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_1);
-      activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_2);
+      activator.placeCard (Card.HARUSPEX, Rules.DICE_DISC_3);
+      activator.placeCard (Card.HARUSPEX, Rules.BRIBE_DISC);
       activator.complete();
 
       field = gameState.getPlayerCardsOnDiscs(0);
-      assert(field[0] == Card.HARUSPEX);
-      assert(field[1] == Card.HARUSPEX);
-      assert(field[2] == Card.NOT_A_CARD);
+      assert(field[0] == Card.CONSILIARIUS);
+      assert(field[1] == Card.NOT_A_CARD);
+      assert(field[2] == Card.HARUSPEX);
       assert(field[3] == Card.NOT_A_CARD);
       assert(field[4] == Card.NOT_A_CARD);
       assert(field[5] == Card.NOT_A_CARD);
-      assert(field[6] == Card.NOT_A_CARD);
+      assert(field[6] == Card.HARUSPEX);
       assert(gameState.getPoolVictoryPoints() == 36 - 15*Rules.NUM_PLAYERS);
       assert(!gameState.isGameCompleted());
     }
