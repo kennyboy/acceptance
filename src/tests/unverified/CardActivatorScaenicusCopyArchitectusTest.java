@@ -74,14 +74,14 @@ public class CardActivatorScaenicusCopyArchitectusTest extends Test {
 
         //Test that it didn't charge any Sestertii
         assert(gameState.getPlayerSestertii(0)==10);
-        
+
         //Test that it is no longer in hand
         Collection<Card> playerHand = gameState.getPlayerHand(0);
         assert (!playerHand.contains(Card.FORUM));
         assert (playerHand.contains(Card.SICARIUS));
         assert (!playerHand.contains(Card.BASILICA));
         assert (!playerHand.contains(Card.TEMPLUM));
-        
+
         assert (gameState.getActionDice().length == 2);
         assert (!gameState.isGameCompleted());
     }

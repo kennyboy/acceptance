@@ -32,7 +32,7 @@ public class CardActivatorArchitectusBasicTest extends Test {
             UnsupportedOperationException, IllegalArgumentException {
 
         gameState.setWhoseTurn(0);
-        
+
         List<Card> discard = new ArrayList<Card>();
         gameState.setDiscard(discard);
 
@@ -81,37 +81,37 @@ public class CardActivatorArchitectusBasicTest extends Test {
         //activate Architectus
         ArchitectusActivator activator = (ArchitectusActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
         activator.layCard(Card.MACHINA, 5);
-        activator.layCard(Card.LEGAT, 7);
+        // activator.layCard(Card.LEGAT, 7);
         activator.layCard(Card.ONAGER, 3);
         activator.complete();
-        
+
         //cards shouldn't have cost money to lay
         assert(gameState.getPlayerSestertii(0) == 22);
-        
+
         field = gameState.getPlayerCardsOnDiscs(0);
         assert(field[0] == Card.ARCHITECTUS);
         assert(field[2] == Card.ONAGER);
         assert(field[4] == Card.MACHINA);
         assert(field[6] == Card.NOT_A_CARD);
-        
+
         hand = gameState.getPlayerHand(0);
         assert(!hand.contains(Card.ONAGER));
         assert(!hand.contains(Card.MACHINA));
         assert(hand.contains(Card.LEGAT));
-        
+
         discard = gameState.getDiscard();
         assert(discard.contains(Card.FORUM));
-        
+
         //building cards should cost money to lay again
         move.placeCard(Card.TURRIS, 6);
-        
+
         assert(gameState.getPlayerSestertii(0) == 22 - 6);
-        
+
         field = gameState.getPlayerCardsOnDiscs(0);
         assert(field[5] == Card.TURRIS);
-        
+
         hand = gameState.getPlayerHand(0);
-        assert(!hand.contains(Card.TURRIS));        
-        
+        assert(!hand.contains(Card.TURRIS));
+
     }
 }

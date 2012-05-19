@@ -29,13 +29,13 @@ public class CardActivatorSenatorBasicTest extends Test {
                                           throws AssertionError,
                                           UnsupportedOperationException,
                                           IllegalArgumentException {
-    	
+
     	Card[] field = new Card[7];
     	for(int i = 0; i < field.length; i++){
     		field[i] = Card.NOT_A_CARD;
     	}
     	gameState.setPlayerCardsOnDiscs(0, field);
-    	
+
     	List<Card> discard = new ArrayList<Card>();
     	gameState.setDiscard(discard);
 
