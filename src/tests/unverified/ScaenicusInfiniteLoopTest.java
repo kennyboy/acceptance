@@ -55,12 +55,14 @@ public class ScaenicusInfiniteLoopTest extends Test {
         gameState.setPlayerCardsOnDiscs(PLAYER_1,playerFields[PLAYER_1]);
         gameState.setPlayerCardsOnDiscs(PLAYER_2,playerFields[PLAYER_2]);
         ScaenicusActivator ditto = (ScaenicusActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
-        ditto = (ScaenicusActivator) ditto.getScaenicusMimicTarget(Rules.DICE_DISC_2);
-        ditto = (ScaenicusActivator) ditto.getScaenicusMimicTarget(Rules.DICE_DISC_1);
-        ConsulActivator consul = (ConsulActivator) ditto.getScaenicusMimicTarget(Rules.DICE_DISC_5);
+        ScaenicusActivator ditto1 = (ScaenicusActivator) ditto.getScaenicusMimicTarget(Rules.DICE_DISC_2);
+        ScaenicusActivator ditto2 = (ScaenicusActivator) ditto1.getScaenicusMimicTarget(Rules.DICE_DISC_1);
+        ConsulActivator consul = (ConsulActivator) ditto2.getScaenicusMimicTarget(Rules.DICE_DISC_5);
         consul.chooseWhichDiceChanges(5);
         consul.chooseConsulChangeAmount(1);
         consul.complete();
+        ditto2.complete();
+        ditto1.complete();
         ditto.complete();
 
         boolean found = false;
