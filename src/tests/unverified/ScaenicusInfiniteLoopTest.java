@@ -51,8 +51,6 @@ public class ScaenicusInfiniteLoopTest extends Test {
 
         gameState.setWhoseTurn(PLAYER_1);
         gameState.setActionDice(new int[] {1,1,5});
-        gameState.setPlayerCardsOnDiscs(PLAYER_1, playerFields[0]);
-        gameState.setPlayerCardsOnDiscs(PLAYER_2, playerFields[1]);
 
         gameState.setPlayerCardsOnDiscs(PLAYER_1,playerFields[PLAYER_1]);
         gameState.setPlayerCardsOnDiscs(PLAYER_2,playerFields[PLAYER_2]);
