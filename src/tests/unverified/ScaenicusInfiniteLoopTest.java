@@ -59,6 +59,7 @@ public class ScaenicusInfiniteLoopTest extends Test {
         consul.chooseWhichDiceChanges(5);
         consul.chooseConsulChangeAmount(1);
         consul.complete();
+        ditto.complete();
 
         boolean found = false;
         for (int i = 0; !found && i < gameState.getActionDice().length ; i++) {
