@@ -49,8 +49,7 @@ public class TelephoneBoxLotsOfActivations extends Test {
       };
       
       ArrayList<Card> player1Hand = new ArrayList<Card>();
-      Card[] toAdd = new Card[]{Card.AESCULAPINUM, Card.ARCHITECTUS, Card.BASILICA, Card.CENTURIO, Card.CONSILIARIUS, Card.CONSUL,
-                                Card.ESSEDUM, Card.FORUM};
+      Card[] toAdd = new Card[]{Card.AESCULAPINUM, Card.ARCHITECTUS, Card.BASILICA, Card.CENTURIO, Card.CONSILIARIUS, Card.CONSUL};
       for (int i = 0; i < toAdd.length; i++) {
          for (int j = 0; j < Rules.NUM_DICE_DISCS - 1; j++) {
             player1Hand.add(toAdd[i]);
