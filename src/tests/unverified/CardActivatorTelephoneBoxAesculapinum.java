@@ -37,7 +37,7 @@ public class CardActivatorTelephoneBoxAesculapinum extends Test {
 		 * Hilarity ensues (and by that I mean time paradox)
 		 */
 
-		gameState.setDeck(new ArrayList<Card>());
+		gameState.setDeck(Arrays.asList(new Card[]{Card.LEGAT}));
 		gameState.setDiscard(new ArrayList<Card>());
 		gameState.setPlayerCardsOnDiscs(0, new Card[]
 				{
