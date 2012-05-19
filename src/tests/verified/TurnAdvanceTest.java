@@ -14,7 +14,7 @@ import framework.interfaces.MoveMaker;
 
 public class TurnAdvanceTest extends Test {
 
-    private static final int NUM_TESTS = 1000;
+    private static final int NUM_TESTS = 20;
 
     @Override
     public String getShortDescription() {
