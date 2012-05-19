@@ -70,6 +70,7 @@ public class CardActivatorTelephoneBoxScaenicusParadoxTest extends Test {
         ScaenicusActivator scaenicusActivator = (ScaenicusActivator)move.chooseCardToActivate(2);
         GladiatorActivator gladiatorActivator = (GladiatorActivator)scaenicusActivator.getScaenicusMimicTarget(3);
         gladiatorActivator.chooseDiceDisc(1);
+        gladiatorActivator.complete();
         scaenicusActivator.complete();
 
         //Test that the gladiator was copied and opponents legat was returned to hand.

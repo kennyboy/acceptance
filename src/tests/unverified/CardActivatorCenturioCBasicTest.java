@@ -18,7 +18,7 @@ import framework.interfaces.activators.CenturioActivator;
  *
  */
 
-public class CardActivatorCenturioBBasicTest extends Test {
+public class CardActivatorCenturioCBasicTest extends Test {
 
     @Override
     public String getShortDescription() {
@@ -31,6 +31,7 @@ public class CardActivatorCenturioBBasicTest extends Test {
       
       // Set up the game state such that it is filled with Centurios
       gameState.setWhoseTurn(0);
+      Card discs[] = new Card[Rules.NUM_DICE_DISCS];
       for (int i = 0; i < Rules.NUM_DICE_DISCS; i++) {
          discs[i] = Card.CENTURIO;
       }
@@ -47,19 +48,19 @@ public class CardActivatorCenturioBBasicTest extends Test {
       activator.complete();
       
       // Check that one die was removed
-      assert(gameState.getActionDie().length == 2);
+      assert(gameState.getActionDice().length == 2);
       assert(gameState.getPlayerCardsOnDiscs(0)[0] == Card.CENTURIO);
       
       // This time activate the Centurio such that it just wins by using the
       // second die
-      CenturioActivator activator = (CenturioActivator) move.chooseCardToActivate(1);
+      activator = (CenturioActivator) move.chooseCardToActivate(1);
       activator.giveAttackDieRoll(4);
       activator.chooseCenturioAddActionDie(true);
       activator.chooseActionDice(1);
       activator.complete();
       
       // Check that two dice were removed, and that the opposing card was destroyed
-      assert(gameState.getActionDie().length == 0);
-      assert(gameState.getPlayerCardsOnDiscs(0)[0] == Card.NOT_A_CARD);
+      assert(gameState.getActionDice().length == 0);
+      assert(gameState.getPlayerCardsOnDiscs(1)[0] == Card.NOT_A_CARD);
    }
 }

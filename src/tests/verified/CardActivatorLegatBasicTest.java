@@ -2,12 +2,12 @@ package tests.verified;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
+import java.util.List;
 import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
-
+import framework.Rules;
 /**
  * Testing the basic mechanics of Legat.
  *
@@ -51,19 +51,19 @@ public class CardActivatorLegatBasicTest extends Test {
         gameState.setPlayerSestertii(0, 5);
         gameState.setPlayerSestertii(1, 100);
         
-        List<Card> hand = new ArrayList<hand>();
+        List<Card> hand = new ArrayList<Card>();
         hand.add(Card.LEGIONARIUS);
         hand.add(Card.AESCULAPINUM);
         hand.add(Card.CONSUL);
         hand.add(Card.ESSEDUM);
         hand.add(Card.MACHINA);
-        gameState.setPlayerCards(1, hand);
+        gameState.setPlayerHand(1, hand);
 
         // Set up the game state for the test
         gameState.setWhoseTurn(0);
         gameState.setActionDice(new int [] {3, 3, 4});
 
-        Collection<Card> hand = new ArrayList<Card>();
+        hand = new ArrayList<Card>();
         hand.add(Card.LEGAT);
         gameState.setPlayerHand(0, hand);
 
@@ -83,12 +83,13 @@ public class CardActivatorLegatBasicTest extends Test {
         assert(gameState.getPlayerSestertii(1) == 100);
         
         move.endTurn();
-        move.layCard(Card.LEGIONARIUS, Rules.DICE_DISC_1);
-        move.layCard(Card.AESCULAPINUM, Rules.DICE_DISC_2);
-        move.layCard(Card.CONSUL, Rules.DICE_DISC_4);
-        move.layCard(Card.ESSEDUM, Rules.DICE_DISC_6);
-        move.layCard(Card.MACHINA, Rules.DICE_DISC_7);
+        move.placeCard(Card.LEGIONARIUS, Rules.DICE_DISC_1);
+        move.placeCard(Card.AESCULAPINUM, Rules.DICE_DISC_2);
+        move.placeCard(Card.CONSUL, Rules.DICE_DISC_4);
+        move.placeCard(Card.ESSEDUM, Rules.DICE_DISC_6);
+        move.placeCard(Card.MACHINA, Rules.BRIBE_DISC);
         move.endTurn();
+        gameState.setActionDice(new int [] {3, 3, 4});
         
         assert(gameState.getPlayerVictoryPoints(0) == 11);
         assert(gameState.getPlayerVictoryPoints(1) == 3);
@@ -100,9 +101,9 @@ public class CardActivatorLegatBasicTest extends Test {
 
         // Check that player 0 has gained 2 victory points, but player
         // 1's score has not changed
-        assert(gameState.getPlayerVictoryPoints(0) == 19);
-        assert(gameState.getPlayerVictoryPoints(1) == 10);
+        assert(gameState.getPlayerVictoryPoints(0) == 13);
+        assert(gameState.getPlayerVictoryPoints(1) == 3);
         assert(gameState.getPlayerSestertii(0) == 0);
-        assert(gameState.getPlayerSestertii(1) == 0);
+        assert(gameState.getPlayerSestertii(1) == 100 - 4 - 5 - 3 - 6 - 4);
     }
 }
