@@ -46,8 +46,8 @@ public class CardActivatorBasilicaABasicTest extends Test {
       // Initialise both players with 100 sestertii and 15 VP
       gameState.setPlayerSestertii(0, 100);
       gameState.setPlayerSestertii(1, 100);
-      gameState.setPlayerVictoryPoints(0, 15);
-      gameState.setPlayerVictoryPoints(1, 15);
+      gameState.setPlayerVictoryPoints(0, 10);
+      gameState.setPlayerVictoryPoints(1, 10);
 
       List<Card> hand = new ArrayList<Card>();
       hand.add(Card.FORUM);
