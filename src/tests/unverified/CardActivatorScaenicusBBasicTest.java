@@ -42,6 +42,10 @@ public class CardActivatorScaenicusBBasicTest extends Test {
 		this.playerFields = new Card[Rules.NUM_PLAYERS][Rules.NUM_DICE_DISCS];
 
 		//INITIALISE GAME STATE
+		
+		this.gameState.setPlayerSestertii(PLAYER_1, 8 + 8 + 3 + 9);
+		this.gameState.setPlayerSestertii(PLAYER_2, 5 + 5 + 5 + 5);
+		
 		//	Hands
 		playerHands[PLAYER_1].add(Card.SCAENICUS);
 		playerHands[PLAYER_1].add(Card.NERO);
