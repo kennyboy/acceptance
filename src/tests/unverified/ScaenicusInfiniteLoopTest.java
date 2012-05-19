@@ -52,6 +52,8 @@ public class ScaenicusInfiniteLoopTest extends Test {
         gameState.setWhoseTurn(PLAYER_1);
         gameState.setActionDice(new int[] {1,1,5});
 
+        gameState.setPlayerCardsOnDiscs(PLAYER_1,playerFields[PLAYER_1]);
+        gameState.setPlayerCardsOnDiscs(PLAYER_2,playerFields[PLAYER_2]);
         ScaenicusActivator ditto = (ScaenicusActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
         ditto = (ScaenicusActivator) ditto.getScaenicusMimicTarget(Rules.DICE_DISC_2);
         ditto = (ScaenicusActivator) ditto.getScaenicusMimicTarget(Rules.DICE_DISC_1);
