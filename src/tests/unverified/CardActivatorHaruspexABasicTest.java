@@ -54,13 +54,11 @@ public class CardActivatorHaruspexABasicTest extends Test {
         deck.add(Card.ESSEDUM);
         deck.add(Card.HARUSPEX);
         deck.add(Card.PRAETORIANUS);
-        deck.add(Card.ONAGER);
         deck.add(Card.SENATOR);
         deck.add(Card.VELITES);
         deck.add(Card.ESSEDUM);
         deck.add(Card.HARUSPEX);
         deck.add(Card.PRAETORIANUS);
-        deck.add(Card.ONAGER);
         deck.add(Card.SENATOR);
         deck.add(Card.VELITES);
         deck.add(Card.ESSEDUM);
