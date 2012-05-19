@@ -80,10 +80,6 @@ public class CardActivatorScaenicusBasicTest extends Test {
         
         // ---- MIMICKING A CARD WITH POSITION SIGNIFICANCE ----
         // Namely Legionarius
-        gameState.setPlayerVictoryPoints(0, 10);
-        gameState.setPlayerVictoryPoints(1, 10);
-        gameState.setPlayerSestertii(0, 0);
-        gameState.setPlayerSestertii(1, 0);
         
         scaenicusActivator = (ScaenicusActivator) move.chooseCardToActivate(2);
         LegionariusActivator legionActivator = (LegionariusActivator) scaenicusActivator.getScaenicusMimicTarget(7);
@@ -97,13 +93,7 @@ public class CardActivatorScaenicusBasicTest extends Test {
         assert(gameState.getPlayerCardsOnDiscs(0)[6] == Card.LEGIONARIUS);
         assert(gameState.getPlayerCardsOnDiscs(1)[1] == Card.NOT_A_CARD);
         
-        // ---- MIMICKING ANOTHER SCAENICUS ----
-        // Which then mimics the Legionarius again
-        gameState.setPlayerVictoryPoints(0, 10);
-        gameState.setPlayerVictoryPoints(1, 10);
-        gameState.setPlayerSestertii(0, 0);
-        gameState.setPlayerSestertii(1, 0);
-        
+        // ---- MIMICKING ANOTHER SCAENICUS ----     
         scaenicusActivator = (ScaenicusActivator) move.chooseCardToActivate(4);
         ScaenicusActivator tempActivator = (ScaenicusActivator) scaenicusActivator.getScaenicusMimicTarget(2);
         legionActivator = (LegionariusActivator) tempActivator.getScaenicusMimicTarget(7);
