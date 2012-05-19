@@ -1,4 +1,4 @@
-package acceptanceTests;
+package tests.unverified;
 
 import framework.Test;
 import framework.cards.Card;
@@ -47,6 +47,7 @@ public class CardActivatorScaenicusCopyConsiliariusTest extends Test {
         consiliariusActivator.placeCard(Card.LEGAT,7);
 
         consiliariusActivator.complete();
+        scaenicusActivator.complete();
 
         assert(gameState.getPlayerCardsOnDiscs(0)[0]==Card.NOT_A_CARD);
         assert(gameState.getPlayerCardsOnDiscs(0)[1]==Card.NOT_A_CARD);
