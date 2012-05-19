@@ -110,18 +110,18 @@ public class CardActivatorTelephoneBoxTemplum extends Test {
 		fa.chooseActionDice(2);
 		fa.chooseActivateTemplum(true);
 		fa.chooseActivateTemplum(2);
-		fa.complete();		
+		fa.complete();
 		
 		// 9:
 		move.endTurn();
 		move.endTurn();
-		gameState.setActionDice(new int[]{2, 3, 6});
+		gameState.setActionDice(new int[]{2, 3, 2});
 		
 		// 10:
 		move.placeCard(Card.LEGAT, Rules.DICE_DISC_1);
 		tba = (TelephoneBoxActivator)move.chooseCardToActivate(Rules.DICE_DISC_3);
 		tba.chooseDiceDisc(Rules.DICE_DISC_1);
-		tba.setSecondDiceUsed(6);
+		tba.setSecondDiceUsed(2);
 		tba.shouldMoveForwardInTime(false);
 		tba.complete();
 		
