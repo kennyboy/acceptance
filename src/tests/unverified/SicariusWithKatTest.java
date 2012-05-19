@@ -39,7 +39,9 @@ public class SicariusWithKatTest extends Test{
 
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
-
+        if (true) {
+            throw new IllegalArgumentException();
+        }
         this.gameState = gameState;
         /*
            Starting Process:
