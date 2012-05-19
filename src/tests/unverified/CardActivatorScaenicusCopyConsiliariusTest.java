@@ -5,9 +5,7 @@ import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
 import framework.interfaces.activators.ConsiliariusActivator;
-import framework.interfaces.activators.MyConsiliariusActivatorImplementation;
 import framework.interfaces.activators.ScaenicusActivator;
-import game.OurCard;
 
 /**
  *
@@ -17,7 +15,7 @@ import game.OurCard;
  *
  */
 
-public class CardActivatorScaenicusCopyConsiliarius extends Test {
+public class CardActivatorScaenicusCopyConsiliariusTest extends Test {
 
     @Override
     public String getShortDescription() {
