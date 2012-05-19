@@ -57,12 +57,10 @@ public class CardActivatorHaruspexABasicTest extends Test {
         deck.add(Card.SENATOR);
         deck.add(Card.VELITES);
         deck.add(Card.ESSEDUM);
-        deck.add(Card.HARUSPEX);
         deck.add(Card.PRAETORIANUS);
         deck.add(Card.SENATOR);
         deck.add(Card.VELITES);
         deck.add(Card.ESSEDUM);
-        deck.add(Card.HARUSPEX);
         deck.add(Card.PRAETORIANUS);
         deck.add(Card.ONAGER);
         gameState.setDeck(deck);
@@ -127,7 +125,7 @@ public class CardActivatorHaruspexABasicTest extends Test {
         assert(gameState.getPlayerHand(0).size() == 3);
         assert( gameState.getPlayerHand(0).contains(Card.HARUSPEX));
         assert(!gameState.getPlayerHand(1).contains(Card.HARUSPEX));
-        assert(gameState.getDeck().contains(Card.HARUSPEX));
+        assert(!gameState.getDeck().contains(Card.HARUSPEX));
         assert(!gameState.getDiscard().contains(Card.HARUSPEX));
 
         // Check that board state is right
