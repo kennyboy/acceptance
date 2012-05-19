@@ -69,10 +69,22 @@ public class TelephoneBoxBreakingAesculapinumTest extends Test {
         gameState.setPlayerCardsOnDiscs(PLAYER_1,playerFields[PLAYER_1]);
         gameState.setPlayerCardsOnDiscs(PLAYER_2,playerFields[PLAYER_2]);
 
-        gameState.setWhoseTurn(PLAYER_1);                               //TURN : 1
+        /*
+        * Turn 1
+        * Pass - Do Nothing
+        */
+        gameState.setWhoseTurn(PLAYER_1);
         gameState.setActionDice(new int[] {3,3,5});
 
-        move.endTurn();                                                 //TURN : 2
+        move.endTurn();
+
+        /*
+         * Turn 2
+         * Velites kills Legionarius (Dice roll = Legionarius's defence + 1)
+         * Velites just kills Mercator (Dice roll = Mercator's defence)
+         * Aesculapinum retrieves Legionarius to Player 2's hand
+         */
+
         gameState.setActionDice(new int[] {3,3,4});
 
         assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[1] == Card.LEGIONARIUS);
@@ -97,7 +109,15 @@ public class TelephoneBoxBreakingAesculapinumTest extends Test {
         assert(!gameState.getDiscard().contains(Card.LEGIONARIUS));
         assert(gameState.getPlayerHand(PLAYER_2).contains(Card.LEGIONARIUS));
 
-        move.endTurn();                                                 //TURN : 3
+        move.endTurn();
+
+        /*
+        * Turn 3
+        * Place a Turris down
+        * Send a Turris back to the 1st turn
+        * Velites no longer kills Mercator, shifting the index of Legionarius in the Discard Pile
+        */
+
         gameState.setActionDice(new int[] {4,2,2});
         move.placeCard(Card.TURRIS,Rules.BRIBE_DISC);
         assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[6] == Card.TURRIS);
