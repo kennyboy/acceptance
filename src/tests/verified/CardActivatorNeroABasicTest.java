@@ -53,6 +53,8 @@ public class CardActivatorNeroABasicTest extends Test {
         
         gameState.setPlayerCardsOnDiscs(0, fieldPlayer0);
         gameState.setPlayerCardsOnDiscs(1, fieldPlayer1);
+        gameState.setPlayerVictoryPoints(0, 18);
+        gameState.setPlayerVictoryPoints(1, 17);
         
         // Set up the game state so that a Nero can be laid
         Collection<Card> hand = new ArrayList<Card>();
@@ -88,6 +90,8 @@ public class CardActivatorNeroABasicTest extends Test {
            }
         }
         
+        move.endTurn();
+        move.endTurn();
         // ---------------------------------------------------------------------
         
         // Set up the action dice such that the first two Neros can be activated
