@@ -18,7 +18,7 @@ import framework.interfaces.activators.TelephoneBoxActivator;
  * Tests that something coping nero still dies even if there is no valid target, with a TIME MACHINE
  */
 
-public class TelephoneBoxCopyNeroAndStillDie extends Test {
+public class TelephoneBoxCopyNeroAndStillDieTest extends Test {
    private final int PLAYER_1 = 0;
    private final int PLAYER_2 = 1;
    @Override

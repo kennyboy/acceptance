@@ -17,7 +17,7 @@ import framework.interfaces.activators.TelephoneBoxActivator;
  * @author Luke Harrison
  */
 
-public class CardActivatorTelephoneBoxAesculapinum extends Test {
+public class CardActivatorTelephoneBoxAesculapinumTest extends Test {
 
 	@Override
 	public String getShortDescription() {

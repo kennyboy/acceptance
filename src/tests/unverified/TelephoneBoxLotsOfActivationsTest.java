@@ -16,7 +16,7 @@ import framework.interfaces.activators.TelephoneBoxActivator;
  * Activates the time machine a lot, to test if you simulate everymove over and over again with it
  */
 
-public class TelephoneBoxLotsOfActivations extends Test {
+public class TelephoneBoxLotsOfActivationsTest extends Test {
    private final int PLAYER_1 = 0;
    private final int PLAYER_2 = 1;
    @Override

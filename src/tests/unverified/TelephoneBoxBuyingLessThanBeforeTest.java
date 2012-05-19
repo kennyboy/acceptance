@@ -18,7 +18,7 @@ import framework.interfaces.activators.TelephoneBoxActivator;
  * Tests whether they can cope with you buying more victory points than normal, with a TIME MACHINE :D
  */
 
-public class TelephoneBoxBuyingLessThanBefore extends Test {
+public class TelephoneBoxBuyingLessThanBeforeTest extends Test {
    private final int PLAYER_1 = 0;
    private final int PLAYER_2 = 1;
    @Override
