@@ -91,6 +91,7 @@ public class TelephoneBoxBuyingLessThanBefore extends Test {
       assert (gameState.getPlayerSestertii(PLAYER_1) == 10 + 2*9);
       assert (gameState.getPlayerVictoryPoints(PLAYER_2) == 10 + 9);
       assert (gameState.getPlayerVictoryPoints(PLAYER_1) == 10 - 9);
+      move.endTurn();
       
       // Turn 4: (Where player 1 has time and a kat on his side)
       gameState.setActionDice(new int[] {1, 3, 4});
