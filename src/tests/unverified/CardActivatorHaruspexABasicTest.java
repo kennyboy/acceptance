@@ -97,9 +97,14 @@ public class CardActivatorHaruspexABasicTest extends Test {
         assert(!gameState.getDeck().contains(Card.NERO));
         assert(!gameState.getDiscard().contains(Card.NERO));
 
-        // Check that the deck was shuffled
+        // Approximate check that the deck contains the cards it should.
+        // Doesn't check the count, only that there is at least one of each
+        // type of card there should be, and no NERO, since we just removed
+        // the only one.
         deck.remove(0);
-        assert(!gameState.getDeck().equals(deck));
+        assert(!gameState.getDeck().contains(Card.NERO));
+        assert( gameState.getDeck().containsAll(deck));
+        
 
         // ---- CHOOSING THE LAST CARD IN THE DECK ----
 
