@@ -95,7 +95,6 @@ public class CardActivatorSenatorBasicTest extends Test {
         assert(dice.length == 2);   
         
         s = (SenatorActivator)move.chooseCardToActivate(3);
-        s.layCard(Card.CENTURIO, 3);
         s.layCard(Card.SICARIUS, 6);
         s.layCard(Card.BASILICA, 4);
         s.complete();
@@ -106,13 +105,12 @@ public class CardActivatorSenatorBasicTest extends Test {
         assert(gameState.getPlayerSestertii(1) == 0);
         
         field = gameState.getPlayerCardsOnDiscs(0);
-        assert(field[2] == Card.CENTURIO);
+        assert(field[2] == Card.SENATOR);
         assert(field[3] == Card.VELITES);
         assert(field[5] == Card.SICARIUS);
         assert(field[6] == Card.PRAETORIANUS);
         
         hand = gameState.getPlayerHand(0);
-        assert(!hand.contains(Card.CENTURIO));
         assert(!hand.contains(Card.SICARIUS));
         assert(hand.contains(Card.BASILICA));
         
