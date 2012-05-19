@@ -60,7 +60,7 @@ public class CardActivatorScaenicusCopyArchitectusTest extends Test {
         ScaenicusActivator scaenicusActivator = (ScaenicusActivator)move.chooseCardToActivate(2);
         ArchitectusActivator architectusActivator = (ArchitectusActivator)(scaenicusActivator.getScaenicusMimicTarget(1));
         architectusActivator.layCard(Card.FORUM, 1);
-        architectusActivator.layCard(Card.SICARIUS, 2);
+        //architectusActivator.layCard(Card.SICARIUS, 2);
         architectusActivator.layCard(Card.BASILICA, 3);
         architectusActivator.layCard(Card.TEMPLUM, 4);
         architectusActivator.complete();

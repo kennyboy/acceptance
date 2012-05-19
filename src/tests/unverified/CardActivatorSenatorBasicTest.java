@@ -68,51 +68,51 @@ public class CardActivatorSenatorBasicTest extends Test {
         assert(gameState.getPlayerVictoryPoints(1) == 10);
         assert(gameState.getPlayerSestertii(0) == 0);
         assert(gameState.getPlayerSestertii(1) == 0);
-        
+
         field = gameState.getPlayerCardsOnDiscs(0);
         assert(field[2] == Card.SENATOR);
-        
+
         SenatorActivator s = (SenatorActivator)move.chooseCardToActivate(3);
         s.layCard(Card.VELITES, 4);
         s.layCard(Card.PRAETORIANUS, 7);
         s.complete();
-        
+
         assert(gameState.getPlayerVictoryPoints(0) == 10);
         assert(gameState.getPlayerVictoryPoints(1) == 10);
         assert(gameState.getPlayerSestertii(0) == 0);
         assert(gameState.getPlayerSestertii(1) == 0);
-        
+
         field = gameState.getPlayerCardsOnDiscs(0);
         assert(field[2] == Card.SENATOR);
         assert(field[3] == Card.VELITES);
         assert(field[6] == Card.PRAETORIANUS);
-        
+
         hand = gameState.getPlayerHand(0);
         assert(!hand.contains(Card.VELITES));
         assert(!hand.contains(Card.PRAETORIANUS));
-        
+
         int[] dice = gameState.getActionDice();
-        assert(dice.length == 2);   
-        
+        assert(dice.length == 2);
+
         s = (SenatorActivator)move.chooseCardToActivate(3);
         s.layCard(Card.SICARIUS, 6);
-        s.layCard(Card.BASILICA, 4);
+        // s.layCard(Card.BASILICA, 4); Invalid. Removed. Can't lay buildings.
         s.complete();
-       
+
         assert(gameState.getPlayerVictoryPoints(0) == 10);
         assert(gameState.getPlayerVictoryPoints(1) == 10);
         assert(gameState.getPlayerSestertii(0) == 0);
         assert(gameState.getPlayerSestertii(1) == 0);
-        
+
         field = gameState.getPlayerCardsOnDiscs(0);
         assert(field[2] == Card.SENATOR);
         assert(field[3] == Card.VELITES);
         assert(field[5] == Card.SICARIUS);
         assert(field[6] == Card.PRAETORIANUS);
-        
+
         hand = gameState.getPlayerHand(0);
         assert(!hand.contains(Card.SICARIUS));
         assert(hand.contains(Card.BASILICA));
-        
+
     }
 }
