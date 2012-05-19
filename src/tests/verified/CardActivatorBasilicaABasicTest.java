@@ -46,8 +46,8 @@ public class CardActivatorBasilicaABasicTest extends Test {
       // Initialise both players with 100 sestertii and 15 VP
       gameState.setPlayerSestertii(0, 100);
       gameState.setPlayerSestertii(1, 100);
-      gameState.setPlayerVictoryPoints(0, 15);
-      gameState.setPlayerVictoryPoints(1, 15);
+      gameState.setPlayerVictoryPoints(0, 10);
+      gameState.setPlayerVictoryPoints(1, 10);
 
       List<Card> hand = new ArrayList<Card>();
       hand.add(Card.FORUM);
@@ -61,22 +61,23 @@ public class CardActivatorBasilicaABasicTest extends Test {
 
       // Lay a forum on the first dice disc and check that sestertii and hand
       // update correctly
+      gameState.setActionDice(new int[] {1, 5, 1});
+      
       move.placeCard(Card.FORUM, Rules.DICE_DISC_1);
       assert(gameState.getPlayerSestertii(0) == 100 - 5);
       assert(gameState.getPlayerSestertii(1) == 100);
-      assert(gameState.getPlayerVictoryPoints(0) == 15);
-      assert(gameState.getPlayerVictoryPoints(1) == 15);
+      assert(gameState.getPlayerVictoryPoints(0) == 10);
+      assert(gameState.getPlayerVictoryPoints(1) == 10);
       assert(gameState.getPlayerHand(0).size() == 4);
 
       // Activate the Forum with a 5
-      gameState.setActionDice(new int[] {1, 5, 1});
       ForumActivator activator = (ForumActivator) move.chooseCardToActivate(1);
       activator.chooseActionDice(5);
       activator.complete();
 
       // Check that the correct number of VP are added
-      assert(gameState.getPlayerVictoryPoints(0) == 15 + 5);
-      assert(gameState.getPlayerVictoryPoints(1) == 15);
+      assert(gameState.getPlayerVictoryPoints(0) == 10 + 5);
+      assert(gameState.getPlayerVictoryPoints(1) == 10);
 
       // Start a new turn for this player (checking that they have lost the
       // correct number of VP).
@@ -84,8 +85,8 @@ public class CardActivatorBasilicaABasicTest extends Test {
       // the second player loses none
       move.endTurn();
       move.endTurn();
-      assert(gameState.getPlayerVictoryPoints(0) == 15 + 5 - 6);
-      assert(gameState.getPlayerVictoryPoints(1) == 15);
+      assert(gameState.getPlayerVictoryPoints(0) == 10 + 5 - 6);
+      assert(gameState.getPlayerVictoryPoints(1) == 10);
 
       // ---- BASILICA TO THE LEFT ----
 
@@ -102,8 +103,8 @@ public class CardActivatorBasilicaABasicTest extends Test {
       assert(gameState.getPlayerHand(0).size() == 2);
 
       // Reset the victory points
-      gameState.setPlayerVictoryPoints(0, 10);
-      gameState.setPlayerVictoryPoints(1, 10);
+      assert(gameState.getPlayerVictoryPoints(0) == 9);
+      assert(gameState.getPlayerVictoryPoints(1) == 10);
 
       // Activate the forum with the 6
       activator = (ForumActivator) move.chooseCardToActivate(2);
@@ -112,7 +113,7 @@ public class CardActivatorBasilicaABasicTest extends Test {
 
       // Check that the correct number of VPs were gained (6 for the Forum,
       // 2 for the Basilica)
-      assert(gameState.getPlayerVictoryPoints(0) == 10 + 6 + 2);
+      assert(gameState.getPlayerVictoryPoints(0) == 9 + 6 + 2);
       assert(gameState.getPlayerVictoryPoints(1) == 10);
 
       // Start a new turn for this player (checking that they have lost the
@@ -121,7 +122,7 @@ public class CardActivatorBasilicaABasicTest extends Test {
       // on disc 2
       move.endTurn();
       move.endTurn();
-      assert(gameState.getPlayerVictoryPoints(0) == 18 - 5);
+      assert(gameState.getPlayerVictoryPoints(0) == 17 - 5);
       assert(gameState.getPlayerVictoryPoints(1) == 10);
 
       // ---- BASILICAS ON BOTH SIDES -----
@@ -135,7 +136,7 @@ public class CardActivatorBasilicaABasicTest extends Test {
       // Check that the correct number of sestertii were lost
       assert(gameState.getPlayerSestertii(0) == 100 - 5 - 5 - 6 - 6);
       assert(gameState.getPlayerSestertii(1) == 100);
-      assert(gameState.getPlayerVictoryPoints(0) == 18 - 5);
+      assert(gameState.getPlayerVictoryPoints(0) == 17 - 5);
       assert(gameState.getPlayerVictoryPoints(1) == 10);
       assert(gameState.getPlayerHand(0).size() == 1);
 
@@ -146,7 +147,7 @@ public class CardActivatorBasilicaABasicTest extends Test {
 
       // Check that the correct number of VPs were gained (1 for the Forum,
       // 2 for each Basilica)
-      assert(gameState.getPlayerVictoryPoints(0) == 13 + 1 + 2 + 2);
+      assert(gameState.getPlayerVictoryPoints(0) == 12 + 1 + 2 + 2);
       assert(gameState.getPlayerVictoryPoints(1) == 10);
 
       // Start a new turn for this player (checking that they have lost the
@@ -154,7 +155,7 @@ public class CardActivatorBasilicaABasicTest extends Test {
       // This time only 4 VP are lost by player 1
       move.endTurn();
       move.endTurn();
-      assert(gameState.getPlayerVictoryPoints(0) == 18 - 4);
+      assert(gameState.getPlayerVictoryPoints(0) == 17 - 4);
       assert(gameState.getPlayerVictoryPoints(1) == 10);
 
       // ---- BASILICA ON THE RIGHT ----
@@ -168,7 +169,7 @@ public class CardActivatorBasilicaABasicTest extends Test {
       // Check that the correct number of sestertii were lost
       assert(gameState.getPlayerSestertii(0) == 100 - 5 - 5 - 6 - 6 - 5);
       assert(gameState.getPlayerSestertii(1) == 100);
-      assert(gameState.getPlayerVictoryPoints(0) == 18 - 4);
+      assert(gameState.getPlayerVictoryPoints(0) == 17 - 4);
       assert(gameState.getPlayerVictoryPoints(1) == 10);
       assert(gameState.getPlayerHand(0).size() == 0);
 
@@ -179,7 +180,7 @@ public class CardActivatorBasilicaABasicTest extends Test {
 
       // Check that the correct number of VPs were gained (4 for the Forum,
       // 2 for each Basilica)
-      assert(gameState.getPlayerVictoryPoints(0) == 14 + 4 + 2);
+      assert(gameState.getPlayerVictoryPoints(0) == 13 + 4 + 2);
       assert(gameState.getPlayerVictoryPoints(1) == 10);
 
       // Start a new turn for this player (checking that they have lost the
@@ -187,7 +188,7 @@ public class CardActivatorBasilicaABasicTest extends Test {
       // This time only 4 VP are lost by player 1
       move.endTurn();
       move.endTurn();
-      assert(gameState.getPlayerVictoryPoints(0) == 20 - 4);
+      assert(gameState.getPlayerVictoryPoints(0) == 19 - 4);
       assert(gameState.getPlayerVictoryPoints(1) == 10);
 
       // ---- BASILICA ON THE FIELD, NOT ADJACENT TO FORUM ----
@@ -201,7 +202,7 @@ public class CardActivatorBasilicaABasicTest extends Test {
       activator.complete();
 
       // Check that the correct number of VPs were gained (2 for the Forum)
-      assert(gameState.getPlayerVictoryPoints(0) == 16 + 2);
+      assert(gameState.getPlayerVictoryPoints(0) == 15 + 2);
       assert(gameState.getPlayerVictoryPoints(1) == 10);
     }
 }
