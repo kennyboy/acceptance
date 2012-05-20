@@ -162,7 +162,7 @@ public class TwoTurrisTest extends Test {
 
         move.endTurn();
 
-        gameState.setActionDice(new int[]{1, 2});
+        gameState.setActionDice(new int[]{1, 2, 3});
 
         // now there are 2 turris on Player's 2 dice disc
         // therefore all the cards def val increases by 1 except Turris, Turris only increases by 1
@@ -172,7 +172,7 @@ public class TwoTurrisTest extends Test {
         la.complete(); // Unsuccessful
         // Gladiator's def val =  5 + 2
         assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[0] == Card.GLADIATOR);
-        assert (gameState.getActionDice().length == 1);
+        assert (gameState.getActionDice().length == 2);
         assert (gameState.getDiscard().isEmpty());
         assertFields();
         // Consilarius def val =  4 + 2
@@ -180,7 +180,9 @@ public class TwoTurrisTest extends Test {
         la.giveAttackDieRoll(5);
         la.complete();
         assert (gameState.getPlayerCardsOnDiscs(PLAYER_2)[1] == Card.CONSILIARIUS);
-        assert (gameState.getActionDice().length == 0);
+        assert (gameState.getActionDice().length == 1);
+        move.endTurn();
+        move.endTurn();
         // up Player's 1 new action dice
         gameState.setActionDice(new int[]{6, 3, 6});
         assert (gameState.getActionDice().length == 3);
