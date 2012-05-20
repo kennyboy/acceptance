@@ -140,7 +140,6 @@ public class TelephoneBoxKatTest extends Test {
         jerk.shouldMoveForwardInTime(false);
         jerk.chooseDiceDisc(Rules.DICE_DISC_3);
         jerk.complete();
-
         assert(gameState.getPlayerVictoryPoints(PLAYER_2) == 14);
         assert(gameState.getDiscard().contains(Card.KAT));
 
