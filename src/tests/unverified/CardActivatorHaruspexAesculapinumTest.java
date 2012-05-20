@@ -50,8 +50,8 @@ public class CardActivatorHaruspexAesculapinumTest extends Test {
         assertVPs();
         
         initialisePlayerSestertiis();
-        playerSestertiis[PLAYER_1] = 12;
-        playerSestertiis[PLAYER_2] = 12;       
+        playerSestertiis[PLAYER_1] = 15;
+        playerSestertiis[PLAYER_2] = 15;       
         transferSestertiiToState();
         assertSestertiis();
         
@@ -382,7 +382,8 @@ public class CardActivatorHaruspexAesculapinumTest extends Test {
 
     private void assertHands() {
         for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
-            assert(gameState.getPlayerHand(i).equals(playerHands[i]));
+            assert(gameState.getPlayerHand(i).containsAll(playerHands[i]));
+            assert(playerHands[i].containsAll(gameState.getPlayerHand(i)));
         }
     }
 
@@ -397,6 +398,7 @@ public class CardActivatorHaruspexAesculapinumTest extends Test {
 
     private void assertSestertiis() {
         for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
+            System.out.println(playerSestertiis[i] + " compared to " + gameState.getPlayerSestertii(i));
             assert(gameState.getPlayerSestertii(i) == playerSestertiis[i]);
         }
     }
