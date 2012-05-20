@@ -15,7 +15,7 @@ import framework.interfaces.activators.*;
  *
  */
 
-public class CardActivatorKatWithConsiliarius extends Test {
+public class CardActivatorKatWithConsiliariusTest extends Test {
 
 	private final int PLAYER_1 = 0;
 	private final int PLAYER_2 = 1;
