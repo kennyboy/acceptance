@@ -197,6 +197,7 @@ public class DropdatabasePlaythroughTest extends Test {
         OnagerActivator onagerA = (OnagerActivator) move.chooseCardToActivate(4);
         onagerA.chooseDiceDisc(2);
         onagerA.giveAttackDieRoll(1);
+        onagerA.complete();
 
         //Aww attack failed - VGTA
         //Player one's forum should be alive
