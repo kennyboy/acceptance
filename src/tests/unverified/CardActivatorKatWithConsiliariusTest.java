@@ -1,4 +1,4 @@
-package unitTest.cards;
+package tests.unverified;
 
 import framework.Rules;
 import framework.Test;
