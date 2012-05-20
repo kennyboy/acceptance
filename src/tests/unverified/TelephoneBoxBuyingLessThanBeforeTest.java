@@ -53,7 +53,7 @@ public class TelephoneBoxBuyingLessThanBeforeTest extends Test {
       ArrayList<Card> player1Hand = new ArrayList<Card>();
       player1Hand.add(Card.KAT); // Player 1 has a kat! That will win him the game!
 
-
+      
       gameState.setWhoseTurn(PLAYER_2);
       gameState.setPlayerCardsOnDiscs(PLAYER_1,playerFields[PLAYER_1]);
       gameState.setPlayerCardsOnDiscs(PLAYER_2,playerFields[PLAYER_2]);

@@ -50,8 +50,8 @@ public class CardActivatorHaruspexAesculapinumTest extends Test {
         assertVPs();
         
         initialisePlayerSestertiis();
-        playerSestertiis[PLAYER_1] = 12;
-        playerSestertiis[PLAYER_2] = 12;       
+        playerSestertiis[PLAYER_1] = 22;
+        playerSestertiis[PLAYER_2] = 22;       
         transferSestertiiToState();
         assertSestertiis();
         
