@@ -55,7 +55,7 @@ public class TelephoneBoxKatTest extends Test {
         playerFields[PLAYER_2] = new Card[] {
                 Card.SCAENICUS,
                 Card.SCAENICUS,
-                Card.SCAENICUS,
+                Card.MERCATOR,
                 Card.TELEPHONEBOX,
                 Card.SCAENICUS,
                 Card.SCAENICUS,
@@ -66,61 +66,83 @@ public class TelephoneBoxKatTest extends Test {
         gameState.setPlayerCardsOnDiscs(PLAYER_2,playerFields[PLAYER_2]);
 
         gameState.setWhoseTurn(PLAYER_1);                               //TURN : 1
-        gameState.setActionDice(new int[] {1,1,5});
+        gameState.setActionDice(new int[] {3,3,3});
 
-        move.endTurn();
-        gameState.setActionDice(new int[] {1,1,5});
+        LegionariusActivator legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
+        legionarius.giveAttackDieRoll(1);
+        legionarius.complete();
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.MERCATOR);
 
-        move.placeCard(Card.KAT, Rules.DICE_DISC_3);
-        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);
-        assert(gameState.getDiscard().contains(Card.SCAENICUS));
+        legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
+        legionarius.giveAttackDieRoll(1);
+        legionarius.complete();
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.MERCATOR);
+
+        legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
+        legionarius.giveAttackDieRoll(1);
+        legionarius.complete();
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.MERCATOR);
 
         move.endTurn();                                                //TURN : 2
+        gameState.setActionDice(new int[] {1,1,5});
+
+        move.endTurn();                                                //TURN : 3
 
         gameState.setActionDice(new int[]{3,3,3});
 
-        LegionariusActivator legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
-        legionarius.giveAttackDieRoll(2);
+        legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
+        legionarius.giveAttackDieRoll(1);
         legionarius.complete();
-        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);    //8
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.MERCATOR);
 
         legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
-        legionarius.giveAttackDieRoll(2);
+        legionarius.giveAttackDieRoll(1);
         legionarius.complete();
-        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);    //7
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.MERCATOR);
 
         legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
-        legionarius.giveAttackDieRoll(2);
+        legionarius.giveAttackDieRoll(1);
         legionarius.complete();
-        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);    //6
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.MERCATOR);
 
-        move.endTurn();                                              //TURN : 3
+        move.endTurn();                                              //TURN : 4
 
         gameState.setActionDice(new int[] {4,3,3});
 
-        TelephoneBoxActivator jerk = (TelephoneBoxActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
-        jerk.chooseDiceDisc(3);
-        jerk.setSecondDiceUsed(3);
-        jerk.shouldMoveForwardInTime(false);
-        jerk.complete();                                                     //5 --> 4 --> 3
+        move.placeCard(Card.KAT, Rules.DICE_DISC_3);
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);
 
-        move.endTurn();                                              //TURN : 4
+        move.endTurn();                                             // TURN : 5
+
         gameState.setActionDice(new int[]{3,3,3});
 
         legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
-        legionarius.giveAttackDieRoll(2);
-        legionarius.complete();                                              //2
+        legionarius.giveAttackDieRoll(1);
+        legionarius.complete();
         assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);
 
         legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
-        legionarius.giveAttackDieRoll(2);
+        legionarius.giveAttackDieRoll(1);
         legionarius.complete();
-        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);    //1
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);
 
         legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
-        legionarius.giveAttackDieRoll(2);
-        legionarius.complete();                                              //0
-        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.NOT_A_CARD);
+        legionarius.giveAttackDieRoll(1);
+        legionarius.complete();
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);
+
+        move.endTurn();
+
+        gameState.setActionDice(new int[] {4,5,5});
+
+        TelephoneBoxActivator jerk = (TelephoneBoxActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
+        jerk.setSecondDiceUsed(5);
+        jerk.shouldMoveForwardInTime(false);
+        jerk.chooseDiceDisc(Rules.DICE_DISC_3);
+        jerk.complete();
+
+        assert(gameState.getPlayerVictoryPoints(PLAYER_2) == 14);
+        assert(gameState.getDiscard().contains(Card.KAT));
 
     }
 }
