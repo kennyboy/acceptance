@@ -83,6 +83,25 @@ public class DropdatabasePlaythroughTest extends Test {
         assert check.contains(Card.ONAGER);
         assert check.contains(Card.GLADIATOR);
 
+        // Make boards empty.
+        gameState.setPlayerCardsOnDiscs(PLAYER_ONE, new Card[]{
+                    Card.NOT_A_CARD,
+                    Card.NOT_A_CARD,
+                    Card.NOT_A_CARD,
+                    Card.NOT_A_CARD,
+                    Card.NOT_A_CARD,
+                    Card.NOT_A_CARD,
+                    Card.NOT_A_CARD,});
+
+        gameState.setPlayerCardsOnDiscs(PLAYER_TWO, new Card[]{
+                    Card.NOT_A_CARD,
+                    Card.NOT_A_CARD,
+                    Card.NOT_A_CARD,
+                    Card.NOT_A_CARD,
+                    Card.NOT_A_CARD,
+                    Card.NOT_A_CARD,
+                    Card.NOT_A_CARD,});
+
         // place cards - player one
         move.placeCard(Card.KAT, Rules.DICE_DISC_1);
         move.placeCard(Card.FORUM, Rules.DICE_DISC_2);
