@@ -273,6 +273,8 @@ public class DropdatabasePlaythroughTest extends Test {
         assert gameState.getDeck().size() == 3;
 
         // check graveyard for AESCULAPINUM
+        // Re: Reynard Edrick Wiradinata - AESCULAPINUM is discarded when you
+        // draw two cards as you picked BASILICA
         assert gameState.getDiscard().contains(Card.AESCULAPINUM);
 
         // should be in hand
@@ -369,7 +371,11 @@ public class DropdatabasePlaythroughTest extends Test {
         assert gameState.getPlayerCardsOnDiscs(PLAYER_TWO)[4] == Card.NOT_A_CARD;
         assert gameState.getPlayerCardsOnDiscs(PLAYER_TWO)[5] == Card.NOT_A_CARD;
         assert gameState.getPlayerCardsOnDiscs(PLAYER_TWO)[6] == Card.NOT_A_CARD;
-        assert gameState.getDiscard().contains(Card.TEMPLUM);
+        
+        // Re Oswyn: Removed because there are absolutely no instructions on
+        // how an empty deck is handled (but we're not going to touch the deck
+        // or the discard for the rest of the game).
+        //assert gameState.getDiscard().contains(Card.TEMPLUM);
 
         // Money should be deducted to 0 (rolled 4 used 4)
         assert gameState.getPlayerSestertii(PLAYER_TWO) == 0;
