@@ -13,6 +13,7 @@ import framework.interfaces.activators.*;
  * 
  * @author Wengfai (Steven) LOU & Yuyuan (Ben) HUANG
  *
+ * Editing by Luke Harrison
  */
 
 public class CardActivatorKatWithConsiliariusTest extends Test {
@@ -31,11 +32,13 @@ public class CardActivatorKatWithConsiliariusTest extends Test {
 		
 		// setting the initial state
 		gameState.setWhoseTurn(PLAYER_1);
+		gameState.setPlayerVictoryPoints(PLAYER_1, 17);
+		gameState.setPlayerVictoryPoints(PLAYER_2, 17);
 		gameState.setPlayerCardsOnDiscs(PLAYER_1,
 				new Card[] {
 					Card.NOT_A_CARD,
-					Card.SCAENICUS,
-					Card.SCAENICUS,
+					Card.SICARIUS,
+					Card.SICARIUS,
 					Card.LEGIONARIUS,
 					Card.NOT_A_CARD,
 					Card.VELITES,
@@ -63,7 +66,9 @@ public class CardActivatorKatWithConsiliariusTest extends Test {
 			legionarius.complete();
 			assert(gameState.getActionDice().length == i-1);
 		}
-		
+		move.endTurn();
+      gameState.setActionDice(new int[] {6,6,6});
+		move.endTurn();
 		gameState.setActionDice(new int[] {6,6,6});
 		// Kat's lives become 3 after thrice attacks
 		for (int i = gameState.getActionDice().length; i > 0 ; i--) {
@@ -82,12 +87,13 @@ public class CardActivatorKatWithConsiliariusTest extends Test {
 		gameState.setActionDice(new int[] {1,1,1});
 		ConsiliariusActivator consiliarius = (ConsiliariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_1);
 		consiliarius.placeCard(Card.KAT, Rules.DICE_DISC_2);
+		consiliarius.placeCard(Card.CONSILIARIUS, Rules.DICE_DISC_1);
 		consiliarius.complete();
 		
 		// check the effect of consiliarius, Kat should be at disc 2
 		Card[] player2Field = gameState.getPlayerCardsOnDiscs(PLAYER_2);
-		assert(player2Field[Rules.DICE_DISC_2] == Card.KAT);
-		assert(player2Field[Rules.DICE_DISC_4] == Card.NOT_A_CARD);
+		assert(player2Field[Rules.DICE_DISC_2-1] == Card.KAT);
+		assert(player2Field[Rules.DICE_DISC_4-1] == Card.NOT_A_CARD);
 		
 		// back to player1's turn
 		move.endTurn();
@@ -105,8 +111,8 @@ public class CardActivatorKatWithConsiliariusTest extends Test {
 		sicarius.complete();
 		
 		Card[] player1Field = gameState.getPlayerCardsOnDiscs(PLAYER_1);
-		assert(player1Field[Rules.DICE_DISC_2] == Card.NOT_A_CARD);
-		assert(player1Field[Rules.DICE_DISC_3] == Card.NOT_A_CARD);
+		assert(player1Field[Rules.DICE_DISC_2-1] == Card.NOT_A_CARD);
+		assert(player1Field[Rules.DICE_DISC_3-1] == Card.NOT_A_CARD);
 		
 		// this should kill the Kat
 		VelitesActivator velites = (VelitesActivator) move.chooseCardToActivate(Rules.DICE_DISC_6);
@@ -115,6 +121,6 @@ public class CardActivatorKatWithConsiliariusTest extends Test {
 		velites.complete();
 		
 		player2Field = gameState.getPlayerCardsOnDiscs(PLAYER_2);
-		assert(player2Field[Rules.DICE_DISC_2] == Card.NOT_A_CARD);
+		assert(player2Field[Rules.DICE_DISC_2-1] == Card.NOT_A_CARD);
 	}
 }
