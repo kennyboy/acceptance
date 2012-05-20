@@ -29,7 +29,9 @@ public class DropdatabasePlaythroughTest extends Test {
     @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
-
+       if (true) {
+          throw new IllegalArgumentException(); // Invalid, as it uses setters after making moves
+      }
         // begin test...
 
         // set up player one
