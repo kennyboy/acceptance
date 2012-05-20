@@ -31,7 +31,7 @@ public class TestRunner {
 
     AcceptanceInterface testee;
     boolean colorful;
-
+    boolean shouldPrintSuccesses;
     public static final String COLOR_RESET       = "\033[0m";
     public static final String COLOR_BOLD        = "\033[1m";
     public static final String COLOR_UNDERLINE   = "\033[4m";
@@ -118,6 +118,12 @@ public class TestRunner {
             colorful = true;
          } else {
             colorful = false;
+         }
+         
+         if (arguments.contains("-noSuccess")) {
+            shouldPrintSuccesses = false;
+         } else {
+            shouldPrintSuccesses = true;
          }
       }
     }
@@ -255,28 +261,41 @@ public class TestRunner {
         }
         for (Test current : tests) {
             try {
-                if (colorful) {
-                    System.out.print(COLOR_CYAN);
-                }
-                System.out.println("   " + current.getClass().toString().split("class tests.")[1] + ":");
-                System.out.println("      " + current.getShortDescription());
-                if (colorful) {
-                    System.out.print(COLOR_RESET);
+                if (shouldPrintSuccesses) {
+                   if (colorful) {
+                       System.out.print(COLOR_CYAN);
+                   }
+                   System.out.println("   " + current.getClass().toString().split("class tests.")[1] + ":");
+                   System.out.println("      " + current.getShortDescription());
+                   if (colorful) {
+                       System.out.print(COLOR_RESET);
+                   }
                 }
                 GameState state = acceptanceInterface.getInitialState();
                 MoveMaker mover = acceptanceInterface.getMover(state);
                 SanityChecker checkedMover = new SanityChecker(mover, state, current.out);
                 current.run(state,mover);
-                if (colorful) {
-                    System.out.print(COLOR_GREEN);
+                if (shouldPrintSuccesses) {
+                    if (colorful) {
+                        System.out.print(COLOR_GREEN);
+                    }
+                    System.out.println("      Test passed\n");
+                    if (colorful) {
+                        System.out.print(COLOR_RESET);
+                    }
                 }
                 numTestsPassed[interfaceTestNumber]++;
-                System.out.println("      Test passed\n");
-                if (colorful) {
-                    System.out.print(COLOR_RESET);
-                }
-
             } catch (UnsupportedOperationException ex) {
+                if (!shouldPrintSuccesses) {
+                   if (colorful) {
+                       System.out.print(COLOR_CYAN);
+                   }
+                   System.out.println("   " + current.getClass().toString().split("class tests.")[1] + ":");
+                   System.out.println("      " + current.getShortDescription());
+                   if (colorful) {
+                       System.out.print(COLOR_RESET);
+                   }
+                }
                 if (colorful) {
                     System.out.print(COLOR_YELLOW);
                 }
@@ -286,6 +305,16 @@ public class TestRunner {
                     System.out.print(COLOR_RESET);
                 }
             } catch (IllegalArgumentException ex) {
+                if (!shouldPrintSuccesses) {
+                   if (colorful) {
+                       System.out.print(COLOR_CYAN);
+                   }
+                   System.out.println("   " + current.getClass().toString().split("class tests.")[1] + ":");
+                   System.out.println("      " + current.getShortDescription());
+                   if (colorful) {
+                       System.out.print(COLOR_RESET);
+                   }
+                }
                 numInvalidTests[interfaceTestNumber]++;
                 System.out.print(current.getOutputSteam());
                 if (colorful) {
@@ -298,6 +327,16 @@ public class TestRunner {
                 }
 
             } catch (Exception ex) {
+                if (!shouldPrintSuccesses) {
+                   if (colorful) {
+                       System.out.print(COLOR_CYAN);
+                   }
+                   System.out.println("   " + current.getClass().toString().split("class tests.")[1] + ":");
+                   System.out.println("      " + current.getShortDescription());
+                   if (colorful) {
+                       System.out.print(COLOR_RESET);
+                   }
+                }
                 numTestFailed[interfaceTestNumber]++;
                 System.out.print(current.getOutputSteam());
                 if (colorful) {
@@ -311,6 +350,16 @@ public class TestRunner {
                 }
 
             } catch (AssertionError ex) {
+                if (!shouldPrintSuccesses) {
+                   if (colorful) {
+                       System.out.print(COLOR_CYAN);
+                   }
+                   System.out.println("   " + current.getClass().toString().split("class tests.")[1] + ":");
+                   System.out.println("      " + current.getShortDescription());
+                   if (colorful) {
+                       System.out.print(COLOR_RESET);
+                   }
+                }
                 numTestFailed[interfaceTestNumber]++;
                 System.out.print(current.getOutputSteam());
                 if (colorful) {
