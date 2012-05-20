@@ -42,6 +42,11 @@ public class CardActivatorKatAndGrimReaperTest extends Test {
     @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
+      if (1==1) {
+         throw new IllegalArgumentException();
+      }        
+
+      
       List<Card> deck = new LinkedList<Card>();
       gameState.setDiscard(deck);
 
@@ -201,7 +206,11 @@ public class CardActivatorKatAndGrimReaperTest extends Test {
       assert(gameState.getDiscard().contains(Card.KAT));		
       
       db("\tASSERT: gameState.getPlayerHand(1).contains(Card.KAT) = " + gameState.getPlayerHand(1).contains(Card.KAT) + " (Should be FALSE)");
+      for (int i = 0; i < gameState.getPlayerHand(1).size(); i++) 
+         System.out.println(((List)gameState.getPlayerHand(1)).get(i));
+         
       assert(!gameState.getPlayerHand(1).contains(Card.KAT));
+      
       
     }
 }

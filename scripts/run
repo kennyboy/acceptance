@@ -7,7 +7,7 @@ if [[ `uname` == 'Linux' ]]; then
    if [ `whoami` == "damon" ]; then
       reset
    fi
-   java -ea framework.TestRunner -noSuccess > testDetails
+   java -ea framework.TestRunner -noSuccess -color
 elif [[ `uname` == 'Darwin' ]]; then
    java -ea framework.TestRunner -color
 else 
