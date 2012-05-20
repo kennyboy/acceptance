@@ -96,10 +96,10 @@ public class CardActivatorGrimReaperAssassinationTest extends Test{
 		assert(board1[6] == Card.NOT_A_CARD);
 		
 		hand = gameState.getPlayerHand(1);
-		assert(hand.contains(Card.AESCULAPINUM));
+		assert(!hand.contains(Card.AESCULAPINUM)); // Grim reaper doesn't protect buildings
 		
 		discard = gameState.getDiscard();
-		assert(!discard.contains(Card.AESCULAPINUM));
+		assert(discard.contains(Card.AESCULAPINUM));
 		
 	}
 
