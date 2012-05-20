@@ -81,6 +81,7 @@ public class CardActivatorTemplumZTest extends Test {
 		int beforeActivation = gameState.getPlayerVictoryPoints(0);
 		ForumActivator fa = (ForumActivator)move.chooseCardToActivate(4);
 		fa.chooseActivateTemplum(true);
+		fa.chooseActivateTemplum(1);
 		fa.chooseActionDice(3);
 		fa.complete();
 		//SHOULD GAIN 4 VP
@@ -97,6 +98,7 @@ public class CardActivatorTemplumZTest extends Test {
 		//ATTACK THE TEMPLUM
 		CenturioActivator ca = (CenturioActivator)move.chooseCardToActivate(5);
 		ca.giveAttackDieRoll(1);
+		ca.complete();
 		//SHOULD NOT KILL THE TEMPLUM
 		assert(gameState.getPlayerCardsOnDiscs(0)[4] == Card.TEMPLUM);
 
@@ -118,6 +120,7 @@ public class CardActivatorTemplumZTest extends Test {
 		//ACTIVATING FORUM WITH TEMPLUM TO BOTH SIDES
 		beforeActivation = gameState.getPlayerVictoryPoints(0);
 		fa.chooseActivateTemplum(true);
+		fa.chooseActivateTemplum(1);
 		fa.chooseActionDice(2);
 		fa.complete();
 		//SHOULD GAIN 3 VP
@@ -149,6 +152,7 @@ public class CardActivatorTemplumZTest extends Test {
 		//ACTIVATING FORUM WITH TEMPLUM ON BOTH SIDES
 		beforeActivation = gameState.getPlayerVictoryPoints(0);
 		fa.chooseActivateTemplum(true);
+		fa.chooseActivateTemplum(1);
 		fa.chooseActionDice(2);
 		fa.complete();
 		//SHOULD GAIN 3 VP
@@ -179,6 +183,7 @@ public class CardActivatorTemplumZTest extends Test {
 		//ACTIVATING FORUM WITH TEMPLUM TO ITS LEFT
 		beforeActivation = gameState.getPlayerVictoryPoints(0);
 		fa.chooseActivateTemplum(true);
+		fa.chooseActivateTemplum(1);
 		fa.chooseActionDice(2);
 		fa.complete();
 		//SHOULD GAIN 3 VP
