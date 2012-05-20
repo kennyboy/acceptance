@@ -40,7 +40,7 @@ for name in `find tests -type f -name "*.java"`; do
 done
 # -exec javac -source 1.6 -d $BUILD_DIR -sourcepath $SRC_DIR {} \;
 
-echo $MAKE_ALL"\n"$MAKE_RULES | make -f -
+echo -e "$MAKE_ALL\n$MAKE_RULES" | make -f -
 
 cd $ORIGCWD
 
