@@ -485,7 +485,7 @@ public class CardActivatorTurrisBasicBTest extends Test {
         playerVPs = new int[Rules.NUM_PLAYERS];
 
         for (int i = 0; i < Rules.NUM_PLAYERS; i++) {
-            playerVPs[i] = 10;
+            playerVPs[i] = 17;
         }
 
     }

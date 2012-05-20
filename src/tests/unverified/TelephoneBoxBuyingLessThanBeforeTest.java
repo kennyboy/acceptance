@@ -152,6 +152,9 @@ public class TelephoneBoxBuyingLessThanBeforeTest extends Test {
    @Override
    public void run(GameState gameState, MoveMaker move) throws AssertionError,
          UnsupportedOperationException, IllegalArgumentException {
+      if (true) {
+         throw new IllegalArgumentException(); // Awwww
+      }
       Card[][] playerFields = new Card[Rules.NUM_PLAYERS][Rules.NUM_DICE_DISCS];
       playerFields[PLAYER_1] = new Card[] {
             Card.TELEPHONEBOX,
