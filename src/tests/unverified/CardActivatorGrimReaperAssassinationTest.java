@@ -53,8 +53,8 @@ public class CardActivatorGrimReaperAssassinationTest extends Test{
 				Card.NOT_A_CARD,
 				Card.NOT_A_CARD,
 				Card.NOT_A_CARD,
-				Card.AESCULAPINUM,
-				Card.GLADIATOR
+				Card.GLADIATOR,
+				Card.AESCULAPINUM
 		};
 		
 		gameState.setPlayerCardsOnDiscs(0, board0);
