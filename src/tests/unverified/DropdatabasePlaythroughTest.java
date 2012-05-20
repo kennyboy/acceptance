@@ -1,6 +1,5 @@
 package tests.unverified;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 import framework.Rules;
 import framework.Test;
 import framework.cards.Card;
