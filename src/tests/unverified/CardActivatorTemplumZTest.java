@@ -28,8 +28,7 @@ public class CardActivatorTemplumZTest extends Test {
 	}
 
 	@Override
-	public void run(GameState gameState, MoveMaker move) throws AssertionError,
-	UnsupportedOperationException, IllegalArgumentException {
+	public void run(GameState gameState, MoveMaker move) {
 
 		//SETTING THE FIELD
 		gameState.setPlayerCardsOnDiscs(0, new Card[] {
