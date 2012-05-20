@@ -74,7 +74,7 @@ public class CardActivatorGrimReaperAssassinationTest extends Test{
 		assert(board0[0] == Card.NOT_A_CARD);
 		
 		board1 = gameState.getPlayerCardsOnDiscs(1);
-		assert(board0[6] == Card.NOT_A_CARD);
+		assert(board1[6] == Card.NOT_A_CARD);
 		
 		hand = gameState.getPlayerHand(1);
 		assert(hand.contains(Card.AESCULAPINUM));
@@ -90,7 +90,7 @@ public class CardActivatorGrimReaperAssassinationTest extends Test{
 		assert(board0[6] == Card.NOT_A_CARD);
 		
 		board1 = gameState.getPlayerCardsOnDiscs(1);
-		assert(board0[7] == Card.NOT_A_CARD);
+		assert(board1[7] == Card.NOT_A_CARD);
 		
 		hand = gameState.getPlayerHand(1);
 		assert(hand.contains(Card.GLADIATOR));
