@@ -29,13 +29,10 @@ public class DropdatabasePlaythroughTest extends Test {
     @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
-       if (true) {
-          throw new IllegalArgumentException(); // Invalid, as it uses setters after making moves
-      }
         // begin test...
 
         // set up player one
-        gameState.setPlayerVictoryPoints(PLAYER_ONE, 10);
+        gameState.setPlayerVictoryPoints(PLAYER_ONE, 12);
         gameState.setPlayerSestertii(PLAYER_ONE, 29);
 
         Collection<Card> handP1 = new ArrayList<Card>();
@@ -59,7 +56,7 @@ public class DropdatabasePlaythroughTest extends Test {
         gameState.setPlayerHand(1, handP2);
 
         //check if VP placed correctly
-        assert gameState.getPlayerVictoryPoints(0) == 10;
+        assert gameState.getPlayerVictoryPoints(0) == 12;
         assert gameState.getPlayerVictoryPoints(1) == 17;
 
         // set intial game state
@@ -131,7 +128,7 @@ public class DropdatabasePlaythroughTest extends Test {
         assert gameState.getPlayerSestertii(PLAYER_TWO) == 0;
 
         // back to player one - set die
-        gameState.setWhoseTurn(PLAYER_ONE);
+        move.endTurn();
         gameState.setActionDice(new int[]{1, 5, 4});
 
         //player one draws a card from the deck
@@ -415,7 +412,7 @@ public class DropdatabasePlaythroughTest extends Test {
 
         // player one should lose next round, do nothing
         move.endTurn();
-        
+
         // player two won - you're winner!
         assert gameState.isGameCompleted();
     }
