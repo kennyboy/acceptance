@@ -66,6 +66,7 @@ public class CardActivatorGrimReaperAssassinationTest extends Test{
 		gameState.setWhoseTurn(0);
 		gameState.setActionDice(new int[]{1, 6, 3});
 		
+		//attack aesculapinum with sicarius
 		SicariusActivator s = (SicariusActivator)move.chooseCardToActivate(1);
 		s.chooseDiceDisc(6);
 		s.complete();
@@ -74,7 +75,8 @@ public class CardActivatorGrimReaperAssassinationTest extends Test{
 		assert(board0[0] == Card.NOT_A_CARD);
 		
 		board1 = gameState.getPlayerCardsOnDiscs(1);
-		assert(board1[6] == Card.NOT_A_CARD);
+		System.out.println(board1[6]);
+		assert(board1[5] == Card.NOT_A_CARD);
 		
 		hand = gameState.getPlayerHand(1);
 		assert(hand.contains(Card.AESCULAPINUM));
@@ -82,15 +84,16 @@ public class CardActivatorGrimReaperAssassinationTest extends Test{
 		discard = gameState.getDiscard();
 		assert(!discard.contains(Card.AESCULAPINUM));
 		
+		//attack gladiator with nero
 		NeroActivator n = (NeroActivator)move.chooseCardToActivate(6);
 		n.chooseDiceDisc(7);
 		n.complete();
 		
 		board0 = gameState.getPlayerCardsOnDiscs(0);
-		assert(board0[6] == Card.NOT_A_CARD);
+		assert(board0[5] == Card.NOT_A_CARD);
 		
 		board1 = gameState.getPlayerCardsOnDiscs(1);
-		assert(board1[7] == Card.NOT_A_CARD);
+		assert(board1[6] == Card.NOT_A_CARD);
 		
 		hand = gameState.getPlayerHand(1);
 		assert(hand.contains(Card.GLADIATOR));
