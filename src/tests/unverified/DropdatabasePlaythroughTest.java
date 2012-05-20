@@ -1,5 +1,6 @@
 package tests.unverified;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 import framework.Rules;
 import framework.Test;
 import framework.cards.Card;
@@ -28,10 +29,11 @@ public class DropdatabasePlaythroughTest extends Test {
     @Override
     public void run(GameState gameState, MoveMaker move) throws AssertionError,
             UnsupportedOperationException, IllegalArgumentException {
+
         // begin test...
 
         // set up player one
-        gameState.setPlayerVictoryPoints(PLAYER_ONE, 12);
+        gameState.setPlayerVictoryPoints(PLAYER_ONE, 10);
         gameState.setPlayerSestertii(PLAYER_ONE, 29);
 
         Collection<Card> handP1 = new ArrayList<Card>();
@@ -55,7 +57,7 @@ public class DropdatabasePlaythroughTest extends Test {
         gameState.setPlayerHand(1, handP2);
 
         //check if VP placed correctly
-        assert gameState.getPlayerVictoryPoints(0) == 12;
+        assert gameState.getPlayerVictoryPoints(0) == 10;
         assert gameState.getPlayerVictoryPoints(1) == 17;
 
         // set intial game state
@@ -82,25 +84,6 @@ public class DropdatabasePlaythroughTest extends Test {
         assert check.contains(Card.BASILICA);
         assert check.contains(Card.ONAGER);
         assert check.contains(Card.GLADIATOR);
-
-        // Make boards empty.
-        gameState.setPlayerCardsOnDiscs(PLAYER_ONE, new Card[]{
-                    Card.NOT_A_CARD,
-                    Card.NOT_A_CARD,
-                    Card.NOT_A_CARD,
-                    Card.NOT_A_CARD,
-                    Card.NOT_A_CARD,
-                    Card.NOT_A_CARD,
-                    Card.NOT_A_CARD,});
-
-        gameState.setPlayerCardsOnDiscs(PLAYER_TWO, new Card[]{
-                    Card.NOT_A_CARD,
-                    Card.NOT_A_CARD,
-                    Card.NOT_A_CARD,
-                    Card.NOT_A_CARD,
-                    Card.NOT_A_CARD,
-                    Card.NOT_A_CARD,
-                    Card.NOT_A_CARD,});
 
         // place cards - player one
         move.placeCard(Card.KAT, Rules.DICE_DISC_1);
@@ -146,7 +129,7 @@ public class DropdatabasePlaythroughTest extends Test {
         assert gameState.getPlayerSestertii(PLAYER_TWO) == 0;
 
         // back to player one - set die
-        move.endTurn();
+        gameState.setWhoseTurn(PLAYER_ONE);
         gameState.setActionDice(new int[]{1, 5, 4});
 
         //player one draws a card from the deck
@@ -197,6 +180,7 @@ public class DropdatabasePlaythroughTest extends Test {
         OnagerActivator onagerA = (OnagerActivator) move.chooseCardToActivate(4);
         onagerA.chooseDiceDisc(2);
         onagerA.giveAttackDieRoll(1);
+        onagerA.complete();
 
         //Aww attack failed - VGTA
         //Player one's forum should be alive
@@ -430,7 +414,7 @@ public class DropdatabasePlaythroughTest extends Test {
 
         // player one should lose next round, do nothing
         move.endTurn();
-
+        
         // player two won - you're winner!
         assert gameState.isGameCompleted();
     }
