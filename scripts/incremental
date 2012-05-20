@@ -1,0 +1,48 @@
+#!/bin/bash
+# requires java, javac.
+# Copyright (C) 2012    Lasath Fernando         (@lasath.fernando)
+# Copyright (C) 2012    Benjamin James Wright   (@ben.wright)
+# Copyright (C) 2012    Damon Stacey            (@damon.stacey)
+# Copyright (C) 2012    Alexis Shaw             (@alexis.shaw)
+
+
+export BASE_DIR="`cd .. ; pwd`"
+export SRC_DIR="$BASE_DIR/src"
+export BUILD_DIR="$BASE_DIR/build"
+export LIB_DIR="$BASE_DIR/lib"
+export TESTEE_DIR="$BASE_DIR/testee"
+export CLASSPATH="$BUILD_DIR:$LIB_DIR/*:$TESTEE_DIR/*"
+
+export ORIGCWD=`pwd`
+
+# Don't continue after errors
+set -e
+
+echo Compiling...
+mkdir -p $BUILD_DIR
+
+cd $SRC_DIR
+# this will automatically compile any imported files whose source
+# has modified since last compile.
+javac -source 1.6 -d $BUILD_DIR -sourcepath . framework/TestRunner.java
+
+cd $SRC_DIR
+# This will compile all the tests in stable so the tester can get them
+MAKE_ALL="all:"
+MAKE_RULES=""
+for name in `find tests -type f -name "*.java"`; do
+	SRC="$SRC_DIR/$name"
+	DST="$BUILD_DIR/${name/.java/.class}"
+	
+	MAKE_ALL+=" $DST"
+	MAKE_RULES+="$DST: $SRC\n"
+	MAKE_RULES+="\tjavac -source 1.6 -d $BUILD_DIR -sourcepath $SRC_DIR $name\n"
+done
+# -exec javac -source 1.6 -d $BUILD_DIR -sourcepath $SRC_DIR {} \;
+
+echo $MAKE_ALL"\n"$MAKE_RULES | make -f -
+
+cd $ORIGCWD
+
+echo Compilation Complete!
+
