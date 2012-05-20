@@ -112,8 +112,8 @@ public class CardActivatorPraetorianusZTest extends Test {
 		//SHOULD NOW BE ABLE TO PLAY THE TEMPLUM
 		//EXCEPT DICE DISC 1 IS BLOCKED
 		move.placeCard(Card.TEMPLUM, 1);
-		//SHOULD NOT HAVE BEEN ALLOWED TO PLACE IT DOWN
-		assert(gameState.getPlayerCardsOnDiscs(1)[0] == Card.NOT_A_CARD);
+		//Should be able to lay it down (blocking is only for activation)
+		assert(gameState.getPlayerCardsOnDiscs(1)[0] == Card.TEMPLUM);
 
 		//ATTACK THE PRAETOR
 		CenturioActivator ca = (CenturioActivator)move.chooseCardToActivate(3);
