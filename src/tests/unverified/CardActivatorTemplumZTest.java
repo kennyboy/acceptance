@@ -98,6 +98,7 @@ public class CardActivatorTemplumZTest extends Test {
 		//ATTACK THE TEMPLUM
 		CenturioActivator ca = (CenturioActivator)move.chooseCardToActivate(5);
 		ca.giveAttackDieRoll(1);
+		ca.chooseCenturioAddActionDie(false);
 		ca.complete();
 		//SHOULD NOT KILL THE TEMPLUM
 		assert(gameState.getPlayerCardsOnDiscs(0)[4] == Card.TEMPLUM);
@@ -139,6 +140,7 @@ public class CardActivatorTemplumZTest extends Test {
 		//ATTACK THE TEMPLUM
 		ca = (CenturioActivator)move.chooseCardToActivate(5);
 		ca.giveAttackDieRoll(1);
+		ca.chooseCenturioAddActionDie(false);
 		ca.complete();
 		//SHOULD NOT KILL THE TEMPLUM
 		assert(gameState.getPlayerCardsOnDiscs(0)[4] == Card.TEMPLUM);
@@ -172,6 +174,7 @@ public class CardActivatorTemplumZTest extends Test {
 		//ATTACK THE TEMPLUM
 		ca = (CenturioActivator)move.chooseCardToActivate(5);
 		ca.giveAttackDieRoll(2);
+		ca.chooseCenturioAddActionDie(false);
 		ca.complete();
 		//SHOULD KILL THE TEMPLUM
 		assert(gameState.getPlayerCardsOnDiscs(0)[4] == Card.NOT_A_CARD);
