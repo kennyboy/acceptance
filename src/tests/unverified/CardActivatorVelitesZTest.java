@@ -83,9 +83,9 @@ public class CardActivatorVelitesZTest extends Test {
 		
 		//CHECKING THE COST OF VELITES IS CORRECT
 		//TRY TO PLACE THE VELITES IN PLAYER 1'S HAND
-		move.placeCard(Card.VELITES, 4);
+		//move.placeCard(Card.VELITES, 4);
 		//SHOULD NOT BE ABLE TO PLAY IT
-		assert(gameState.getPlayerCardsOnDiscs(0)[3] == Card.LEGIONARIUS);
+		//assert(gameState.getPlayerCardsOnDiscs(0)[3] == Card.LEGIONARIUS);
 		
 		//ATTACK CONSILIARIUS
 		VelitesActivator va = (VelitesActivator)move.chooseCardToActivate(3);
