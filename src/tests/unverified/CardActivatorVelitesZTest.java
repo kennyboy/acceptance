@@ -81,12 +81,6 @@ public class CardActivatorVelitesZTest extends Test {
 		//TAKING MONEY
 		move.activateMoneyDisc(4);
 		
-		//CHECKING THE COST OF VELITES IS CORRECT
-		//TRY TO PLACE THE VELITES IN PLAYER 1'S HAND
-		//move.placeCard(Card.VELITES, 4);
-		//SHOULD NOT BE ABLE TO PLAY IT
-		//assert(gameState.getPlayerCardsOnDiscs(0)[3] == Card.LEGIONARIUS);
-		
 		//ATTACK CONSILIARIUS
 		VelitesActivator va = (VelitesActivator)move.chooseCardToActivate(3);
 		va.chooseDiceDisc(2);
@@ -118,7 +112,6 @@ public class CardActivatorVelitesZTest extends Test {
 		//SHOULD BE ENOUGH TO KILL THE VELITES
 		assert(gameState.getPlayerCardsOnDiscs(0)[2] == Card.NOT_A_CARD);
 		
-		//
 		move.endTurn();
 		
 		assert(gameState.getWhoseTurn() == 0);
