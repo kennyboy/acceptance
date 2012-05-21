@@ -119,6 +119,7 @@ public class CardActivatorTemplumZTest extends Test {
 
 		//ACTIVATING FORUM WITH TEMPLUM TO BOTH SIDES
 		beforeActivation = gameState.getPlayerVictoryPoints(0);
+		fa = (ForumActivator)move.chooseCardToActivate(4);
 		fa.chooseActivateTemplum(true);
 		fa.chooseActivateTemplum(1);
 		fa.chooseActionDice(2);
@@ -136,6 +137,7 @@ public class CardActivatorTemplumZTest extends Test {
 		gameState.setActionDice(new int[] {2,3,5});
 
 		//ATTACK THE TEMPLUM
+		ca = (CenturioActivator)move.chooseCardToActivate(5);
 		ca.giveAttackDieRoll(1);
 		ca.complete();
 		//SHOULD NOT KILL THE TEMPLUM
@@ -151,6 +153,7 @@ public class CardActivatorTemplumZTest extends Test {
 
 		//ACTIVATING FORUM WITH TEMPLUM ON BOTH SIDES
 		beforeActivation = gameState.getPlayerVictoryPoints(0);
+		fa = (ForumActivator)move.chooseCardToActivate(4);
 		fa.chooseActivateTemplum(true);
 		fa.chooseActivateTemplum(1);
 		fa.chooseActionDice(2);
@@ -167,6 +170,7 @@ public class CardActivatorTemplumZTest extends Test {
 		gameState.setActionDice(new int[] {2,3,5});
 
 		//ATTACK THE TEMPLUM
+		ca = (CenturioActivator)move.chooseCardToActivate(5);
 		ca.giveAttackDieRoll(2);
 		ca.complete();
 		//SHOULD KILL THE TEMPLUM
@@ -182,6 +186,7 @@ public class CardActivatorTemplumZTest extends Test {
 
 		//ACTIVATING FORUM WITH TEMPLUM TO ITS LEFT
 		beforeActivation = gameState.getPlayerVictoryPoints(0);
+		fa = (ForumActivator)move.chooseCardToActivate(4);
 		fa.chooseActivateTemplum(true);
 		fa.chooseActivateTemplum(1);
 		fa.chooseActionDice(2);
