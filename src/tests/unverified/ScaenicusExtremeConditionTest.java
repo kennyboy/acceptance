@@ -82,10 +82,10 @@ public class ScaenicusExtremeConditionTest extends Test {
 	        
 	        // Discarded cards: SCAENICUS_A, Forum
 	        // SCAENICUS_B, NERO shall be intact
-	        assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[Rules.DICE_DISC_1] == Card.NOT_A_CARD);
-	        assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[Rules.DICE_DISC_2] == Card.SCAENICUS);
-	        assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[Rules.DICE_DISC_6] == Card.NERO);
-	        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[Rules.DICE_DISC_4] == Card.NOT_A_CARD);
+	        assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[Rules.DICE_DISC_1-1] == Card.NOT_A_CARD);
+	        assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[Rules.DICE_DISC_2-1] == Card.SCAENICUS);
+	        assert(gameState.getPlayerCardsOnDiscs(PLAYER_1)[Rules.DICE_DISC_6-1] == Card.NERO);
+	        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[Rules.DICE_DISC_2-1] == Card.NOT_A_CARD);
 	}
 
 }
