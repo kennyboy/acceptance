@@ -107,6 +107,7 @@ public class CardActivatorVelitesZTest extends Test {
 		assert(gameState.getPlayerCardsOnDiscs(0)[2] == Card.VELITES);
 		
 		//OPPONENT ATTACKS THE VELITES AGAIN
+		ca = (CenturioActivator)move.chooseCardToActivate(3);
 		ca.giveAttackDieRoll(3);
 		ca.complete();
 		//SHOULD BE ENOUGH TO KILL THE VELITES
@@ -136,6 +137,7 @@ public class CardActivatorVelitesZTest extends Test {
 		assert(gameState.getPlayerCardsOnDiscs(1)[1] == Card.NOT_A_CARD);
 		
 		//ATTACK CENTURIO
+		va2 = (VelitesActivator)move.chooseCardToActivate(4);
 		va2.chooseDiceDisc(3);
 		va2.giveAttackDieRoll(5);
 		va2.complete();
@@ -153,6 +155,7 @@ public class CardActivatorVelitesZTest extends Test {
 		gameState.setActionDice(new int[] {4,4,4});
 		
 		//ATTACK CONSUL
+		va2 = (VelitesActivator)move.chooseCardToActivate(4);
 		va2.chooseDiceDisc(4);
 		va2.giveAttackDieRoll(4);
 		va2.complete();
@@ -160,6 +163,7 @@ public class CardActivatorVelitesZTest extends Test {
 		assert(gameState.getPlayerCardsOnDiscs(1)[3] == Card.NOT_A_CARD);
 		
 		//ATTACK GLADIATOR
+		va2 = (VelitesActivator)move.chooseCardToActivate(4);
 		va2.chooseDiceDisc(5);
 		va2.giveAttackDieRoll(4);
 		va2.complete();
@@ -167,6 +171,7 @@ public class CardActivatorVelitesZTest extends Test {
 		assert(gameState.getPlayerCardsOnDiscs(1)[4] == Card.GLADIATOR);
 		
 		//NEVER GIVE UP
+		va2 = (VelitesActivator)move.chooseCardToActivate(4);
 		va2.chooseDiceDisc(5);
 		va2.giveAttackDieRoll(6);
 		va2.complete();
