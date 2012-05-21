@@ -41,7 +41,7 @@ public class CardActivatorPraetorianusZTest extends Test {
 				Card.LEGIONARIUS,
 				Card.NOT_A_CARD,
 				Card.NOT_A_CARD,
-				Card.HARUSPEX 
+				Card.HARUSPEX
 
 		});
 
@@ -62,12 +62,12 @@ public class CardActivatorPraetorianusZTest extends Test {
 		deck.add(Card.LEGAT);
 		gameState.setDeck(deck);
 		gameState.setDiscard(new ArrayList<Card>());
-		
+
 		gameState.setPlayerSestertii(0, 0);
 		gameState.setPlayerSestertii(1, 5);
 		gameState.setPlayerVictoryPoints(0, 10);
 		gameState.setPlayerVictoryPoints(1, 10);
-		
+
 		//CHECKING THE FIELD IS CORRECT
 		assert(gameState.getPlayerCardsOnDiscs(0)[0] == Card.SCAENICUS);
 		assert(gameState.getPlayerCardsOnDiscs(0)[2] == Card.PRAETORIANUS);
@@ -111,14 +111,14 @@ public class CardActivatorPraetorianusZTest extends Test {
 		move.placeCard(Card.LEGAT, 1);
 		//SHOULD BE DOWN
 		assert(gameState.getPlayerCardsOnDiscs(1)[0] == Card.LEGAT);
-		
+
 		//TRY TO GAIN VP VIA LEGAT
 		int initialVP = gameState.getPlayerVictoryPoints(1);
 		LegatActivator la = (LegatActivator)move.chooseCardToActivate(1);
 		la.complete();
 		//SHOULD NOT GAIN ANY VP BECAUSE ITS BLOCKED
 		assert(gameState.getPlayerVictoryPoints(1) == initialVP);
-		
+
 		//ATTACK THE PRAETOR
 		CenturioActivator ca = (CenturioActivator)move.chooseCardToActivate(3);
 		ca.giveAttackDieRoll(3);
@@ -152,15 +152,15 @@ public class CardActivatorPraetorianusZTest extends Test {
 		move.endTurn();
 
 		//BEGINNING PLAYER 2'S TURN
-		gameState.setActionDice(new int[] {1, 3, 5});
-		
+		gameState.setActionDice(new int[] {2, 3, 5});
+
 		//TRY TO GAIN VP VIA LEGAT
 		initialVP = gameState.getPlayerVictoryPoints(1);
 		LegatActivator la2 = (LegatActivator)move.chooseCardToActivate(2);
 		la2.complete();
 		//SHOULD NOT HAVE GAINED ANY VP
 		assert(gameState.getPlayerVictoryPoints(1) == initialVP);
-		
+
 		//TRY TO KICK THE PRAETOR ON DICE DISC 3
 		//EXCEPT ITS EFFECTS SHOULD BE BLOCKED
 		GladiatorActivator ga = (GladiatorActivator)move.chooseCardToActivate(5);
@@ -168,7 +168,7 @@ public class CardActivatorPraetorianusZTest extends Test {
 		ga.complete();
 		//SHOULD NOT HAVE BEEN KICKED
 		assert(gameState.getPlayerCardsOnDiscs(0)[2] == Card.PRAETORIANUS);
-		
+
 		//NEVER GIVE UP
 		//ATTACK THE PRAETOR INSTEAD
 		ca = (CenturioActivator)move.chooseCardToActivate(3);
