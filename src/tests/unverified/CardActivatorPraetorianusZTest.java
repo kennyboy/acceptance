@@ -122,6 +122,7 @@ public class CardActivatorPraetorianusZTest extends Test {
 		//ATTACK THE PRAETOR
 		CenturioActivator ca = (CenturioActivator)move.chooseCardToActivate(3);
 		ca.giveAttackDieRoll(3);
+		ca.chooseCenturioAddActionDie(false);
 		ca.complete();
 		//SHOULD NOT KILL THE PRAETOR
 		assert(gameState.getPlayerCardsOnDiscs(0)[2] == Card.PRAETORIANUS);
@@ -172,6 +173,7 @@ public class CardActivatorPraetorianusZTest extends Test {
 		//ATTACK THE PRAETOR INSTEAD
 		ca = (CenturioActivator)move.chooseCardToActivate(3);
 		ca.giveAttackDieRoll(4);
+		ca.chooseCenturioAddActionDie(false);
 		ca.complete();
 		//SHOULD KILL THE PRAETOR
 		assert(gameState.getPlayerCardsOnDiscs(0)[2] == Card.NOT_A_CARD);
