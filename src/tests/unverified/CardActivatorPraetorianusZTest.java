@@ -139,6 +139,7 @@ public class CardActivatorPraetorianusZTest extends Test {
 		assert(gameState.getPlayerCardsOnDiscs(0)[3] == Card.PRAETORIANUS);
 
 		//BLOCK EFFECTS OF GLADIATOR
+		pa = (PraetorianusActivator)move.chooseCardToActivate(3);
 		pa.chooseDiceDisc(5);
 		pa.complete();
 
@@ -169,6 +170,7 @@ public class CardActivatorPraetorianusZTest extends Test {
 		
 		//NEVER GIVE UP
 		//ATTACK THE PRAETOR INSTEAD
+		ca = (CenturioActivator)move.chooseCardToActivate(3);
 		ca.giveAttackDieRoll(4);
 		ca.complete();
 		//SHOULD KILL THE PRAETOR
