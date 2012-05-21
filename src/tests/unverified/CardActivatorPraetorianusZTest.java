@@ -59,10 +59,15 @@ public class CardActivatorPraetorianusZTest extends Test {
 
 		List<Card> deck = new ArrayList<Card>();
 		deck.add(Card.PRAETORIANUS);
-		deck.add(Card.TEMPLUM);
+		deck.add(Card.LEGAT);
 		gameState.setDeck(deck);
 		gameState.setDiscard(new ArrayList<Card>());
-
+		
+		gameState.setPlayerSestertii(0, 0);
+		gameState.setPlayerSestertii(1, 5);
+		gameState.setPlayerVictoryPoints(0, 10);
+		gameState.setPlayerVictoryPoints(1, 10);
+		
 		//CHECKING THE FIELD IS CORRECT
 		assert(gameState.getPlayerCardsOnDiscs(0)[0] == Card.SCAENICUS);
 		assert(gameState.getPlayerCardsOnDiscs(0)[2] == Card.PRAETORIANUS);
@@ -84,14 +89,7 @@ public class CardActivatorPraetorianusZTest extends Test {
 		assert(gameState.getPlayerHand(0).contains(Card.PRAETORIANUS));
 
 		//TAKING MONEY
-		move.activateMoneyDisc(4);
-
-		//CHECKING THE COST OF PRAETOR IS CORRECT
-		//TRY TO PLACE THE PRAETOR IN PLAYER 1'S HAND
-		//move.placeCard(Card.PRAETORIANUS, 4);
-		//System.out.println("money " + gameState.getPlayerSestertii(0));
-		//SHOULD NOT BE ABLE TO PLAY IT
-		//assert(gameState.getPlayerCardsOnDiscs(0)[3] == Card.LEGIONARIUS);
+		move.activateMoneyDisc(3);
 
 		//BLOCKING DICE DISC 1
 		PraetorianusActivator pa = (PraetorianusActivator)move.chooseCardToActivate(3);
@@ -102,23 +100,29 @@ public class CardActivatorPraetorianusZTest extends Test {
 
 		//BEGINNING PLAYER 2'S TURN
 
-		gameState.setActionDice(new int[] {1 , 2, 3});
+		gameState.setActionDice(new int[] {1 , 1, 3});
 
 		//TAKING THE TEMPLUM FROM THE DECK
-		move.activateCardsDisc(1, Card.TEMPLUM);
-		assert(gameState.getPlayerHand(1).contains(Card.TEMPLUM));
-		//TAKING ENOUGH MONEY TO PLAY THE TEMPLUM
-		move.activateMoneyDisc(2);
+		move.activateCardsDisc(1, Card.LEGAT);
+		assert(gameState.getPlayerHand(1).contains(Card.LEGAT));
 
-		//SHOULD NOW BE ABLE TO PLAY THE TEMPLUM
-		//EXCEPT DICE DISC 1 IS BLOCKED
-		move.placeCard(Card.TEMPLUM, 1);
-		//Should be able to lay it down (blocking is only for activation)
-		assert(gameState.getPlayerCardsOnDiscs(1)[0] == Card.TEMPLUM);
 
+		//SHOULD NOW BE ABLE TO PLAY THE LEGAT
+		move.placeCard(Card.LEGAT, 1);
+		//SHOULD BE DOWN
+		assert(gameState.getPlayerCardsOnDiscs(1)[0] == Card.LEGAT);
+		
+		//TRY TO GAIN VP VIA LEGAT
+		int initialVP = gameState.getPlayerVictoryPoints(1);
+		LegatActivator la = (LegatActivator)move.chooseCardToActivate(1);
+		la.complete();
+		//SHOULD NOT GAIN ANY VP BECAUSE ITS BLOCKED
+		assert(gameState.getPlayerVictoryPoints(1) == initialVP);
+		
 		//ATTACK THE PRAETOR
 		CenturioActivator ca = (CenturioActivator)move.chooseCardToActivate(3);
 		ca.giveAttackDieRoll(3);
+		ca.chooseCenturioAddActionDie(false);
 		ca.complete();
 		//SHOULD NOT KILL THE PRAETOR
 		assert(gameState.getPlayerCardsOnDiscs(0)[2] == Card.PRAETORIANUS);
@@ -126,7 +130,7 @@ public class CardActivatorPraetorianusZTest extends Test {
 		move.endTurn();
 
 		//BEGINNING PLAYER 1'S TURN
-		gameState.setActionDice(new int[] {1, 4, 4});
+		gameState.setActionDice(new int[] {1, 3, 4});
 
 		//TAKING MONEY
 		move.activateMoneyDisc(1);
@@ -136,7 +140,7 @@ public class CardActivatorPraetorianusZTest extends Test {
 		assert(gameState.getPlayerCardsOnDiscs(0)[3] == Card.PRAETORIANUS);
 
 		//BLOCK EFFECTS OF GLADIATOR
-		pa = (PraetorianusActivator)move.chooseCardToActivate(4);
+		pa = (PraetorianusActivator)move.chooseCardToActivate(3);
 		pa.chooseDiceDisc(5);
 		pa.complete();
 
@@ -150,19 +154,15 @@ public class CardActivatorPraetorianusZTest extends Test {
 		//BEGINNING PLAYER 2'S TURN
 		gameState.setActionDice(new int[] {1, 3, 5});
 		
-		//TO PROVE THE TEMPLUM IS PLAYABLE
-		move.placeCard(Card.TEMPLUM, 1);
-		assert(gameState.getPlayerCardsOnDiscs(1)[0] == Card.TEMPLUM);
-		
 		//TRY TO GAIN VP VIA LEGAT
-		int initialVP = gameState.getPlayerVictoryPoints(1);
-		LegatActivator la = (LegatActivator)move.chooseCardToActivate(2);
-		la.complete();
+		initialVP = gameState.getPlayerVictoryPoints(1);
+		LegatActivator la2 = (LegatActivator)move.chooseCardToActivate(2);
+		la2.complete();
 		//SHOULD NOT HAVE GAINED ANY VP
 		assert(gameState.getPlayerVictoryPoints(1) == initialVP);
 		
 		//TRY TO KICK THE PRAETOR ON DICE DISC 3
-		//EXPECT ITS EFFECTS SHOULD BE BLOCKED
+		//EXCEPT ITS EFFECTS SHOULD BE BLOCKED
 		GladiatorActivator ga = (GladiatorActivator)move.chooseCardToActivate(5);
 		ga.chooseDiceDisc(3);
 		ga.complete();
@@ -171,7 +171,9 @@ public class CardActivatorPraetorianusZTest extends Test {
 		
 		//NEVER GIVE UP
 		//ATTACK THE PRAETOR INSTEAD
+		ca = (CenturioActivator)move.chooseCardToActivate(3);
 		ca.giveAttackDieRoll(4);
+		ca.chooseCenturioAddActionDie(false);
 		ca.complete();
 		//SHOULD KILL THE PRAETOR
 		assert(gameState.getPlayerCardsOnDiscs(0)[2] == Card.NOT_A_CARD);

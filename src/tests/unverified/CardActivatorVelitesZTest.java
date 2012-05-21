@@ -81,12 +81,6 @@ public class CardActivatorVelitesZTest extends Test {
 		//TAKING MONEY
 		move.activateMoneyDisc(4);
 		
-		//CHECKING THE COST OF VELITES IS CORRECT
-		//TRY TO PLACE THE VELITES IN PLAYER 1'S HAND
-		move.placeCard(Card.VELITES, 4);
-		//SHOULD NOT BE ABLE TO PLAY IT
-		assert(gameState.getPlayerCardsOnDiscs(0)[3] == Card.LEGIONARIUS);
-		
 		//ATTACK CONSILIARIUS
 		VelitesActivator va = (VelitesActivator)move.chooseCardToActivate(3);
 		va.chooseDiceDisc(2);
@@ -108,17 +102,19 @@ public class CardActivatorVelitesZTest extends Test {
 		//OPPONENT ATTACKS THE VELITES
 		CenturioActivator ca = (CenturioActivator)move.chooseCardToActivate(3);
 		ca.giveAttackDieRoll(2);
+		ca.chooseCenturioAddActionDie(false);
 		ca.complete();
 		//SHOULD NOT KILL THE VELITES
 		assert(gameState.getPlayerCardsOnDiscs(0)[2] == Card.VELITES);
 		
 		//OPPONENT ATTACKS THE VELITES AGAIN
+		ca = (CenturioActivator)move.chooseCardToActivate(3);
 		ca.giveAttackDieRoll(3);
+		ca.chooseCenturioAddActionDie(false);
 		ca.complete();
 		//SHOULD BE ENOUGH TO KILL THE VELITES
 		assert(gameState.getPlayerCardsOnDiscs(0)[2] == Card.NOT_A_CARD);
 		
-		//
 		move.endTurn();
 		
 		assert(gameState.getWhoseTurn() == 0);
@@ -143,6 +139,7 @@ public class CardActivatorVelitesZTest extends Test {
 		assert(gameState.getPlayerCardsOnDiscs(1)[1] == Card.NOT_A_CARD);
 		
 		//ATTACK CENTURIO
+		va2 = (VelitesActivator)move.chooseCardToActivate(4);
 		va2.chooseDiceDisc(3);
 		va2.giveAttackDieRoll(5);
 		va2.complete();
@@ -160,6 +157,7 @@ public class CardActivatorVelitesZTest extends Test {
 		gameState.setActionDice(new int[] {4,4,4});
 		
 		//ATTACK CONSUL
+		va2 = (VelitesActivator)move.chooseCardToActivate(4);
 		va2.chooseDiceDisc(4);
 		va2.giveAttackDieRoll(4);
 		va2.complete();
@@ -167,6 +165,7 @@ public class CardActivatorVelitesZTest extends Test {
 		assert(gameState.getPlayerCardsOnDiscs(1)[3] == Card.NOT_A_CARD);
 		
 		//ATTACK GLADIATOR
+		va2 = (VelitesActivator)move.chooseCardToActivate(4);
 		va2.chooseDiceDisc(5);
 		va2.giveAttackDieRoll(4);
 		va2.complete();
@@ -174,6 +173,7 @@ public class CardActivatorVelitesZTest extends Test {
 		assert(gameState.getPlayerCardsOnDiscs(1)[4] == Card.GLADIATOR);
 		
 		//NEVER GIVE UP
+		va2 = (VelitesActivator)move.chooseCardToActivate(4);
 		va2.chooseDiceDisc(5);
 		va2.giveAttackDieRoll(6);
 		va2.complete();
