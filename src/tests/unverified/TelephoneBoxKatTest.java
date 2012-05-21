@@ -32,6 +32,7 @@ public class TelephoneBoxKatTest extends Test {
     public void run(GameState gameState, MoveMaker move) throws AssertionError, UnsupportedOperationException, IllegalArgumentException {
 
         Collection<Card> hand = new ArrayList<Card>();
+        hand.add(Card.TRIBUNUSPLEBIS);
         hand.add(Card.KAT);
         gameState.setDiscard(new ArrayList<Card>());
         gameState.setPlayerHand(PLAYER_2,hand);
@@ -131,7 +132,7 @@ public class TelephoneBoxKatTest extends Test {
         legionarius.complete();
         assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);
 
-        move.endTurn();
+        move.endTurn();                                            //TURN : 6
 
         gameState.setActionDice(new int[] {4,5,5});
 
@@ -142,6 +143,60 @@ public class TelephoneBoxKatTest extends Test {
         jerk.complete();
         assert(gameState.getPlayerVictoryPoints(PLAYER_2) == 14);
         assert(gameState.getDiscard().contains(Card.KAT));
+
+        move.endTurn();                                            //TURN : 7
+
+        gameState.setActionDice(new int[]{3,3,3});
+
+        legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
+        legionarius.giveAttackDieRoll(1);
+        legionarius.complete();
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);
+
+        legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
+        legionarius.giveAttackDieRoll(1);
+        legionarius.complete();
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);
+
+        legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
+        legionarius.giveAttackDieRoll(1);
+        legionarius.complete();
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);
+
+        move.endTurn();                                            //TURN : 8
+        gameState.setActionDice(new int[] {1,1,1});
+        move.endTurn();                                            //TURN : 9
+        gameState.setActionDice(new int[] {3,3,3});
+
+        legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
+        legionarius.giveAttackDieRoll(1);
+        legionarius.complete();
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);
+
+        legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
+        legionarius.giveAttackDieRoll(1);
+        legionarius.complete();
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.KAT);
+
+        legionarius = (LegionariusActivator) move.chooseCardToActivate(Rules.DICE_DISC_3);
+        legionarius.giveAttackDieRoll(1);
+        legionarius.complete();
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.NOT_A_CARD);
+        move.endTurn();                                          //TURN: 9
+
+
+        /*
+            This sends the a TribunusPlebis back to 2 turns ago
+            This checks that the Kat only has 3 lives as of 2 turns ago
+         */
+        gameState.setActionDice(new int[] {4,2,2});
+        move.placeCard(Card.TRIBUNUSPLEBIS,Rules.BRIBE_DISC);
+        jerk = (TelephoneBoxActivator) move.chooseCardToActivate(Rules.DICE_DISC_4);
+        jerk.chooseDiceDisc(Rules.BRIBE_DISC);
+        jerk.shouldMoveForwardInTime(false);
+        jerk.setSecondDiceUsed(2);
+        jerk.complete();
+        assert(gameState.getPlayerCardsOnDiscs(PLAYER_2)[2] == Card.NOT_A_CARD);
 
     }
 }
