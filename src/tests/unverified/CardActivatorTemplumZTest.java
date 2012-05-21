@@ -103,8 +103,6 @@ public class CardActivatorTemplumZTest extends Test {
 		assert(gameState.getPlayerCardsOnDiscs(0)[4] == Card.TEMPLUM);
 
 		move.endTurn();
-		
-		assert(gameState.getPlayerVictoryPoints(0) == beforeActivation + 4 - 2);
 
 		assert(gameState.getWhoseTurn() == 0);
 
@@ -121,13 +119,12 @@ public class CardActivatorTemplumZTest extends Test {
 
 		//ACTIVATING FORUM WITH TEMPLUM TO BOTH SIDES
 		beforeActivation = gameState.getPlayerVictoryPoints(0);
-		fa = (ForumActivator)move.chooseCardToActivate(4);
 		fa.chooseActivateTemplum(true);
 		fa.chooseActivateTemplum(1);
 		fa.chooseActionDice(2);
 		fa.complete();
 		//SHOULD GAIN 3 VP
-		assert(gameState.getPlayerVictoryPoints(0) == (beforeActivation + 1+2));
+		assert(gameState.getPlayerVictoryPoints(0) == (beforeActivation + 1 + 2));
 
 
 		move.endTurn();
