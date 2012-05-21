@@ -102,6 +102,7 @@ public class CardActivatorVelitesZTest extends Test {
 		//OPPONENT ATTACKS THE VELITES
 		CenturioActivator ca = (CenturioActivator)move.chooseCardToActivate(3);
 		ca.giveAttackDieRoll(2);
+		ca.chooseCenturioAddActionDie(false);
 		ca.complete();
 		//SHOULD NOT KILL THE VELITES
 		assert(gameState.getPlayerCardsOnDiscs(0)[2] == Card.VELITES);
@@ -109,6 +110,7 @@ public class CardActivatorVelitesZTest extends Test {
 		//OPPONENT ATTACKS THE VELITES AGAIN
 		ca = (CenturioActivator)move.chooseCardToActivate(3);
 		ca.giveAttackDieRoll(3);
+		ca.chooseCenturioAddActionDie(false);
 		ca.complete();
 		//SHOULD BE ENOUGH TO KILL THE VELITES
 		assert(gameState.getPlayerCardsOnDiscs(0)[2] == Card.NOT_A_CARD);
